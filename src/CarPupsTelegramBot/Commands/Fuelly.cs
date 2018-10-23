@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using Fizzler;
-using Fizzler.Systems.HtmlAgilityPack;
 using HtmlAgilityPack;
 using CarPupsTelegramBot.Data;
 using CarPupsTelegramBot.Models;
