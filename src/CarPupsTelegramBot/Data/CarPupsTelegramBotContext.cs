@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using CarPupsTelegramBot.Models;
 
 namespace CarPupsTelegramBot.Data {
-    public class AppContext : DbContext {
+    public class CarPupsTelegramBotContext : DbContext {
         public DbSet<FuellyModel> Fuelly { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
