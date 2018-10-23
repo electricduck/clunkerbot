@@ -25,6 +25,19 @@ namespace CarPupsTelegramBot.Api
             ConsoleOutputUtilities.MessageOutConsoleMessage(message, telegramMessageEvent);
         }
 
+        public static async void SendTextMessage(TextMessageReturnModel messageReturnModel, ITelegramBotClient botClient, MessageEventArgs telegramMessageEvent)
+        {
+            try {
+                await botClient.SendTextMessageAsync(
+                    text: messageReturnModel.Text,
+                    chatId: telegramMessageEvent.Message.Chat,
+                    parseMode: ParseMode.Html
+                );
+            } catch (Exception e) {
+                Console.WriteLine("⚠️ " + e);
+            }
+        }
+
         public static async void SendPhotoMessage(ImageMessageReturnModel messageReturnModel, ITelegramBotClient botClient, MessageEventArgs telegramMessageEvent) {
             try {
                 await botClient.SendPhotoAsync(
