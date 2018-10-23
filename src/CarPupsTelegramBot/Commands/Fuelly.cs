@@ -21,61 +21,62 @@ namespace CarPupsTelegramBot.Commands
         public static readonly double usMpgUkMpgRate = 1.2009499255398;
 
         public static ImageMessageReturnModel Get(string fuellyId, string unit = "us") {
-            var document = ScrapeFuellyProfilePage(fuellyId);
+            try {
+                var document = ScrapeFuellyProfilePage(fuellyId);
 
-            var strongNodes = document.SelectNodes("//strong");
-            var h4Nodes = document.SelectNodes("//h4");
-            var profileLinkNodes = document.SelectNodes("//a[@class='profile-link']");
-            var profilePhotoNodes = document.SelectNodes("//div[@class='profile-photo']//img");
-            var totalMilesDigitsNodes = document.SelectNodes("//ul[@class='total-miles-digits']//li");
-            var extendedInfoNodes = document.SelectNodes("//p[@class='extended_desc']//small");
-            var parentLinkNodes = document.SelectNodes("//ul[@class='breadcrumb']//li//a");
+                var strongNodes = document.SelectNodes("//strong");
+                var h4Nodes = document.SelectNodes("//h4");
+                var profileLinkNodes = document.SelectNodes("//a[@class='profile-link']");
+                var profilePhotoNodes = document.SelectNodes("//div[@class='profile-photo']//img");
+                var totalMilesDigitsNodes = document.SelectNodes("//ul[@class='total-miles-digits']//li");
+                var extendedInfoNodes = document.SelectNodes("//p[@class='extended_desc']//small");
+                var parentLinkNodes = document.SelectNodes("//ul[@class='breadcrumb']//li//a");
 
-            double extractedAvgMpg = 0;
-            double extractedLastMpg = 0;
-            double extractedBestMpg = 0;
-            int extractedMilesTracked = 0;
+                double extractedAvgMpg = 0;
+                double extractedLastMpg = 0;
+                double extractedBestMpg = 0;
+                int extractedMilesTracked = 0;
 
-            string extractedAvgMpgString = strongNodes[2].InnerHtml;
-            string extractedLastMpgString = strongNodes[3].InnerHtml;
-            string extractedBestMpgString = strongNodes[4].InnerHtml;
-            string extractedVehicleInfo = h4Nodes[0].InnerText.Replace("  ", " ").Replace("\t","").Replace("\n","").Replace("\r","").Trim();
-            string extractedProfileName = profileLinkNodes[0].InnerText.Trim();
-            string extractedProfileLink = profileLinkNodes[0].Attributes["href"].Value;
-            string extractedProfilePhoto = fuellyNoImage;
-            string extractedExtendedVehicleInfo = extendedInfoNodes[0].InnerText;
-            string extractedParentLink = parentLinkNodes[4].Attributes["href"].Value;
+                string extractedAvgMpgString = strongNodes[2].InnerHtml;
+                string extractedLastMpgString = strongNodes[3].InnerHtml;
+                string extractedBestMpgString = strongNodes[4].InnerHtml;
+                string extractedVehicleInfo = h4Nodes[0].InnerText.Replace("  ", " ").Replace("\t","").Replace("\n","").Replace("\r","").Trim();
+                string extractedProfileName = profileLinkNodes[0].InnerText.Trim();
+                string extractedProfileLink = profileLinkNodes[0].Attributes["href"].Value;
+                string extractedProfilePhoto = fuellyNoImage;
+                string extractedExtendedVehicleInfo = extendedInfoNodes[0].InnerText;
+                string extractedParentLink = parentLinkNodes[4].Attributes["href"].Value;
 
-            string pageLink = extractedParentLink + "/" + extractedProfileName.ToLower() + "/" + fuellyId;
+                string pageLink = extractedParentLink + "/" + extractedProfileName.ToLower() + "/" + fuellyId;
 
-            if(profilePhotoNodes != null) {
-                extractedProfilePhoto = fuellyBaseUrl + profilePhotoNodes[0].Attributes["src"].Value;
-            }
-
-            if(totalMilesDigitsNodes != null) {
-                string extractedMilesTrackedString = "";
-
-                foreach(var digit in totalMilesDigitsNodes) {
-                    extractedMilesTrackedString += digit.InnerText;
+                if(profilePhotoNodes != null) {
+                    extractedProfilePhoto = fuellyBaseUrl + profilePhotoNodes[0].Attributes["src"].Value;
                 }
 
-                extractedMilesTracked = Convert.ToInt32(extractedMilesTrackedString);
-            }
+                if(totalMilesDigitsNodes != null) {
+                    string extractedMilesTrackedString = "";
 
-            FuellyMpgUnitsReturnModel convertedUnits = ConvertFuellyMpgUnits(
-                extractedAvgMpgString,
-                extractedBestMpgString,
-                extractedLastMpgString,
-                unit
-            );
+                    foreach(var digit in totalMilesDigitsNodes) {
+                        extractedMilesTrackedString += digit.InnerText;
+                    }
 
-            extractedAvgMpg = convertedUnits.Average;
-            extractedBestMpg = convertedUnits.Best;
-            extractedLastMpg = convertedUnits.Last;
-            
-            string presentedUnit = convertedUnits.PresentedUnit;
+                    extractedMilesTracked = Convert.ToInt32(extractedMilesTrackedString);
+                }
 
-            var caption = $@"MPG summary for a <b>{extractedVehicleInfo}</b> <i>({extractedExtendedVehicleInfo})</i>, owned by <b>{extractedProfileName}</b>, with <b>{extractedMilesTracked.ToString()} Miles</b> tracked:
+                FuellyMpgUnitsReturnModel convertedUnits = ConvertFuellyMpgUnits(
+                    extractedAvgMpgString,
+                    extractedBestMpgString,
+                    extractedLastMpgString,
+                    unit
+                );
+
+                extractedAvgMpg = convertedUnits.Average;
+                extractedBestMpg = convertedUnits.Best;
+                extractedLastMpg = convertedUnits.Last;
+                
+                string presentedUnit = convertedUnits.PresentedUnit;
+
+                var caption = $@"MPG summary for a <b>{extractedVehicleInfo}</b> <i>({extractedExtendedVehicleInfo})</i>, owned by <b>{extractedProfileName}</b>, with <b>{extractedMilesTracked.ToString()} Miles</b> tracked:
 
 Average: <b>{extractedAvgMpg} {presentedUnit}</b>
 Best: <b>{extractedBestMpg} {presentedUnit}</b>
@@ -83,12 +84,15 @@ Last: <b>{extractedLastMpg} {presentedUnit}</b>
 
 🔗 {pageLink}";
 
-            ImageMessageReturnModel output = new ImageMessageReturnModel {
-                Caption = caption,
-                PhotoUrl = extractedProfilePhoto
-            };
+                ImageMessageReturnModel output = new ImageMessageReturnModel {
+                    Caption = caption,
+                    PhotoUrl = extractedProfilePhoto
+                };
 
-            return output;
+                return output;
+            } catch (Exception e) {
+                Console.WriteLine("⚠️ " + e);
+            }
         }
 
         //public static string My() {

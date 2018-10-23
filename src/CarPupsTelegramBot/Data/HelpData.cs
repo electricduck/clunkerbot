@@ -8,6 +8,11 @@ namespace CarPupsTelegramBot.Data
 
         public static string IncorrectFormat = "🚫 <b>Incorrect format. Try again!</b>\r\n";
 
+        public static string Fuelly_Get = @"<code>/getfuelly &lt;1&gt; &lt;[2]&gt;</code>
+
+<code>&lt;1&gt;</code> <b>Fuelly ID</b> - ID from the profile URL of a car. So, for `http://www.fuelly.com/car/peugeot/106/2002/electricduck/713804`, the ID would be `713804` -- the integer at the end
+<code>&lt;1&gt;</code> <b>Unit</b> <i>(Optional)</i> - Unit to use (<b>us</b> (US MPG), <b>uk</b> (UK/Imperial MPG) -- defaults to <b>us</b>)";
+
         public static string JourneyPrice_Calculate = @"<code>/calculatejourneyprice &lt;1&gt; &lt;2&gt; &lt;3&gt;</code>
 —
 <code>&lt;1&gt;</code> <b>Distance</b> - Distance to cover, with optional unit (<b>mi</b> or <b>km</b> -- defaults to <b>mi</b> with no unit) <i>(e.g. 100mi, 741km, 31)</i>
@@ -27,6 +32,7 @@ namespace CarPupsTelegramBot.Data
         public static void CompileHelpDictionary()
         {
             HelpDictionary.Add("calculatejourneyprice", JourneyPrice_Calculate);
+            HelpDictionary.Add("getfuelly", Fuelly_Get);
             HelpDictionary.Add("guessmileage", Mileage_Guess);
         }
 

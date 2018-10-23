@@ -89,6 +89,8 @@ namespace CarPupsTelegramBot
                             getFuellyOutput = Fuelly.Get(arguments[0]);
                         } else if (arguments.Length == 2) {
                             getFuellyOutput = Fuelly.Get(arguments[0], arguments[1]);
+                        } else {
+                            MessageApi.SendTextMessage(HelpData.GetHelp("getfuelly", false), botClient, telegramMessageEvent);
                         }
 
                         MessageApi.SendPhotoMessage(getFuellyOutput, botClient, telegramMessageEvent);
