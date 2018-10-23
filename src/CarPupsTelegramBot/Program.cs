@@ -87,6 +87,8 @@ namespace CarPupsTelegramBot
 
                         if (arguments.Length == 1) {
                             getFuellyOutput = Fuelly.Get(arguments[0]);
+                        } else if (arguments.Length == 2) {
+                            getFuellyOutput = Fuelly.Get(arguments[0], arguments[1]);
                         }
 
                         MessageApi.SendPhotoMessage(getFuellyOutput, botClient, telegramMessageEvent);
@@ -107,6 +109,15 @@ namespace CarPupsTelegramBot
                         infoOutput = Info.Get();
                         MessageApi.SendTextMessage(infoOutput, botClient, telegramMessageEvent);
                     break;
+                //case "setfuelly":
+                //        string setFuellyOutput = "";
+                //
+                //        if (arguments.Length == 1) {
+                //            setFuellyOutput = Fuelly.Set(arguments[0]);
+                //        }
+                //
+                //        MessageApi.SendTextMessage(setFuellyOutput, botClient, telegramMessageEvent);
+                //    break;
             }
         }
 
