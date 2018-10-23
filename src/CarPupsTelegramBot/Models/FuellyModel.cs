@@ -11,5 +11,7 @@ namespace CarPupsTelegramBot.Models {
         public Guid Id { get; set;}
 
         public int FuellyId { get; set; }
+
+        public UserModel User { get; set; }
     }
 }
