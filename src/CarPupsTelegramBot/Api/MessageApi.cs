@@ -1,7 +1,9 @@
+using System;
 using System.Threading;
 using Telegram.Bot;
 using Telegram.Bot.Args;
 using Telegram.Bot.Types.Enums;
+using CarPupsTelegramBot.Models.ReturnModels;
 using CarPupsTelegramBot.Utilities;
 
 namespace CarPupsTelegramBot.Api
@@ -16,10 +18,24 @@ namespace CarPupsTelegramBot.Api
                     text: message,
                     parseMode: ParseMode.Html
                 );
-            } catch {
+            } catch (Exception e) {
+                Console.WriteLine("⚠️ " + e);
             }
 
             ConsoleOutputUtilities.MessageOutConsoleMessage(message, telegramMessageEvent);
+        }
+
+        public static async void SendPhotoMessage(ImageMessageReturnModel messageReturnModel, ITelegramBotClient botClient, MessageEventArgs telegramMessageEvent) {
+            try {
+                await botClient.SendPhotoAsync(
+                    chatId: telegramMessageEvent.Message.Chat,
+                    parseMode: ParseMode.Html,
+                    caption: messageReturnModel.Caption,
+                    photo: messageReturnModel.PhotoUrl
+                );
+            } catch (Exception e) {
+                Console.WriteLine("⚠️ " + e);
+            }
         }
     }
 }

@@ -11,6 +11,7 @@ using Telegram.Bot.Types.Enums;
 using CarPupsTelegramBot.Api;
 using CarPupsTelegramBot.Commands;
 using CarPupsTelegramBot.Data;
+using CarPupsTelegramBot.Models.ReturnModels;
 using CarPupsTelegramBot.Utilities;
 
 namespace CarPupsTelegramBot
@@ -80,6 +81,15 @@ namespace CarPupsTelegramBot
                         }
                 
                         MessageApi.SendTextMessage(calculateJourneyPriceOutput, botClient, telegramMessageEvent);
+                    break;
+                case "getfuelly":
+                        ImageMessageReturnModel getFuellyOutput = null;
+
+                        if (arguments.Length == 1) {
+                            getFuellyOutput = Fuelly.Get(arguments[0]);
+                        }
+
+                        MessageApi.SendPhotoMessage(getFuellyOutput, botClient, telegramMessageEvent);
                     break;
                 case "guessmileage":
                         string guessMileageOutput = "";
