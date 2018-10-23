@@ -1,6 +1,6 @@
 using System;
 
-namespace CarPupsTelegramBot.Models.ReturnModels
+namespace CarPupsTelegramBot.Models.ReturnModels.MessageReturnModels
 {
     public class ImageMessageReturnModel
     {

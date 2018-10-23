@@ -11,7 +11,7 @@ using Telegram.Bot.Types.Enums;
 using CarPupsTelegramBot.Api;
 using CarPupsTelegramBot.Commands;
 using CarPupsTelegramBot.Data;
-using CarPupsTelegramBot.Models.ReturnModels;
+using CarPupsTelegramBot.Models.ReturnModels.MessageReturnModels;
 using CarPupsTelegramBot.Utilities;
 
 namespace CarPupsTelegramBot

@@ -3,7 +3,7 @@ using System.Threading;
 using Telegram.Bot;
 using Telegram.Bot.Args;
 using Telegram.Bot.Types.Enums;
-using CarPupsTelegramBot.Models.ReturnModels;
+using CarPupsTelegramBot.Models.ReturnModels.MessageReturnModels;
 using CarPupsTelegramBot.Utilities;
 
 namespace CarPupsTelegramBot.Api
