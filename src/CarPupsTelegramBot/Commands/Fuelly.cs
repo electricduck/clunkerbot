@@ -24,22 +24,38 @@ namespace CarPupsTelegramBot.Commands
             var h4Nodes = document.SelectNodes("//h4");
             var profileLinkNodes = document.SelectNodes("//a[@class='profile-link']");
             var profilePhotoNodes = document.SelectNodes("//div[@class='profile-photo']//img");
+            var totalMilesDigitsNodes = document.SelectNodes("//ul[@class='total-miles-digits']//li");
+            var extendedInfoNodes = document.SelectNodes("//p[@class='extended_desc']//small");
+            var parentLinkNodes = document.SelectNodes("//ul[@class='breadcrumb']//li//a");
 
             string extractedAvgMpg = strongNodes[2].InnerHtml;
             string extractedLastMpg = strongNodes[3].InnerHtml;
             string extractedBestMpg = strongNodes[4].InnerHtml;
             string extractedVehicleInfo = h4Nodes[0].InnerText.Replace("  ", " ").Replace("\t","").Replace("\n","").Replace("\r","").Trim();
-            string extractedProfileName = profileLinkNodes[0].InnerText.Replace(" ","");
+            string extractedProfileName = profileLinkNodes[0].InnerText.Trim();
             string extractedProfileLink = profileLinkNodes[0].Attributes["href"].Value;
             string extractedProfilePhoto = fuellyNoImage;
-            
-            string pageLink = fuellyCarProfileUrl + fuellyId;
+            int extractedMilesTracked = 0;
+            string extractedExtendedVehicleInfo = extendedInfoNodes[0].InnerText;
+            string extractedParentLink = parentLinkNodes[4].Attributes["href"].Value;
+
+            string pageLink = extractedParentLink + "/" + extractedProfileName.ToLower() + "/" + fuellyId;
 
             if(profilePhotoNodes != null) {
                 extractedProfilePhoto = fuellyBaseUrl + profilePhotoNodes[0].Attributes["src"].Value;
             }
 
-            var caption = $@"MPG summary for <i>{extractedProfileName}'s</i> <b>{extractedVehicleInfo}</b>:
+            if(totalMilesDigitsNodes != null) {
+                string extractedMilesTrackedString = "";
+
+                foreach(var digit in totalMilesDigitsNodes) {
+                    extractedMilesTrackedString += digit.InnerText;
+                }
+
+                extractedMilesTracked = Convert.ToInt32(extractedMilesTrackedString);
+            }
+
+            var caption = $@"MPG summary for a <b>{extractedVehicleInfo}</b> <i>({extractedExtendedVehicleInfo})</i>, owned by <b>{extractedProfileName}</b>, with <b>{extractedMilesTracked.ToString()} Miles</b> tracked:
 
 Average: <b>{extractedAvgMpg} MPG</b>
 Best: <b>{extractedBestMpg} MPG</b>
