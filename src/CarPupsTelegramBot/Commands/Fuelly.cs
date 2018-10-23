@@ -92,6 +92,7 @@ Last: <b>{extractedLastMpg} {presentedUnit}</b>
                 return output;
             } catch (Exception e) {
                 Console.WriteLine("⚠️ " + e);
+                return null;
             }
         }
 
