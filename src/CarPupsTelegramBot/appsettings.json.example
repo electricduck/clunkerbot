@@ -1,5 +1,11 @@
 {
     "apiKeys": {
         "telegram": "..."
+    },
+    "config": {
+        "awoo": {
+            "word": "Bork. ",
+            "repeat": false
+        }
     }
 }

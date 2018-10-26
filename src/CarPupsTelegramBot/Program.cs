@@ -68,8 +68,14 @@ namespace CarPupsTelegramBot
         {
             switch(command) {
                 case "awoo":
-                        var awooOutput = String.Concat(Enumerable.Repeat("Bork. ", awooCount));
-                        awooCount++;
+                        string awooOutput;
+
+                        if(AppSettings.Config_Awoo_Repeat) {
+                            awooOutput = String.Concat(Enumerable.Repeat(AppSettings.Config_Awoo_Word, awooCount));
+                            awooCount++;
+                        } else {
+                            awooOutput = AppSettings.Config_Awoo_Word;
+                        }
 
                         MessageApi.SendTextMessage(awooOutput, botClient, telegramMessageEvent);
                     break;
@@ -130,7 +136,9 @@ namespace CarPupsTelegramBot
 
             IConfigurationRoot configuration = builder.Build();
 
-            AppSettings.ApiKeys_Telegram = configuration.GetSection("apiKeys")["telegram"];;
+            AppSettings.ApiKeys_Telegram = configuration.GetSection("apiKeys")["telegram"];
+            AppSettings.Config_Awoo_Repeat = bool.Parse(configuration.GetSection("config").GetSection("awoo")["repeat"]);
+            AppSettings.Config_Awoo_Word = configuration.GetSection("config").GetSection("awoo")["word"];
 
             //Console.WriteLine(configuration.GetConnectionString("Storage"));
         }
