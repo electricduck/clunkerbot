@@ -20,7 +20,7 @@ namespace CarPupsTelegramBot.Commands
 
                 switch(country) {
                     case "gb":
-                        plateReturn = GbPlateUtilities.ParseGbPlate(plate);
+                        plateReturn = GbPlateUtilities.ParseGbPlate(plate, Enums.GbPlateFormat.unspecified);
                         break;
                     default:
                         return HelpData.GetHelp("parseplate", true);
@@ -91,6 +91,9 @@ namespace CarPupsTelegramBot.Commands
 <b>Year Reg.:</b> {yearString} ({plateReturn.Month})
 <b>Special:</b> {specialOutput}
 <b>Format:</b> Current <i>(2001 to 2051)</i>";
+                } else if(plateReturn.Format == Enums.GbPlateFormat.trade2015) {
+                    output += $@"<b>Issue:</b> {plateReturn.Issue}
+<b>Format:</b> Trade <i>(2015 onwards)</i>";
                 } else if(plateReturn.Format == Enums.GbPlateFormat.custom) {
                     output += $@"<i>This plate is a non-standard private plate. Check with DVLA records to find out more.</i>";
                 }
