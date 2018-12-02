@@ -15,6 +15,7 @@ namespace CarPupsTelegramBot.Commands
             try {
                 PlateReturnModel plateReturn;
 
+                country = country.ToLower();
                 plate = plate.ToUpper();
 
                 switch(country) {
