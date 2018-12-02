@@ -93,7 +93,9 @@ namespace CarPupsTelegramBot.Commands
 <b>Format:</b> Current <i>(2001 to 2051)</i>";
                 } else if(plateReturn.Format == Enums.GbPlateFormat.trade2015) {
                     output += $@"<b>Issue:</b> {plateReturn.Issue}
-<b>Format:</b> Trade <i>(2015 onwards)</i>";
+<b>Format:</b> Trade <i>(2015 onwards)</i>
+
+<i>This is a trade plate (2015 onwards), licensed to motor traders and vehicle testers, permitting the use of an untaxed vehicle on the public highway with certain restrictions.";
                 } else if(plateReturn.Format == Enums.GbPlateFormat.diplomatic1979) {
                     output += $@"<b>Diplomatic Org.:</b> {plateReturn.DiplomaticOrganisation}
 <b>Diplomatic Type:</b> {plateReturn.DiplomaticType}
