@@ -9,5 +9,6 @@ namespace CarPupsTelegramBot.Models.ReturnModels {
         public int Issue { get; set; }
         public Enums.GbPlatePost2001Type Type { get; set; }
         public Enums.GbPlateFormat Format { get; set; }
+        public bool Custom { get; set; }
     }
 }

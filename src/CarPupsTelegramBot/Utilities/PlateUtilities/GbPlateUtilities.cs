@@ -31,6 +31,10 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
                 plateReturn = ParseGbYr1983Plate(plate);
             } else if(Regex.IsMatch(plate, Year2001Regex)) {
                 plateReturn = ParseGbYr2001Plate(plate);
+            } else {
+                plateReturn = new PlateReturnModel {
+                    Format = Enums.GbPlateFormat.custom
+                };
             }
 
             return plateReturn;

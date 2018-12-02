@@ -19,7 +19,8 @@ namespace CarPupsTelegramBot.Models {
             yr1953,     // 1953 to 1963
             suffix,     // 1963 to 1982 (Suffix)
             prefix,     // 1982 to 2001 (Prefix)
-            current     // 2001 onwards (Current)
+            current,    // 2001 onwards (Current)
+            custom      // Non-standard custom
         }
 
         public enum GbPlatePost2001Type {

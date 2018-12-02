@@ -62,6 +62,8 @@ namespace CarPupsTelegramBot.Commands
 <b>Year Reg.:</b> {plateReturn.Year} ({plateReturn.Month})
 <b>Special:</b> {specialOutput}
 <b>Format:</b> Current <i>(2001 to 2051)</i>";
+                } else if(plateReturn.Format == Enums.GbPlateFormat.custom) {
+                    output += $@"<i>This plate is a non-standard custom plate. Check with DVLA records to find out more.";
                 }
 
 //Year: {plateReturn.Year} ({plateReturn.Month})
