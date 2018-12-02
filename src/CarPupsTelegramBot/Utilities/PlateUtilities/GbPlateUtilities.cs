@@ -19,6 +19,8 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
         {
             PlateReturnModel plateReturn = null;
 
+            plate = plate.Replace(" ", "");
+
             if(Regex.IsMatch(plate, Year1902Regex)) {
                 plateReturn = ParseGbYr1902Plate(plate);
             } else if(Regex.IsMatch(plate, Year1932Regex)) {
