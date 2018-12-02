@@ -92,7 +92,7 @@ namespace CarPupsTelegramBot.Commands
 <b>Special:</b> {specialOutput}
 <b>Format:</b> Current <i>(2001 to 2051)</i>";
                 } else if(plateReturn.Format == Enums.GbPlateFormat.custom) {
-                    output += $@"<i>This plate is a non-standard custom plate. Check with DVLA records to find out more.</i>";
+                    output += $@"<i>This plate is a non-standard private plate. Check with DVLA records to find out more.</i>";
                 }
 
                 return output;
