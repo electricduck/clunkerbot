@@ -94,6 +94,13 @@ namespace CarPupsTelegramBot.Commands
                 } else if(plateReturn.Format == Enums.GbPlateFormat.trade2015) {
                     output += $@"<b>Issue:</b> {plateReturn.Issue}
 <b>Format:</b> Trade <i>(2015 onwards)</i>";
+                } else if(plateReturn.Format == Enums.GbPlateFormat.diplomatic1979) {
+                    output += $@"<b>Diplomatic Org.:</b> {plateReturn.DiplomaticOrganisation}
+<b>Diplomatic Type:</b> {plateReturn.DiplomaticType}
+<b>Diplomatic Rank:</b> {plateReturn.DiplomaticRank}
+<b>Format:</b> Diplomatic
+
+<i>This is a diplomatic plate, found on cars used by foreign embassies, high commissions, consulates and international organisations. The cars themselves are usually not personally owned.</i>";
                 } else if(plateReturn.Format == Enums.GbPlateFormat.custom) {
                     output += $@"<i>This plate is a non-standard private plate. Check with DVLA records to find out more.</i>";
                 }

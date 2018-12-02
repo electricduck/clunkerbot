@@ -12,6 +12,7 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
         private static string Year1932Regex = @"^(([A-Z]{1})([A-Z]{2})\s?([0-9]{1,4}))$";
         private static string Year1953Regex = @"^(([0-9]{1,4})\s?([A-Z]{1,3}))$";
         private static string Year1963Regex = @"^(([A-Z]{3})\s?([0-9]{1,3})([A-Z]{1}))$";
+        private static string Year1979DiplomaticRegex = "^(([0-9]{3})([A-Z]{1})([0-9]{3}))$";
         private static string Year1983Regex = @"^(([A-Z]{1})([0-9]{2,3})\s?([A-Z]{1})([A-Z]{2}))$";
         private static string Year2001Regex = @"(([A-Z]{2,2})([0-9]{2})\s?([A-Z]{3,3}))$";
         private static string Year2015TradeRegex = @"([0-9]{5})";
@@ -30,6 +31,8 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
                 plateReturn = ParseGbYr1953Plate(plate);
             } else if(Regex.IsMatch(plate, Year1963Regex)) {
                 plateReturn = ParseGbYr1963Plate(plate);
+            } else if(Regex.IsMatch(plate, Year1979DiplomaticRegex)) {
+                plateReturn = ParseGbYr1979DiplomaticPlate(plate);
             } else if(Regex.IsMatch(plate, Year1983Regex)) {
                 plateReturn = ParseGbYr1983Plate(plate);
             } else if(Regex.IsMatch(plate, Year2001Regex)) {
@@ -132,6 +135,29 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
                 Location = location,
                 Year = year,
                 Format = Enums.GbPlateFormat.suffix
+            };
+
+            return plateReturn;
+        }
+
+        private static PlateReturnModel ParseGbYr1979DiplomaticPlate(string plate)
+        {
+            Regex regex = new Regex(Year1979DiplomaticRegex);
+            Match match = regex.Match(plate);
+
+            var diplomaticOrganisationMnemonic = match.Groups[2].Value;
+            var diplomaticTypeMnemonic = match.Groups[3].Value;
+            var diplomaticRankMnemonic = match.Groups[4].Value;
+
+            var diplomaticOrganisation = GetDiplomaticOrganisationMnemonic(Convert.ToInt32(diplomaticOrganisationMnemonic));
+            var diplomaticType = GetDiplomaticTypeMnemonic(Char.Parse(diplomaticTypeMnemonic));
+            var diplomaticRank = GetDiplomaticRankMnemonic(Convert.ToInt32(diplomaticRankMnemonic));
+
+            PlateReturnModel plateReturn = new PlateReturnModel {
+                DiplomaticOrganisation = diplomaticOrganisation,
+                DiplomaticType = diplomaticType,
+                DiplomaticRank = diplomaticRank,
+                Format = Enums.GbPlateFormat.diplomatic1979
             };
 
             return plateReturn;
@@ -418,6 +444,53 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
             } else {
                 return 0;
             }
+        }
+
+        private static string GetDiplomaticTypeMnemonic(char diplomaticTypeMnemonic)
+        {
+            if(DiplomaticTypeMnemonics.ContainsKey(diplomaticTypeMnemonic)) {
+                string diplomaticType;
+
+                DiplomaticTypeMnemonics.TryGetValue(diplomaticTypeMnemonic, out diplomaticType);
+
+                return diplomaticType;
+            } else {
+                return "<i>Unknown</i>";
+            }
+        }
+
+        private static string GetDiplomaticOrganisationMnemonic(int diplomaticOrganisationMnemonic)
+        {
+            string diplomaticOrganisation;
+
+            if(diplomaticOrganisationMnemonic >= 350 && diplomaticOrganisationMnemonic <= 399) {
+                diplomaticOrganisation = "<i>Classified</i>";
+            } else if(diplomaticOrganisationMnemonic >= 600 && diplomaticOrganisationMnemonic <= 649) {
+                diplomaticOrganisation = "Non-British Royalty on visit";
+            } else if(DiplomaticOrganisationMnemonics.ContainsKey(diplomaticOrganisationMnemonic)) {
+                DiplomaticOrganisationMnemonics.TryGetValue(diplomaticOrganisationMnemonic, out diplomaticOrganisation);
+            } else {
+                diplomaticOrganisation = "<i>Unknown</i>";
+            }
+
+            return diplomaticOrganisation;
+        }
+
+        private static string GetDiplomaticRankMnemonic(int diplomaticRankMnemonic)
+        {
+            string diplomaticRank;
+
+            if(diplomaticRankMnemonic >= 101 && diplomaticRankMnemonic <= 399) {
+                diplomaticRank = "Diplomat";
+            } else if(diplomaticRankMnemonic >= 400 && diplomaticRankMnemonic <= 699) {
+                diplomaticRank = "Non-Diplomatic staff";
+            } else if(diplomaticRankMnemonic >= 700 && diplomaticRankMnemonic <= 999) {
+                diplomaticRank = "Consular / Other Non-Diplomatic staff";
+            } else {
+                diplomaticRank = "<i>Unknown</i>";
+            }
+
+            return diplomaticRank;
         }
 
         private static GetGbCurrentYearMnemonicReturnModel GetGbCurrentYearMnemonic(int yearMnemonic)
@@ -1051,6 +1124,63 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
             {'W', 2000},
             {'X', 2000},
             {'Y', 2001}
+        };
+
+        private static Dictionary<char, string> DiplomaticTypeMnemonics = new Dictionary<char, string>()
+        {
+            {'D', "London"},
+            {'X', "International"}
+        };
+
+        private static Dictionary<int, string> DiplomaticOrganisationMnemonics = new Dictionary<int, string>()
+        {
+            {270, "🇺🇸 United States"},
+            {271, "🇺🇸 United States"},
+            {272, "🇺🇸 United States"},
+            {273, "🇺🇸 United States"},
+            {274, "🇺🇸 United States"},
+            {900, "Commonwealth Secretariat"},
+            {901, "🇪🇺 European Commission"},
+            {902, "🇪🇺 Council of Europe"},
+            {903, "European Centre for Medium-Range Weather Forecasts"},
+            {904, "North-East Atlantic Fisheries Commission"},
+            {905, "🇪🇺 European Parliament"},
+            {906, "Inter-American Development Bank"},
+            {907, "🇺🇳 International Maritime Organization"},
+            {908, "International Cocoa Organisation"},
+            {909, "International Coffee Organisation"},
+            {910, "International Finance Corporation"},
+            {911, "International Labour Organization"},
+            {912, "International Sugar Organisation"},
+            {913, "European Police College"},
+            {914, "International Whaling Commission"},
+            {915, "International Wheat Council"},
+            {916, "North Atlantic Treaty Organisation"},
+            {917, "🇺🇳 United Nations"},
+            {918, "🇪🇺 Western European Union"},
+            {919, "🇺🇳 World Health Organization"},
+            {920, "Eastern Caribbean Commission"},
+            {921, "Joint European Torus"},
+            {922, "International Oil Pollution Compensation Fund"},
+            {923, "International Maritime Satellite Organisation"},
+            {924, "Commonwealth Foundation"},
+            {925, "International Maritime Organization"},
+            {926, "Commonwealth Telecommunications Bureau"},
+            {927, "United Nations High Commissioner for Refugees"},
+            {928, "Commonwealth Agricultural Bureau"},
+            {929, "International Lead and Zinc Corporation"},
+            {930, "Oslo and Paris Commissions"},
+            {931, "Joint European Torus"},
+            {932, "North Atlantic Salmon Conservation Organization"},
+            {933, "European Investment Bank"},
+            {934, "European Telecommunications Satellite Organisation"},
+            {935, "European School (Oxford)"},
+            {936, "African Development Bank"},
+            {937, "European Bank for Reconstruction and Development"},
+            {938, "European Bank for Reconstruction and Development"},
+            {940, "European Bioinformatics Institute"},
+            {941, "European Medicines Agency"},
+            {944, "European Banking Authority"}
         };
     }
 }
