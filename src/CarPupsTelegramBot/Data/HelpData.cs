@@ -29,11 +29,14 @@ namespace CarPupsTelegramBot.Data
 <code>&lt;3&gt;</code> <b>Last MOT Date</b> - The date the latest MOT occured <i>(e.g. 15-Aug-2017)</i>
 <code>&lt;4&gt;</code> <b>Date To Calculate To</b> <i>(Optional)</i> - Date to calculate to; reverts to current date by default <i>(e.g. 11-Aug-2020)</i>";
 
+        public static string Plate_Parse = @"<code>/parseplate</code>";
+
         public static void CompileHelpDictionary()
         {
             HelpDictionary.Add("calculatejourneyprice", JourneyPrice_Calculate);
             HelpDictionary.Add("getfuelly", Fuelly_Get);
             HelpDictionary.Add("guessmileage", Mileage_Guess);
+            HelpDictionary.Add("parseplate", Plate_Parse);
         }
 
         public static string GetHelp(string command, bool incorrectFormatWarning)

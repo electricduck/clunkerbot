@@ -117,6 +117,20 @@ namespace CarPupsTelegramBot
                         infoOutput = Info.Get();
                         MessageApi.SendTextMessage(infoOutput, botClient, telegramMessageEvent);
                     break;
+                case "parseplate":
+                        string parsePlateOutput = "";
+
+                        if(arguments.Length == 1) {
+                            parsePlateOutput = Plate.Parse(arguments[0], "gb");
+                        } else if (arguments.Length == 2) {
+                            parsePlateOutput = Plate.Parse(arguments[0], arguments[1]);
+                        } else {
+                            MessageApi.SendTextMessage(HelpData.GetHelp("parseplate", false), botClient, telegramMessageEvent);
+                        }
+
+                        MessageApi.SendTextMessage(parsePlateOutput, botClient, telegramMessageEvent);
+
+                    break;
                 //case "setfuelly":
                 //        string setFuellyOutput = "";
                 //
