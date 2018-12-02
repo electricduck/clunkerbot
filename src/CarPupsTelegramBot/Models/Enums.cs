@@ -27,7 +27,8 @@ namespace CarPupsTelegramBot.Models {
             Location,
             Reserved,
             Banned,
-            Export
+            Export,
+            QPlate
         }
     }
 }

@@ -126,10 +126,16 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
 
             var location = GetPre2001GbLocationMnemonic(locationMnemonic);
             var year = GetGbPrefixYearMnemonic(Char.Parse(yearMnemonic));
+            var type = Enums.GbPlatePost2001Type.Location;
+
+            if(plate[0] == 'Q') {
+                type = Enums.GbPlatePost2001Type.QPlate;
+            }
 
             PlateReturnModel plateReturn = new PlateReturnModel {
                 Location = location,
                 Year = year,
+                Type = type,
                 Format = Enums.GbPlateFormat.prefix
             };
 

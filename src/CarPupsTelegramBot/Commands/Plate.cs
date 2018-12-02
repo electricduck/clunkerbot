@@ -26,6 +26,14 @@ namespace CarPupsTelegramBot.Commands
                         return HelpData.GetHelp("parseplate", true);
                 }
 
+                string yearString;
+
+                if(plateReturn.Year == 0) {
+                    yearString = "<i>Unknown</i>";
+                } else {
+                    yearString = plateReturn.Year.ToString();
+                }
+
                 string output = $@"#️⃣ <i>Parse Plate:</i> <code>{plate}</code>
 —
 ";
@@ -44,11 +52,18 @@ namespace CarPupsTelegramBot.Commands
 <b>Format:</b> 1932 to 1963 (Reversed)";
                 } else if(plateReturn.Format == Enums.GbPlateFormat.suffix) {
                     output += $@"<b>DVLA Office:</b> {plateReturn.Location}
-<b>Year Reg.:</b> {plateReturn.Year}
+<b>Year Reg.:</b> {yearString}
 <b>Format:</b> Suffix <i>(1963 to 1982)</i>";
                 } else if(plateReturn.Format == Enums.GbPlateFormat.prefix) {
+                    var specialOutput = "<i>No</i>";
+
+                    if(plateReturn.Type == Enums.GbPlatePost2001Type.QPlate) {
+                        specialOutput = "Q Plate";
+                    }
+
                     output += $@"<b>DVLA Office:</b> {plateReturn.Location}
-<b>Year Reg.:</b> {plateReturn.Year}
+<b>Year Reg.:</b> {yearString}
+<b>Special:</b> {specialOutput}
 <b>Format:</b> Prefix <i>(1983 to 2001)</i>";
                 } else if(plateReturn.Format == Enums.GbPlateFormat.current) {
                     var specialOutput = "<i>No</i>";
@@ -60,18 +75,12 @@ namespace CarPupsTelegramBot.Commands
                     }
                     
                     output += $@"<b>DVLA Office:</b> {plateReturn.Location}
-<b>Year Reg.:</b> {plateReturn.Year} ({plateReturn.Month})
+<b>Year Reg.:</b> {yearString} ({plateReturn.Month})
 <b>Special:</b> {specialOutput}
 <b>Format:</b> Current <i>(2001 to 2051)</i>";
                 } else if(plateReturn.Format == Enums.GbPlateFormat.custom) {
                     output += $@"<i>This plate is a non-standard custom plate. Check with DVLA records to find out more.";
                 }
-
-//Year: {plateReturn.Year} ({plateReturn.Month})
-//Location: {plateReturn.Location}
-//Issue: {plateReturn.Issue}
-//Type: {plateReturn.Type}
-//Format: {plateReturn.Format}";
 
                 return output;
             } catch {
