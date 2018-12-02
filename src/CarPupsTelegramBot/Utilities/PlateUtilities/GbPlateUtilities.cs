@@ -330,6 +330,20 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
 
             } else if(locationMnemonic == "TN") {
                 location = "Scotland";
+
+            } else if(CompareLetters(locationMnemonic, "VA", "VC") || CompareLetters(locationMnemonic, "VE", "VV")) {
+                location = "Worcester (Severn Valley)";
+            } else if(locationMnemonic == "VD" || locationMnemonic == "VW") {
+                type = Enums.GbPlatePost2001Type.Reserved;
+
+            } else if(CompareLetters(locationMnemonic, "WA", "WB") || CompareLetters(locationMnemonic, "WD", "WJ")) {
+                location = "Exeter (West of England)";
+            } else if(CompareLetters(locationMnemonic, "WK", "WL")) {
+                location = "Truro (West of England)";
+            } else if(CompareLetters(locationMnemonic, "WM", "WY")) {
+                location = "Bristol (West of England)";
+            } else if(locationMnemonic == "C") {
+                type = Enums.GbPlatePost2001Type.Banned;
             
             } else if(CompareLetters(locationMnemonic, "XA", "XF")) {
                 type = Enums.GbPlatePost2001Type.Export;
