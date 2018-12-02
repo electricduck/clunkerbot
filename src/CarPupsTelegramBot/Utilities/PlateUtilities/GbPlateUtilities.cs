@@ -10,6 +10,7 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
     {
         private static string Year1902Regex = @"^(([A-Z]{1,2})\s?([0-9]{1,4}))$";
         private static string Year1932Regex = @"^(([A-Z]{1})([A-Z]{2})\s?([0-9]{1,4}))$";
+        private static string Year1953Regex = @"^(([0-9]{1,4})\s?([A-Z]{1,3}))$";
 
         public static PlateReturnModel ParseGbPlate(string plate)
         {
@@ -19,6 +20,8 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
                 plateReturn = ParseGbYr1902Plate(plate);
             } else if(Regex.IsMatch(plate, Year1932Regex)) {
                 plateReturn = ParseGbYr1932Plate(plate);
+            } else if(Regex.IsMatch(plate, Year1953Regex)) {
+                plateReturn = ParseGbYr1953Plate(plate);
             }
 
             //^([A-Z]{2,2}[0-9]{2}\s?[A-Z]{3,3})$ - 2001 - current
@@ -68,8 +71,31 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
             return plateReturn;
         }
 
+        private static PlateReturnModel ParseGbYr1953Plate(string plate)
+        {
+            Regex regex = new Regex(Year1953Regex);
+            Match match = regex.Match(plate);
+
+            var locationMnemonic = match.Groups[3].Value;
+            var issue = match.Groups[2].Value;
+
+            var location = GetPre2001GbLocationMnemonic(locationMnemonic);
+
+            PlateReturnModel plateReturn = new PlateReturnModel {
+                Location = location,
+                Issue = Convert.ToInt32(issue),
+                Format = Enums.GbPlateFormat.yr1953
+            };
+
+            return plateReturn;
+        }
+
         private static string GetPre2001GbLocationMnemonic(string locationMnemonic)
         {
+            if(locationMnemonic.Length == 3) {
+                locationMnemonic = locationMnemonic.Substring(1);
+            }
+
             if(Pre2001GbLocationMnemonics.ContainsKey(locationMnemonic)) {
                 string location;
 
