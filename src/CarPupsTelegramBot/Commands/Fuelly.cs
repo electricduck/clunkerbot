@@ -79,9 +79,9 @@ namespace CarPupsTelegramBot.Commands
 —      
 MPG summary for a <b>{extractedVehicleInfo}</b> <i>({extractedExtendedVehicleInfo})</i>, owned by <b>{extractedProfileName}</b>, with <b>{extractedMilesTracked.ToString()} Miles</b> tracked:
 
-Average: <b>{extractedAvgMpg} {presentedUnit}</b>
-Best: <b>{extractedBestMpg} {presentedUnit}</b>
-Last: <b>{extractedLastMpg} {presentedUnit}</b>
+<b>Average:</b> {extractedAvgMpg} {presentedUnit}
+<b>Best:</b> {extractedBestMpg} {presentedUnit}
+<b>Last:</b> {extractedLastMpg} {presentedUnit}
 
 🔗 {pageLink}";
 
