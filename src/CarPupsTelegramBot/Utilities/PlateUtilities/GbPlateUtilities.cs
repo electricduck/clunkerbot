@@ -1004,32 +1004,5 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
             {'X', 2000},
             {'Y', 2001}
         };
-
-        private static Dictionary<string, string> Post2001GbLocationMnemonics = new Dictionary<string, string>()
-        {
-            {"AA", "Peterborough (Anglia)"},
-            {"AB", "Peterborough (Anglia)"},
-            {"AC", "Peterborough (Anglia)"},
-            {"AD", "Peterborough (Anglia)"},
-            {"AE", "Peterborough (Anglia)"},
-            {"AF", "Peterborough (Anglia)"},
-            {"AG", "Peterborough (Anglia)"},
-            {"AJ", "Peterborough (Anglia)"},
-            {"AK", "Peterborough (Anglia)"},
-            {"AM", "Peterborough (Anglia)"},
-            {"AN", "Peterborough (Anglia)"},
-            {"AH", "Reserved for selected use"},
-            {"AL", "Reserved for selected use"},
-            {"AO", "Norwich (Anglia)"},
-            {"AP", "Norwich (Anglia)"},
-            {"AR", "Norwich (Anglia)"},
-            {"AS", "Norwich (Anglia)"},
-            {"AT", "Norwich (Anglia)"},
-            {"AU", "Norwich (Anglia)"},
-            {"AV", "Ipswich (Anglia)"},
-            {"AW", "Ipswich (Anglia)"},
-            {"AX", "Ipswich (Anglia)"},
-            {"AY", "Ipswich (Anglia)"}
-        };
     }
 }
