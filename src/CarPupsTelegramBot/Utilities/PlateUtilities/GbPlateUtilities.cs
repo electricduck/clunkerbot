@@ -11,6 +11,7 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
         private static string Year1902Regex = @"^(([A-Z]{1,2})\s?([0-9]{1,4}))$";
         private static string Year1932Regex = @"^(([A-Z]{1})([A-Z]{2})\s?([0-9]{1,4}))$";
         private static string Year1953Regex = @"^(([0-9]{1,4})\s?([A-Z]{1,3}))$";
+        private static string Year1963Regex = @"^(([A-Z]{3})\s?([0-9]{1,3})([A-Z]{1}))$";
 
         public static PlateReturnModel ParseGbPlate(string plate)
         {
@@ -22,6 +23,8 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
                 plateReturn = ParseGbYr1932Plate(plate);
             } else if(Regex.IsMatch(plate, Year1953Regex)) {
                 plateReturn = ParseGbYr1953Plate(plate);
+            } else if(Regex.IsMatch(plate, Year1963Regex)) {
+                plateReturn = ParseGbYr1963Plate(plate);
             }
 
             //^([A-Z]{2,2}[0-9]{2}\s?[A-Z]{3,3})$ - 2001 - current
@@ -90,6 +93,26 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
             return plateReturn;
         }
 
+        private static PlateReturnModel ParseGbYr1963Plate(string plate)
+        {
+            Regex regex = new Regex(Year1963Regex);
+            Match match = regex.Match(plate);
+
+            var locationMnemonic = match.Groups[2].Value;
+            var yearMnemonic = match.Groups[4].Value;
+
+            var location = GetPre2001GbLocationMnemonic(locationMnemonic);
+            var year = GetGbSuffixYearMnemonic(Char.Parse(yearMnemonic));
+
+            PlateReturnModel plateReturn = new PlateReturnModel {
+                Location = location,
+                Year = year,
+                Format = Enums.GbPlateFormat.suffix
+            };
+
+            return plateReturn;
+        }
+
         private static string GetPre2001GbLocationMnemonic(string locationMnemonic)
         {
             if(locationMnemonic.Length == 3) {
@@ -104,6 +127,19 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
                 return location;
             } else {
                 return "Unknown";
+            }
+        }
+
+        private static int GetGbSuffixYearMnemonic(char yearMnemonic)
+        {
+            if(GbSuffixYearMnemonics.ContainsKey(yearMnemonic)) {
+                int year;
+
+                GbSuffixYearMnemonics.TryGetValue(yearMnemonic, out year);
+
+                return year;
+            } else {
+                return 0;
             }
         }
 
@@ -661,6 +697,31 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
             {"YW", "London (Central)"},
             {"YX", "London (Central)"},
             {"YY", "London (Central)"}
+        };
+
+        private static Dictionary<char, int> GbSuffixYearMnemonics = new Dictionary<char, int>()
+        {
+            {'A', 1963},
+            {'B', 1964},
+            {'C', 1965},
+            {'D', 1966},
+            {'E', 1967},
+            {'F', 1967},
+            {'G', 1968},
+            {'H', 1969},
+            {'J', 1970},
+            {'K', 1971},
+            {'L', 1972},
+            {'M', 1973},
+            {'N', 1974},
+            {'P', 1975},
+            {'R', 1976},
+            {'S', 1977},
+            {'T', 1978},
+            {'V', 1979},
+            {'W', 1980},
+            {'X', 1981},
+            {'Y', 1982}
         };
     }
 }
