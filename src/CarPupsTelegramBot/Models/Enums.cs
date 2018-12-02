@@ -28,7 +28,11 @@ namespace CarPupsTelegramBot.Models {
             Reserved,
             Banned,
             Export,
-            QPlate
+            QPlate,
+            LordMayorOfLondon,
+            LordProvostsOfEdinburgh,
+            LordProvostsOfGlasgow,
+            LordProvostsOfAberdeen
         }
     }
 }

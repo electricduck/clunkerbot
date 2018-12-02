@@ -48,10 +48,26 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
             var issue = match.Groups[3].Value;
 
             var location = GetPre2001GbLocationMnemonic(locationMnemonic);
+            Enums.GbPlatePost2001Type type = Enums.GbPlatePost2001Type.Location;
+
+            if(plate == "LM0") {
+                location = "London";
+                type = Enums.GbPlatePost2001Type.LordMayorOfLondon;
+            } else if(plate == "S0") {
+                location = "Scotland";
+                type = Enums.GbPlatePost2001Type.LordProvostsOfEdinburgh;
+            } else if(plate == "G0") {
+                location = "Glasgow";
+                type = Enums.GbPlatePost2001Type.LordProvostsOfGlasgow;
+            } else if(plate == "RG0") {
+                location = "Aberdeen";
+                type = Enums.GbPlatePost2001Type.LordProvostsOfAberdeen;
+            }
 
             PlateReturnModel plateReturn = new PlateReturnModel {
                 Location = location,
                 Issue = Convert.ToInt32(issue),
+                Type = type,
                 Format = Enums.GbPlateFormat.yr1902
             };
 

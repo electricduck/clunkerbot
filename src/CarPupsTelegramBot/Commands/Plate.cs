@@ -39,8 +39,21 @@ namespace CarPupsTelegramBot.Commands
 ";
 
                 if(plateReturn.Format == Enums.GbPlateFormat.yr1902) {
+                    var specialOutput = "<i>No</i>";
+
+                    if(plateReturn.Type == Enums.GbPlatePost2001Type.LordMayorOfLondon) {
+                        specialOutput = "Lord Mayor of London";
+                    } else if(plateReturn.Type == Enums.GbPlatePost2001Type.LordProvostsOfAberdeen) {
+                        specialOutput = "Lord Provosts Of Aberdeen";
+                    } else if(plateReturn.Type == Enums.GbPlatePost2001Type.LordProvostsOfEdinburgh) {
+                        specialOutput = "Lord Provosts of Edinburgh";
+                    } else if(plateReturn.Type == Enums.GbPlatePost2001Type.LordProvostsOfGlasgow) {
+                        specialOutput = "Lord Provosts of Glasgow";
+                    }
+
                     output += $@"<b>DVLA Office:</b> {plateReturn.Location}
 <b>Issue No.:</b> {plateReturn.Issue}
+<b>Special:</b> {specialOutput}
 <b>Format:</b> 1902 to 1932";
                 } else if(plateReturn.Format == Enums.GbPlateFormat.yr1932) {
                     output += $@"<b>DVLA Office:</b> {plateReturn.Location}
