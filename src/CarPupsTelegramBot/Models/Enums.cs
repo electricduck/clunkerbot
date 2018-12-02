@@ -21,5 +21,12 @@ namespace CarPupsTelegramBot.Models {
             prefix,     // 1982 to 2001 (Prefix)
             current     // 2001 onwards (Current)
         }
+
+        public enum GbPlatePost2001Type {
+            Location,
+            Reserved,
+            Banned,
+            Export
+        }
     }
 }

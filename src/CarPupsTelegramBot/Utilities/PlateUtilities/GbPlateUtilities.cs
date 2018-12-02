@@ -12,6 +12,8 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
         private static string Year1932Regex = @"^(([A-Z]{1})([A-Z]{2})\s?([0-9]{1,4}))$";
         private static string Year1953Regex = @"^(([0-9]{1,4})\s?([A-Z]{1,3}))$";
         private static string Year1963Regex = @"^(([A-Z]{3})\s?([0-9]{1,3})([A-Z]{1}))$";
+        private static string Year1983Regex = @"^(([A-Z]{1})([0-9]{2,3})\s?([A-Z]{1})([A-Z]{2}))$";
+        private static string Year2001Regex = @"(([A-Z]{2,2})([0-9]{2})\s?([A-Z]{3,3}))$";
 
         public static PlateReturnModel ParseGbPlate(string plate)
         {
@@ -25,6 +27,10 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
                 plateReturn = ParseGbYr1953Plate(plate);
             } else if(Regex.IsMatch(plate, Year1963Regex)) {
                 plateReturn = ParseGbYr1963Plate(plate);
+            } else if(Regex.IsMatch(plate, Year1983Regex)) {
+                plateReturn = ParseGbYr1983Plate(plate);
+            } else if(Regex.IsMatch(plate, Year2001Regex)) {
+                plateReturn = ParseGbYr2001Plate(plate);
             }
 
             //^([A-Z]{2,2}[0-9]{2}\s?[A-Z]{3,3})$ - 2001 - current
@@ -113,6 +119,59 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
             return plateReturn;
         }
 
+        private static PlateReturnModel ParseGbYr1983Plate(string plate)
+        {
+            Regex regex = new Regex(Year1983Regex);
+            Match match = regex.Match(plate);
+
+            var locationMnemonic = match.Groups[5].Value;
+            var yearMnemonic = match.Groups[2].Value;
+
+            var location = GetPre2001GbLocationMnemonic(locationMnemonic);
+            var year = GetGbPrefixYearMnemonic(Char.Parse(yearMnemonic));
+
+            PlateReturnModel plateReturn = new PlateReturnModel {
+                Location = location,
+                Year = year,
+                Format = Enums.GbPlateFormat.prefix
+            };
+
+            return plateReturn;
+        }
+
+        private static PlateReturnModel ParseGbYr2001Plate(string plate)
+        {
+            Regex regex = new Regex(Year2001Regex);
+            Match match = regex.Match(plate);
+
+            var locationMnemonic = match.Groups[2].Value;
+            var yearMnemonic = match.Groups[3].Value;
+
+            int yearMnemonicInt = Convert.ToInt32(yearMnemonic);
+
+            var parsedLocationMnemoic = GetPost2001GbLocationMnemonic(locationMnemonic);
+            var parsedYearMnemoic = GetGbCurrentYearMnemonic(yearMnemonicInt);
+
+            var location = parsedLocationMnemoic.Location;
+            var type = parsedLocationMnemoic.Type;
+            var year = parsedYearMnemoic.Year;
+            var month = "March";
+
+            if(parsedYearMnemoic.SecondHalfOfYear) {
+                month = "September";
+            }
+
+            PlateReturnModel plateReturn = new PlateReturnModel {
+                Location = location,
+                Type = type,
+                Year = year,
+                Month = month,
+                Format = Enums.GbPlateFormat.current
+            };
+
+            return plateReturn;
+        }
+
         private static string GetPre2001GbLocationMnemonic(string locationMnemonic)
         {
             if(locationMnemonic.Length == 3) {
@@ -130,6 +189,163 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
             }
         }
 
+        private static GetPost2001GbLocationMnemonicReturnModel GetPost2001GbLocationMnemonic(string locationMnemonic)
+        {
+            string location = "Unknown";
+            Enums.GbPlatePost2001Type type = Enums.GbPlatePost2001Type.Location;
+
+            if(CompareLetters(locationMnemonic, "AA", "AG") || CompareLetters(locationMnemonic, "AM", "AN"))
+            {
+                location = "Peterborough (Anglia)";
+            } else if(CompareLetters(locationMnemonic, "AH", "AL")) {
+                location = "reserved for selected use";
+            } else if(CompareLetters(locationMnemonic, "AO", "AU")) {
+                location = "Norwich (Anglia)";
+            } else if(CompareLetters(locationMnemonic, "AV", "AY")) {
+                location = "Ipswich (Anglia)";
+
+            } else if(CompareLetters(locationMnemonic, "BA", "BX")) {
+                location = "Birmingham";
+            } else if(locationMnemonic == "BY") {
+                type = Enums.GbPlatePost2001Type.Reserved;
+
+            } else if(CompareLetters(locationMnemonic, "CA", "CO")) {
+                location = "Cardiff (Cymru)";
+            } else if(CompareLetters(locationMnemonic, "CP", "CV")) {
+                location = "Swansea (Cymru)";
+            } else if(CompareLetters(locationMnemonic, "CW", "CX")) {
+                location = "Bangor (Cymru)";
+            } else if(locationMnemonic == "CY") {
+                type = Enums.GbPlatePost2001Type.Reserved;
+
+            } else if(CompareLetters(locationMnemonic, "DA", "DK")) {
+                location = "Chester (Deeside)";
+            } else if(CompareLetters(locationMnemonic, "DL", "DP") || CompareLetters(locationMnemonic, "DS", "DY")) {
+                location = "Shrewsbury (Deeside)";
+            } else if(locationMnemonic == "DR") {
+                type = Enums.GbPlatePost2001Type.Reserved;
+
+            } else if(CompareLetters(locationMnemonic, "EA", "EC") || CompareLetters(locationMnemonic, "EF", "EG") || CompareLetters(locationMnemonic, "EJ", "EY")) {
+                location = "Chelmsford (Essex)";
+            } else if(locationMnemonic == "ED" || locationMnemonic == "EH") {
+                type = Enums.GbPlatePost2001Type.Reserved;
+
+            } else if(CompareLetters(locationMnemonic, "FA", "FN") || locationMnemonic == "FP") {
+                location = "Nottingham (Forest & Fens)";
+            } else if(CompareLetters(locationMnemonic, "FR", "FT") || CompareLetters(locationMnemonic, "FV", "FY")) {
+                location = "Lincoln (Forest & Fens)";
+            } else if(locationMnemonic == "FO" || locationMnemonic == "FU") {
+                type = Enums.GbPlatePost2001Type.Reserved;
+
+            } else if(CompareLetters(locationMnemonic, "GA", "GN")) {
+                location = "Maidstone (Garden of England)";
+            } else if(CompareLetters(locationMnemonic, "GP", "GY")) {
+                location = "Brighton (Garden of England)";
+            } else if(locationMnemonic == "GO") {
+                type = Enums.GbPlatePost2001Type.Reserved;
+
+            } else if(CompareLetters(locationMnemonic, "HA", "HJ")) {
+                location = "Bournemouth (Hampshire & Dorset)";
+            } else if(CompareLetters(locationMnemonic, "HK", "HN") || CompareLetters(locationMnemonic, "HP", "HV") || CompareLetters(locationMnemonic, "HX", "HY")) {
+                location = "Portsmouth (Hampshire & Dorset)";
+            } else if(locationMnemonic == "HW") {
+                location = "Isle of Wight (Hampshire & Dorset)";
+            } else if(locationMnemonic == "HO") {
+                type = Enums.GbPlatePost2001Type.Reserved;
+
+            } else if(CompareLetters(locationMnemonic, "KA", "KL")) {
+                location = "Borehamwood / Luton";
+            } else if(CompareLetters(locationMnemonic, "KM", "KY")) {
+                location = "Northampton";
+
+            } else if(CompareLetters(locationMnemonic, "LA", "LJ")) {
+                location = "Wimbledon (London)";
+            } else if(CompareLetters(locationMnemonic, "LK", "LT")) {
+                location = "Borehamwood / Stanmore (London)";
+            } else if(CompareLetters(locationMnemonic, "LU", "LY")) {
+                location = "Sidcup (London)";
+
+            } else if(CompareLetters(locationMnemonic, "MA", "MM") || CompareLetters(locationMnemonic, "MT", "MX") || locationMnemonic == "MP") {
+                location = "Manchester";
+            } else if(locationMnemonic == "MN") {
+                location = "Isle of Man";
+            } else if(locationMnemonic == "MO" || locationMnemonic == "MR" || locationMnemonic == "MS" || locationMnemonic == "MY") {
+                type = Enums.GbPlatePost2001Type.Reserved;
+                
+            } else if(CompareLetters(locationMnemonic, "NA", "NM")) {
+                location = "Newcastle (North)";
+            } else if(CompareLetters(locationMnemonic, "NP", "NY")) {
+                location = "Stockton (North)";
+            } else if(locationMnemonic == "NO") {
+                type = Enums.GbPlatePost2001Type.Banned;
+            
+            } else if(CompareLetters(locationMnemonic, "OA", "OJ") || CompareLetters(locationMnemonic, "OL", "OM") || CompareLetters(locationMnemonic, "OO", "OP") || CompareLetters(locationMnemonic, "OT", "OY")) {
+                location = "Oxford";
+            } else if(locationMnemonic == "OK" || locationMnemonic == "ON" || locationMnemonic == "OR" || locationMnemonic == "OS") {
+                type = Enums.GbPlatePost2001Type.Reserved;
+
+            } else if(CompareLetters(locationMnemonic, "PA", "PT")) {
+                location = "Preston (Preston)";
+            } else if(CompareLetters(locationMnemonic, "PU", "PY")) {
+                location = "Caslisle (Preston)";
+
+            } else if(CompareLetters(locationMnemonic, "RA", "RT") || CompareLetters(locationMnemonic, "RV", "RY")) {
+                location = "Reading";
+            } else if(locationMnemonic == "RU") {
+                type = Enums.GbPlatePost2001Type.Reserved;
+
+            } else if(CompareLetters(locationMnemonic, "SA", "SJ")) {
+                location = "Glasgow (Scotland)";
+            } else if(CompareLetters(locationMnemonic, "SK", "SO")) {
+                location = "Edinburgh (Scotland)";
+            } else if(CompareLetters(locationMnemonic, "SP", "ST")) {
+                location = "Dundee (Scotland)";
+            } else if(CompareLetters(locationMnemonic, "SV", "SW")) {
+                location = "Aberdeen (Scotland)";
+            } else if(CompareLetters(locationMnemonic, "SX", "SY")) {
+                location = "Inverness";
+            } else if(locationMnemonic == "SU") {
+                type = Enums.GbPlatePost2001Type.Reserved;
+
+            } else if(locationMnemonic == "TN") {
+                location = "Scotland";
+            
+            } else if(CompareLetters(locationMnemonic, "XA", "XF")) {
+                type = Enums.GbPlatePost2001Type.Export;
+            } else if(CompareLetters(locationMnemonic, "XG", "XY")) {
+                type = Enums.GbPlatePost2001Type.Reserved;
+
+            } else if(CompareLetters(locationMnemonic, "YA", "YK")) {
+                location = "Leeds (Yorkshire)";
+            } else if(CompareLetters(locationMnemonic, "YM", "YV")) {
+                location = "Sheffield (Yorkshire)";
+            } else if(CompareLetters(locationMnemonic, "YX", "YY")) {
+                location = "Beverley (Yorkshire)";
+            } else if(locationMnemonic == "YL") {
+                location = "Leeds / Sheffield (Yorkshire)";
+            } else if(locationMnemonic == "YV") {
+                location = "Sheffield / Leeds (Yorkshire)";
+            }
+
+            GetPost2001GbLocationMnemonicReturnModel getPost2001GbLocationMnemonicReturn = new GetPost2001GbLocationMnemonicReturnModel
+            {
+                Location = location,
+                Type = type
+            };
+
+            return getPost2001GbLocationMnemonicReturn;
+        }
+
+        private static bool CompareLetters(string letterToCompare, string startLetter, string endLetter)
+        {
+            if(String.Compare(letterToCompare, startLetter, true) >= 0 && String.Compare(letterToCompare, endLetter, true) <= 0)
+            {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
         private static int GetGbSuffixYearMnemonic(char yearMnemonic)
         {
             if(GbSuffixYearMnemonics.ContainsKey(yearMnemonic)) {
@@ -141,6 +357,46 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
             } else {
                 return 0;
             }
+        }
+
+        private static int GetGbPrefixYearMnemonic(char yearMnemonic)
+        {
+            if(GbSuffixYearMnemonics.ContainsKey(yearMnemonic)) {
+                int year;
+
+                GbPrefixYearMnemonics.TryGetValue(yearMnemonic, out year);
+
+                return year;
+            } else {
+                return 0;
+            }
+        }
+
+        private static GetGbCurrentYearMnemonicReturnModel GetGbCurrentYearMnemonic(int yearMnemonic)
+        {
+            int year = 0;
+            bool secondHalfOfYear = false;
+
+            if(yearMnemonic > 50) {
+                year = yearMnemonic-50;
+                year = year+2000;
+
+                secondHalfOfYear = true;
+            } else if(yearMnemonic == 0) {
+                year = 2050;
+                secondHalfOfYear = true;
+            } else {
+                year = yearMnemonic+2000;
+                secondHalfOfYear = false;
+            }
+
+            GetGbCurrentYearMnemonicReturnModel getGbCurrentYearMnemonicReturn = new GetGbCurrentYearMnemonicReturnModel
+            {
+                Year = year,
+                SecondHalfOfYear = secondHalfOfYear
+            };
+
+            return getGbCurrentYearMnemonicReturn;
         }
 
         private static Dictionary<string, string> Pre2001GbLocationMnemonics = new Dictionary<string, string>()
@@ -722,6 +978,58 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
             {'W', 1980},
             {'X', 1981},
             {'Y', 1982}
+        };
+
+        private static Dictionary<char, int> GbPrefixYearMnemonics = new Dictionary<char, int>()
+        {
+            {'A', 1983},
+            {'B', 1984},
+            {'C', 1985},
+            {'D', 1986},
+            {'E', 1987},
+            {'F', 1988},
+            {'G', 1989},
+            {'H', 1990},
+            {'J', 1991},
+            {'K', 1992},
+            {'L', 1993},
+            {'M', 1994},
+            {'N', 1995},
+            {'P', 1996},
+            {'R', 1997},
+            {'S', 1998},
+            {'T', 1999},
+            {'V', 1999},
+            {'W', 2000},
+            {'X', 2000},
+            {'Y', 2001}
+        };
+
+        private static Dictionary<string, string> Post2001GbLocationMnemonics = new Dictionary<string, string>()
+        {
+            {"AA", "Peterborough (Anglia)"},
+            {"AB", "Peterborough (Anglia)"},
+            {"AC", "Peterborough (Anglia)"},
+            {"AD", "Peterborough (Anglia)"},
+            {"AE", "Peterborough (Anglia)"},
+            {"AF", "Peterborough (Anglia)"},
+            {"AG", "Peterborough (Anglia)"},
+            {"AJ", "Peterborough (Anglia)"},
+            {"AK", "Peterborough (Anglia)"},
+            {"AM", "Peterborough (Anglia)"},
+            {"AN", "Peterborough (Anglia)"},
+            {"AH", "Reserved for selected use"},
+            {"AL", "Reserved for selected use"},
+            {"AO", "Norwich (Anglia)"},
+            {"AP", "Norwich (Anglia)"},
+            {"AR", "Norwich (Anglia)"},
+            {"AS", "Norwich (Anglia)"},
+            {"AT", "Norwich (Anglia)"},
+            {"AU", "Norwich (Anglia)"},
+            {"AV", "Ipswich (Anglia)"},
+            {"AW", "Ipswich (Anglia)"},
+            {"AX", "Ipswich (Anglia)"},
+            {"AY", "Ipswich (Anglia)"}
         };
     }
 }
