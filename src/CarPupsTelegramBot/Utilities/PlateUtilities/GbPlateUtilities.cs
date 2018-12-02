@@ -188,13 +188,13 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
 
                 return location;
             } else {
-                return "Unknown";
+                return "<i>Unknown</i>";
             }
         }
 
         private static GetPost2001GbLocationMnemonicReturnModel GetPost2001GbLocationMnemonic(string locationMnemonic)
         {
-            string location = "Unknown";
+            string location = "<i>Unknown</i>";
             Enums.GbPlatePost2001Type type = Enums.GbPlatePost2001Type.Location;
 
             if(CompareLetters(locationMnemonic, "AA", "AG") || CompareLetters(locationMnemonic, "AM", "AN"))
