@@ -59,7 +59,7 @@ namespace CarPupsTelegramBot.Commands
                     }
                     
                     output += $@"<b>DVLA Office:</b> {plateReturn.Location}
-<b>Year Reg.:</b> {plateReturn.Year}
+<b>Year Reg.:</b> {plateReturn.Year} ({plateReturn.Month})
 <b>Special:</b> {specialOutput}
 <b>Format:</b> Current <i>(2001 to 2051)</i>";
                 }
