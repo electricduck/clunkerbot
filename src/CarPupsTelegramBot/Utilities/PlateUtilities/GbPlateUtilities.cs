@@ -219,7 +219,7 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
             {
                 location = "Peterborough <i>(Anglia)</i>";
             } else if(CompareLetters(locationMnemonic, "AH", "AL")) {
-                location = "reserved for selected use";
+                type = Enums.GbPlatePost2001Type.Reserved;
             } else if(CompareLetters(locationMnemonic, "AO", "AU")) {
                 location = "Norwich <i>(Anglia)</i>";
             } else if(CompareLetters(locationMnemonic, "AV", "AY")) {
