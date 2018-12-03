@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using CarPupsTelegramBot.Models;
 using CarPupsTelegramBot.Utilities;
@@ -6,7 +7,7 @@ namespace CarPupsTelegramBot.Data
 {
     class UserData
     {
-        public bool AddUpdateUser(UserModel user)
+        public void AddUpdateUser(UserModel user)
         {
             try {
                 using (var db = new CarPupsTelegramBotContext())
@@ -28,10 +29,38 @@ namespace CarPupsTelegramBot.Data
 
                     ConsoleOutputUtilities.DatabaseSaveConsoleMessage(dbCount);
                 }
+            } catch (Exception e) {
+                ConsoleOutputUtilities.ErrorConsoleMessage(e.ToString()); 
+            }
+        }
+    
+        public UserModel GetUserByTelegramId(long telegramId)
+        {
+            try {
+                using (var db = new CarPupsTelegramBotContext())
+                {
+                    var result = db.Users.SingleOrDefault(u => u.TelegramId == telegramId);
 
-                return true;
-            } catch {
-                return false;
+                    return result;
+                }
+            } catch (Exception e) {
+                ConsoleOutputUtilities.ErrorConsoleMessage(e.ToString());
+                return null;
+            }
+        }
+
+        public UserModel GetUserByTelegramUsername(string telegramUsername)
+        {
+            try {
+                using (var db = new CarPupsTelegramBotContext())
+                {
+                    var result = db.Users.SingleOrDefault(u => u.TelegramUsername == telegramUsername);
+
+                    return result;
+                }
+            } catch (Exception e) {
+                ConsoleOutputUtilities.ErrorConsoleMessage(e.ToString());
+                return null;
             }
         }
     }

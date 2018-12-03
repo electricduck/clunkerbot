@@ -11,6 +11,7 @@ using Telegram.Bot.Types.Enums;
 using CarPupsTelegramBot.Api;
 using CarPupsTelegramBot.Commands;
 using CarPupsTelegramBot.Data;
+using CarPupsTelegramBot.Models;
 using CarPupsTelegramBot.Models.ReturnModels.MessageReturnModels;
 using CarPupsTelegramBot.Utilities;
 
@@ -77,7 +78,31 @@ namespace CarPupsTelegramBot
 
         static void RunCommand(string command, string[] arguments, MessageEventArgs telegramMessageEvent)
         {
+            Program program = new Program();
+
+            UserModel currentTelegramUser = program.GetCurrentTelegramUser(telegramMessageEvent);
+                
+            Console.WriteLine($"{currentTelegramUser.TelegramName}");
+            
             switch(command) {
+                case "addcar":
+                case "addcartogarage":
+                        string addCarToGarageOutput = "";
+
+                        if(arguments.Length == 11) {
+                            addCarToGarageOutput = Garage.AddCarTo(
+                                currentTelegramUser,
+                                arguments[0], arguments[1], arguments[2], arguments[3], arguments[4], arguments[5], arguments[6], arguments[7], arguments[8], arguments[9], arguments[10]
+                            );
+                        }
+
+                        MessageApi.SendTextMessage(addCarToGarageOutput, botClient, telegramMessageEvent);
+                    break;
+                //case "addcarphoto":
+                //        string addCarPhotoOutput = "";
+                //
+                 //       MessageApi.SendTextMessage(addCarPhotoOutput, botClient, telegramMessageEvent);
+                //    break;
                 case "awoo":
                         string awooOutput;
 
@@ -110,6 +135,16 @@ namespace CarPupsTelegramBot
                 
                         MessageApi.SendTextMessage(calculateJourneyPriceOutput, botClient, telegramMessageEvent);
                     break;
+                case "getcar":
+                case "getcarfromgarage":
+                        string getCarFromGarageOutput = "";
+
+                        if(arguments.Length == 1) {
+                            getCarFromGarageOutput = Garage.GetCarFrom(arguments[0]);
+                        }
+                
+                        MessageApi.SendTextMessage(getCarFromGarageOutput, botClient, telegramMessageEvent);
+                    break;
                 case "getfuelly":
                         ImageMessageReturnModel getFuellyOutput = null;
 
@@ -122,6 +157,17 @@ namespace CarPupsTelegramBot
                         }
 
                         MessageApi.SendPhotoMessage(getFuellyOutput, botClient, telegramMessageEvent);
+                    break;
+                case "getgarage":
+                        string getGarageOutput = "";
+
+                        if(arguments.Length == 1) {
+                            getGarageOutput = Garage.Get(arguments[0]);
+                        } else {
+                            MessageApi.SendTextMessage(HelpData.GetHelp("getgarage", false), botClient, telegramMessageEvent);
+                        }
+
+                        MessageApi.SendTextMessage(getGarageOutput, botClient, telegramMessageEvent);
                     break;
                 case "guessmileage":
                         string guessMileageOutput = "";
@@ -174,6 +220,18 @@ namespace CarPupsTelegramBot
                 //        MessageApi.SendTextMessage(setFuellyOutput, botClient, telegramMessageEvent);
                 //    break;
             }
+        }
+
+        public UserModel GetCurrentTelegramUser(MessageEventArgs telegramMessageEvent)
+        {
+            UserModel user = new UserModel
+            {
+                TelegramId = telegramMessageEvent.Message.From.Id,
+                TelegramUsername = telegramMessageEvent.Message.From.Username,
+                TelegramName = telegramMessageEvent.Message.From.FirstName + " " + telegramMessageEvent.Message.From.LastName
+            };
+
+            return user;
         }
 
         public static void SetupApp() {

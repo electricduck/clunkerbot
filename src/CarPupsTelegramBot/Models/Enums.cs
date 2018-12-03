@@ -2,11 +2,13 @@
 namespace CarPupsTelegramBot.Models {
     public class Enums {
         public enum DriveTypeEnum {
-            FWD, RWD, AWD
+            FWD, RWD, AWD,
+            Unknown
         }
 
         public enum EngineFuelEnum {
-            Petrol, Diesel, Electric
+            Petrol, Diesel, Electric,
+            Unknown
         }
 
         public enum EngineTypeEnum {
@@ -14,7 +16,8 @@ namespace CarPupsTelegramBot.Models {
             I2, I3, I4, I5, I6,
             V6, V8, V12,
             W12, W16,
-            EV
+            EV,
+            Unknown
         }
 
         public enum GbPlateFormat {
@@ -43,9 +46,8 @@ namespace CarPupsTelegramBot.Models {
         }
 
         public enum TransmissionEnum {
-            Manual,
-            Automatic,
-            SemiAutomatic
+            Manual, Automatic, DCT, CVT, AMT,
+            Unknown
         }
     }
 }
