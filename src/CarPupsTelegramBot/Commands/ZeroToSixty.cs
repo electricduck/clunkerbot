@@ -47,6 +47,7 @@ namespace CarPupsTelegramBot.Commands
 
                 if(fuelVolumeValue != 0) {
                     if(fuelVolumeUnit == "l" || String.IsNullOrEmpty(fuelVolumeUnit)) {
+                        fuelVolumeUnit = "l";
                         weightValue += fuelType == "petrol" ? (fuelVolumeValue*AveragePetrolWeight) : fuelType == "diesel" ? fuelVolumeValue*AverageDieselWeight : 0;
                     } else if(fuelVolumeUnit == "gal") {
                         fuelVolumeValue = fuelVolumeValue*0.22;
