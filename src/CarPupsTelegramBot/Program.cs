@@ -86,6 +86,8 @@ namespace CarPupsTelegramBot
                             calculate0To60Output = ZeroToSixty.Calculate(arguments[0], arguments[1], arguments[2], arguments[3]);
                         } else if(arguments.Length == 5) {
                             calculate0To60Output = ZeroToSixty.Calculate(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4]);
+                        } else {
+                            MessageApi.SendTextMessage(HelpData.GetHelp("calculate0to60", false), botClient, telegramMessageEvent);
                         }
 
                         MessageApi.SendTextMessage(calculate0To60Output, botClient, telegramMessageEvent);
