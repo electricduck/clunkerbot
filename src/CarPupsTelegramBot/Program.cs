@@ -115,6 +115,12 @@ namespace CarPupsTelegramBot
 
                         if(arguments.Length == 4) {
                             calculate0To60Output = ZeroToSixty.Calculate(arguments[0], arguments[1], arguments[2], arguments[3]);
+                        } else if(arguments.Length == 5) {
+                            calculate0To60Output = ZeroToSixty.Calculate(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4]);
+                        } else if(arguments.Length == 6) {
+                            calculate0To60Output = ZeroToSixty.Calculate(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4], arguments[5]);
+                        } else if(arguments.Length == 7) {
+                            calculate0To60Output = ZeroToSixty.Calculate(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4], arguments[5], arguments[6]);
                         } else {
                             MessageApi.SendTextMessage(HelpData.GetHelp("calculate0to60", false), botClient, telegramMessageEvent);
                         }
