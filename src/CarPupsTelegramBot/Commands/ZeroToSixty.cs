@@ -34,13 +34,15 @@ namespace CarPupsTelegramBot.Commands
                 double weightValue = Convert.ToDouble(parsedWeight.Groups[2].Value);
                 string weightUnit = parsedWeight.Groups[3].Value;
 
-                double zeroToSixty = Calculate(powerValue, weightValue, driveType.ToLower(), transmission.ToLower().Substring(0, 3), finalResult, powerUnit, weightUnit);
+                double zeroToSixty = Calculate(powerValue, weightValue, driveType.ToLower(), transmission.ToLower().Substring(0, 3), finalResult, powerUnit.ToLower(), weightUnit.ToLower());
 
-                output = $"{zeroToSixty}";
+                output = $@"⏱️ <i>Calculate 0-60</i>
+—
+<b>{finalResult}:</b> {zeroToSixty}";
 
                 return output;
             } catch {
-                return "oops";
+                return HelpData.GetHelp("calculate0to60", true);
             }
         }
 
