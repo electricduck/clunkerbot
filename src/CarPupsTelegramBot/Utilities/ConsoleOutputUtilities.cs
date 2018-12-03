@@ -15,6 +15,10 @@ namespace CarPupsTelegramBot.Utilities
             Console.WriteLine($"⬅️ {telegramMessageEvent.Message.Chat.Id} ({telegramMessageEvent.Message.Chat.Username}) | {telegramMessageEvent.Message.From.Id} ({telegramMessageEvent.Message.From.Username}) | {message}");
         }
 
+        public static void DatabaseSaveConsoleMessage(int count) {
+            Console.WriteLine($"🛢️ {count} records updated");
+        }
+
         public static void SeparatorConsoleMessage() {
             Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.WriteLine($"---");
