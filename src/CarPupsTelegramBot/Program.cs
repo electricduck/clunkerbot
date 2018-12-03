@@ -134,6 +134,17 @@ namespace CarPupsTelegramBot
 
                         MessageApi.SendTextMessage(guessMileageOutput, botClient, telegramMessageEvent);
                     break;
+                case "help":
+                        string helpOutput = "";
+
+                        if(arguments.Length == 0) {
+                            helpOutput = Help.Get();
+                        } else if(arguments.Length == 1) {
+                            helpOutput = Help.Get(arguments[0]);
+                        }
+
+                        MessageApi.SendTextMessage(helpOutput, botClient, telegramMessageEvent);
+                    break;
                 case "info":
                         string infoOutput = "";
                         infoOutput = Info.Get();

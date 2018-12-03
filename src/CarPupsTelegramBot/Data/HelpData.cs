@@ -6,12 +6,32 @@ namespace CarPupsTelegramBot.Data
     {
         public static Dictionary<string, string> HelpDictionary = new Dictionary<string, string>();
 
-        public static string IncorrectFormat = "🚫 <b>Incorrect format. Try again!</b>\r\n";
+        public static string IncorrectFormat = @"🚫 <b>Incorrect format. Try again!</b>
+—\r\n";
+
+        public static string Help = @"❓ <i>Help</i>
+—
+To get additional help about the modules below (such as what arguments they accept), type <code>/help &lt;module&gt;</code> (for example, <code>/help calculate0to60</code>). Any modules which require arguments will output their help when no arguments (or the wrong ones) are supplied.
+
+<b>Utilities</b>
+<code>/calculate0to60</code> - Calculate 0-60mph/0-100kph times
+<code>/calculatejourneyprice</code> - Calculate price of a fuel costs for a journey
+<code>/getfuelly</code> - Get a summary from a Fuelly profile
+<code>/guessmileage</code> - Guess mileage of a vehicle from previous known records
+<code>/parseplate</code> - Parse number/license plate and &quot;decode&quot; it
+
+<b>Meta</b>
+<code>/help</code> - This page. Derp
+<code>/info</code> - Information about the bot, and its instance";
 
         public static string Fuelly_Get = @"<code>/getfuelly &lt;1&gt; &lt;[2]&gt;</code>
-
+—
 <code>&lt;1&gt;</code> <b>Fuelly ID</b> - ID from the profile URL of a car. So, for `http://www.fuelly.com/car/peugeot/106/2002/electricduck/713804`, the ID would be `713804` -- the integer at the end
 <code>&lt;1&gt;</code> <b>Unit</b> <i>(Optional)</i> - Unit to use (<b>us</b> (US MPG), <b>uk</b> (UK/Imperial MPG) -- defaults to <b>us</b>)";
+
+        public static string Info_Get = @"<code>/info</code>
+—
+<i>No parameters</i>";
 
         public static string JourneyPrice_Calculate = @"<code>/calculatejourneyprice &lt;1&gt; &lt;2&gt; &lt;3&gt;</code>
 —
@@ -45,14 +65,16 @@ namespace CarPupsTelegramBot.Data
 
         public static void CompileHelpDictionary()
         {
+            HelpDictionary.Add("help", Help);
             HelpDictionary.Add("calculate0to60", ZeroToSixty_Calculate);
             HelpDictionary.Add("calculatejourneyprice", JourneyPrice_Calculate);
             HelpDictionary.Add("getfuelly", Fuelly_Get);
             HelpDictionary.Add("guessmileage", Mileage_Guess);
+            HelpDictionary.Add("info", Info_Get);
             HelpDictionary.Add("parseplate", Plate_Parse);
         }
 
-        public static string GetHelp(string command, bool incorrectFormatWarning)
+        public static string GetHelp(string command, bool incorrectFormatWarning = false)
         {
             if(HelpData.HelpDictionary.ContainsKey(command)) {
                 string helpText;
@@ -67,9 +89,13 @@ namespace CarPupsTelegramBot.Data
                 }
 
                 return output;
-            }
+            } else {
+                command = command.Replace("/", "");
 
-            return "";
+                return $@"❓ <i>Help</i>
+—
+<i>No help available for </i><code>/{command}</code><i>.</i>";
+            }
         }
     }
 }
