@@ -52,5 +52,18 @@ namespace CarPupsTelegramBot.Api
                 ConsoleOutputUtilities.ErrorConsoleMessage(e.ToString());
             }
         }
+
+        public static async void SendLocationMessage(LocationMessageReturnModel messageReturnModel, ITelegramBotClient botClient, MessageEventArgs telegramMessageEvent) {
+            try {
+                await botClient.SendLocationAsync(
+                    chatId: telegramMessageEvent.Message.Chat,
+                    latitude: messageReturnModel.Latitude,
+                    longitude: messageReturnModel.Longitude,
+                    livePeriod: messageReturnModel.LivePeriod
+                );
+            } catch (Exception e) {
+                ConsoleOutputUtilities.ErrorConsoleMessage(e.ToString());
+            }
+        }
     }
 }
