@@ -27,7 +27,7 @@ namespace CarPupsTelegramBot.Commands
                 opsys = "Linux";
             }
 
-            string allInfo = $@"<b>CarPups Bot</b> v{AppVersion.FullVersion}
+            string allInfo = $@"<b>CPTB</b> v{AppVersion.FullVersion}
 —
 A bot for the @CarPups group, built by @dux0r, providing a selection of handy car-based utilities.
 Code available on <a href='https://github.com/electricduck/CarPupsTelegramBot'>Ducky's GitHub</a>; licensed under <a href='https://mit-license.org/'>the MIT license</a>.
