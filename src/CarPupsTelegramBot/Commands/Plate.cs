@@ -14,7 +14,7 @@ namespace CarPupsTelegramBot.Commands
         public static string Parse(string plate, string country)
         {
             try {
-                country = country.ToLower();
+                country = country.ToLower().Substring(0, 2);
                 plate = plate.ToUpper();
 
                 switch(country) {
@@ -23,7 +23,9 @@ namespace CarPupsTelegramBot.Commands
                     case "gg":
                         return ParseGgPlate(plate);
                     default:
-                        return HelpData.GetHelp("parseplate", true);
+                        return $@"#️⃣ <i>Parse Plate:</i> ❓ <code>{plate}</code>
+—
+<i>Country code '{country}' is currenty unsupported.</i>";
                 }
             } catch {
                 return HelpData.GetHelp("parseplate", true);
