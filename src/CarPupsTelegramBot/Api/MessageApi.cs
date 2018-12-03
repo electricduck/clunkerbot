@@ -16,7 +16,8 @@ namespace CarPupsTelegramBot.Api
                 await botClient.SendTextMessageAsync(
                     chatId: telegramMessageEvent.Message.Chat,
                     text: message,
-                    parseMode: ParseMode.Html
+                    parseMode: ParseMode.Html,
+                    disableWebPagePreview: true
                 );
             } catch (Exception e) {
                 ConsoleOutputUtilities.ErrorConsoleMessage(e.ToString());
@@ -31,7 +32,8 @@ namespace CarPupsTelegramBot.Api
                 await botClient.SendTextMessageAsync(
                     text: messageReturnModel.Text,
                     chatId: telegramMessageEvent.Message.Chat,
-                    parseMode: ParseMode.Html
+                    parseMode: ParseMode.Html,
+                    disableWebPagePreview: true
                 );
             } catch (Exception e) {
                 ConsoleOutputUtilities.ErrorConsoleMessage(e.ToString());
