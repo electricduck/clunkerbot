@@ -50,7 +50,7 @@ To get additional help about the modules below (such as what arguments they acce
 <code>&lt;1&gt;</code> <b>Plate</b> - The vehicle's numberplate, void of spaces <i>(e.g. N161CWW, 15210, 99-CL-VV)</i>
 <code>&lt;2&gt;</code> <b>Country</b> <i>Optional</i> - The <a href='https://en.wikipedia.org/wiki/ISO_3166-1#Current'>ISO 3166-1</a> country code -- defaults to <b>gb</b> (Great Britain) <i>(e.g. gb, fr, nl)</i>*
 
-<i>*Supported: gb, gg.</i>";
+<b>*</b> <i>Supported: gb, gg.</i>";
 
         public static string ZeroToSixty_Calculate = @"<code>/calculate0to60 &lt;1&gt; &lt;2&gt; &lt;3&gt; &lt;4&gt;</code>
 —
