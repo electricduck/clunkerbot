@@ -31,7 +31,7 @@ namespace CarPupsTelegramBot
             SetupApp();
 
             ConsoleOutputUtilities.DoingConsoleMessage("Building help dictionary");
-            HelpData.CompileHelpDictionary();   
+            HelpData.CompileHelpDictionary();
 
             ConsoleOutputUtilities.DoingConsoleMessage("Connecting to Telegram");
             botClient = new TelegramBotClient(AppSettings.ApiKeys_Telegram);
@@ -52,7 +52,7 @@ namespace CarPupsTelegramBot
                     
                     var messageText = e.Message.Text.ToString();
 
-                    var command = messageText.Split(" ")[0].Replace("/", "").Replace("@CarPups_bot", "").ToLower();
+                    var command = messageText.Split(" ")[0].Replace("/", "").Replace(AppSettings.Config_BotUsername, "").ToLower();
                     string[] arguments = null;
 
                     Console.WriteLine(StringUtilities.CountWords(messageText));
@@ -175,6 +175,7 @@ namespace CarPupsTelegramBot
             AppSettings.ApiKeys_Telegram = configuration.GetSection("apiKeys")["telegram"];
             AppSettings.Config_Awoo_Repeat = bool.Parse(configuration.GetSection("config").GetSection("awoo")["repeat"]);
             AppSettings.Config_Awoo_Word = configuration.GetSection("config").GetSection("awoo")["word"];
+            AppSettings.Config_BotUsername = configuration.GetSection("config")["botUsername"];
 
             //Console.WriteLine(configuration.GetConnectionString("Storage"));
         }

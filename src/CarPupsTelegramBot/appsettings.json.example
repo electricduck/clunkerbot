@@ -6,6 +6,7 @@
         "awoo": {
             "word": "Bork. ",
             "repeat": false
-        }
+        },
+        "botUsername": "@CarPups_bot"
     }
 }
