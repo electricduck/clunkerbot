@@ -17,10 +17,14 @@ namespace CarPupsTelegramBot.Commands
         private static Regex PowerRegex = new Regex(@"^(([0-9]{1,})((hp|ps|kw))?)$");
         private static Regex WeightRegex = new Regex(@"^(([0-9]{1,})((lbs|kg))?)$");
 
-        public static string Calculate(string power, string weight, string driveType, string transmission)
+        public static string Calculate(string power, string weight, string driveType, string transmission, string finalResult = "0-60mph")
         {
             try {
                 string output;
+
+                if(finalResult != "0-60mph" && finalResult != "0-100kph") {
+                    throw new ArgumentException();
+                }
 
                 Match parsedPower = PowerRegex.Match(power);
                 Match parsedWeight = WeightRegex.Match(weight);
@@ -30,7 +34,7 @@ namespace CarPupsTelegramBot.Commands
                 double weightValue = Convert.ToDouble(parsedWeight.Groups[2].Value);
                 string weightUnit = parsedWeight.Groups[3].Value;
 
-                double zeroToSixty = Calculate(powerValue, weightValue, driveType.ToLower(), transmission.ToLower().Substring(0, 3), powerUnit, weightUnit);
+                double zeroToSixty = Calculate(powerValue, weightValue, driveType.ToLower(), transmission.ToLower().Substring(0, 3), finalResult, powerUnit, weightUnit);
 
                 output = $"{zeroToSixty}";
 
@@ -40,7 +44,7 @@ namespace CarPupsTelegramBot.Commands
             }
         }
 
-        private static double Calculate(double power, double weight, string driveType, string transmission, string powerUnit = "hp", string weightUnit = "lbs")
+        private static double Calculate(double power, double weight, string driveType, string transmission, string finalResult, string powerUnit = "hp", string weightUnit = "lbs")
         {
             // Ported from https://www.carspecs.us/calculator/0-60
 
@@ -54,7 +58,7 @@ namespace CarPupsTelegramBot.Commands
                 weight *= 2.2046;
             }
 
-            double r = 0.875;
+            double r = finalResult == "0-100kph" ? 0.9 : 0.875;
 
             double u = driveType == "rws" ? 0.9 : driveType == "awd" ? 0.85 : 1;
             double f = transmission == "aut" ? 1.1 : transmission == "dct" ? 0.925 : 1;
