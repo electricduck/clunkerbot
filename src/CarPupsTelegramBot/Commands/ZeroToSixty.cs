@@ -59,7 +59,9 @@ namespace CarPupsTelegramBot.Commands
                 output = $@"⏱️ <i>Calculate 0-60</i>
 —
 <b>0-60mph:</b> {zeroToSixtyResult.ZeroToSixtyMphAcceleration}s
-<b>0-100kph:</b> {zeroToSixtyResult.ZeroToOneHundredKphAcceleration}s";
+<b>0-100kph:</b> {zeroToSixtyResult.ZeroToOneHundredKphAcceleration}s
+
+<i>This calculation includes {passengersInt} passengers, and {fuelVolumeValue}{fuelVolumeUnit} of {fuelType} on board.</i>";
 
                 return output;
             } catch {
