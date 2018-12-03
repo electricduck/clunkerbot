@@ -218,15 +218,6 @@ namespace CarPupsTelegramBot
 
                         MessageApi.SendTextMessage(setCarPhotoOutput, botClient, telegramMessageEvent);
                     break;
-                //case "setfuelly":
-                //        string setFuellyOutput = "";
-                //
-                //        if (arguments.Length == 1) {
-                //            setFuellyOutput = Fuelly.Set(arguments[0]);
-                //        }
-                //
-                //        MessageApi.SendTextMessage(setFuellyOutput, botClient, telegramMessageEvent);
-                //    break;
             }
         }
 
