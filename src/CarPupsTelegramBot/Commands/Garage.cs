@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CarPupsTelegramBot.Data;
 using CarPupsTelegramBot.Models;
 using CarPupsTelegramBot.Models.ReturnModels;
+using CarPupsTelegramBot.Models.ReturnModels.MessageReturnModels;
 using CarPupsTelegramBot.Utilities;
 
 namespace CarPupsTelegramBot.Commands
@@ -61,9 +62,13 @@ namespace CarPupsTelegramBot.Commands
                 garageData.AddUpdateGarageItem(garage);
                 userData.AddUpdateUser(user);
 
-                return "Car added.";
-            } catch(Exception e) {
-                return "oops";
+                string telegramUsername = TelegramUtilities.GetTelegramUser(user.TelegramId);
+
+                return $@"🚘 <i>Garage<i>
+—
+<i>{make} {model} added to</i> {telegramUsername}'s <i>garage.</i>";
+            } catch {
+                return HelpData.GetHelp("addcar");
             }
         }
 
@@ -91,22 +96,16 @@ namespace CarPupsTelegramBot.Commands
 <i>To see more details and images of a vehicle, do</i> <code>/getcar #123</code><i>.</i>";
         }
 
-        public static string GetCarFrom(string plate)
+        public static ImageMessageReturnModel GetCarFrom(string plate)
         {
-            GarageData garageData = new GarageData();
-
             GarageModel garage = null;
 
-            if(plate.Substring(0, 1) == "#") {
-                garage = garageData.GetCarFromGarageById(Convert.ToInt32(plate.Replace("#", "")));
-            } else {
-                garage = garageData.GetCarFromGarageByPlate(plate.ToUpper());
-            }
+            garage = GetCarByPlateOrId(plate);
 
             string userString = TelegramUtilities.GetTelegramUser(garage.TelegramUserId);
             ParseCarDetailsReturnModel parsedCarDetails = ParseCarDetails(garage);
 
-            return $@"<b>{garage.Make} {garage.Model}</b> {parsedCarDetails.ParsedPlate}
+            string caption = $@"<b>{garage.Make} {garage.Model}</b> {parsedCarDetails.ParsedPlate}
 —
 <b>Gen.:</b> {parsedCarDetails.ParsedGeneration}
 <b>Trim:</b> {garage.Trim}
@@ -117,8 +116,40 @@ namespace CarPupsTelegramBot.Commands
                 .Replace("?", "<i>Unknown</i>")
                 .Replace("<i><i>", "<i>")
                 .Replace("</i></i>", "</i>");
+
+            ImageMessageReturnModel output = new ImageMessageReturnModel {
+                Caption = caption,
+                PhotoUrl = garage.MainImage
+            };
+
+            return output;
         }
     
+        public static string SetCarPhoto(string plate, string url)
+        {
+            GarageData garageData = new GarageData();
+
+            GarageModel garage = GetCarByPlateOrId(plate);
+            garage.MainImage = url;
+
+            garageData.AddUpdateCarPhoto(garage);
+
+            return $@"🚘 <i>Garage<i>
+—
+<i>Image set.</i>";;
+        }
+
+        private static GarageModel GetCarByPlateOrId(string plate)
+        {
+            GarageData garageData = new GarageData();
+
+            if(plate.Substring(0, 1) == "#") {
+                return garageData.GetCarFromGarageById(Convert.ToInt32(plate.Replace("#", "")));
+            } else {
+                return garageData.GetCarFromGarageByPlate(plate.ToUpper());
+            }
+        }
+
         private static ParseCarDetailsReturnModel ParseCarDetails(GarageModel garage)
         {
             ParseCarDetailsReturnModel parseCarDetailsReturn = new ParseCarDetailsReturnModel();

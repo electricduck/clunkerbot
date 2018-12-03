@@ -41,7 +41,7 @@ namespace CarPupsTelegramBot
             botClient.OnMessage += Bot_OnMessage;
             botClient.StartReceiving();
             ConsoleOutputUtilities.OkayConsoleMessage("Listening for triggers");
-            ConsoleOutputUtilities.SeparatorConsoleMessage();   
+            ConsoleOutputUtilities.SeparatorConsoleMessage();
 
             Thread.Sleep(int.MaxValue);
         }
@@ -98,11 +98,6 @@ namespace CarPupsTelegramBot
 
                         MessageApi.SendTextMessage(addCarToGarageOutput, botClient, telegramMessageEvent);
                     break;
-                //case "addcarphoto":
-                //        string addCarPhotoOutput = "";
-                //
-                 //       MessageApi.SendTextMessage(addCarPhotoOutput, botClient, telegramMessageEvent);
-                //    break;
                 case "awoo":
                         string awooOutput;
 
@@ -137,13 +132,17 @@ namespace CarPupsTelegramBot
                     break;
                 case "getcar":
                 case "getcarfromgarage":
-                        string getCarFromGarageOutput = "";
+                        ImageMessageReturnModel getCarFromGarageOutput = null;
 
                         if(arguments.Length == 1) {
                             getCarFromGarageOutput = Garage.GetCarFrom(arguments[0]);
                         }
-                
-                        MessageApi.SendTextMessage(getCarFromGarageOutput, botClient, telegramMessageEvent);
+
+                        if(String.IsNullOrEmpty(getCarFromGarageOutput.PhotoUrl)) {
+                            MessageApi.SendTextMessage(getCarFromGarageOutput.Caption, botClient, telegramMessageEvent);
+                        } else {
+                            MessageApi.SendPhotoMessage(getCarFromGarageOutput, botClient, telegramMessageEvent);
+                        }
                     break;
                 case "getfuelly":
                         ImageMessageReturnModel getFuellyOutput = null;
@@ -209,6 +208,15 @@ namespace CarPupsTelegramBot
 
                         MessageApi.SendTextMessage(parsePlateOutput, botClient, telegramMessageEvent);
 
+                    break;
+                case "setcarphoto":
+                        string setCarPhotoOutput = "";
+
+                        if(arguments.Length == 2) {
+                            setCarPhotoOutput = Garage.SetCarPhoto(arguments[0], arguments[1]);
+                        }
+
+                        MessageApi.SendTextMessage(setCarPhotoOutput, botClient, telegramMessageEvent);
                     break;
                 //case "setfuelly":
                 //        string setFuellyOutput = "";

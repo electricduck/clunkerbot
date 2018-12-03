@@ -8,6 +8,32 @@ namespace CarPupsTelegramBot.Data
 {
     class GarageData
     {
+        public void AddUpdateCarPhoto(GarageModel garageItem)
+        {
+            try {
+                using (var db = new CarPupsTelegramBotContext())
+                {
+                    int dbCount = 0;
+
+                    var result = db.Garage.SingleOrDefault(g => g.Plate == garageItem.Plate);
+                    
+                    if (result != null)
+                    {
+                        result.MainImage = garageItem.MainImage;
+                        
+                        dbCount = db.SaveChanges();
+                    } else {
+                        db.Garage.Add(garageItem);
+                        dbCount = db.SaveChanges();
+                    }
+
+                    ConsoleOutputUtilities.DatabaseSaveConsoleMessage(dbCount);
+                }
+            } catch (Exception e) {
+                ConsoleOutputUtilities.ErrorConsoleMessage(e.ToString());
+            }
+        }
+
         public void AddUpdateGarageItem(GarageModel garageItem)
         {
             try {
