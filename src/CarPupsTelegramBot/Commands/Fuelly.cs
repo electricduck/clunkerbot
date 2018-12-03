@@ -8,6 +8,7 @@ using CarPupsTelegramBot.Data;
 using CarPupsTelegramBot.Models;
 using CarPupsTelegramBot.Models.ReturnModels;
 using CarPupsTelegramBot.Models.ReturnModels.MessageReturnModels;
+using CarPupsTelegramBot.Utilities;
 
 namespace CarPupsTelegramBot.Commands
 {
