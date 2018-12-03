@@ -23,13 +23,24 @@ namespace CarPupsTelegramBot
 
         static void Main()
         {
+            StartupMessageUtlities.GenerateStartupMessage();
+
+            ConsoleOutputUtilities.InfoConsoleMessage($"Started at {DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss zzz")}");
+
+            ConsoleOutputUtilities.DoingConsoleMessage("Setting up application");
             SetupApp();
+
+            ConsoleOutputUtilities.DoingConsoleMessage("Building help dictionary");
             HelpData.CompileHelpDictionary();   
 
+            ConsoleOutputUtilities.DoingConsoleMessage("Connecting to Telegram");
             botClient = new TelegramBotClient(AppSettings.ApiKeys_Telegram);
-            
+            ConsoleOutputUtilities.OkayConsoleMessage("Telegram connection successful");
+
             botClient.OnMessage += Bot_OnMessage;
             botClient.StartReceiving();
+            ConsoleOutputUtilities.OkayConsoleMessage("Listening for triggers");
+            ConsoleOutputUtilities.SeparatorConsoleMessage();   
 
             Thread.Sleep(int.MaxValue);
         }

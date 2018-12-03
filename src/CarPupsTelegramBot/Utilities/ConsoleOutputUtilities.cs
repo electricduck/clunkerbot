@@ -14,5 +14,23 @@ namespace CarPupsTelegramBot.Utilities
         {
             Console.WriteLine($"⬅️ {telegramMessageEvent.Message.Chat.Id} ({telegramMessageEvent.Message.Chat.Username}) | {telegramMessageEvent.Message.From.Id} ({telegramMessageEvent.Message.From.Username}) | {message}");
         }
+
+        public static void SeparatorConsoleMessage() {
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine($"---");
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
+        public static void InfoConsoleMessage(string message) {
+            Console.WriteLine($"ℹ️ {message}");
+        }
+
+        public static void DoingConsoleMessage(string message) {
+            Console.WriteLine($"⚙️ {message}...");
+        }
+
+        public static void OkayConsoleMessage(string message) {
+            Console.WriteLine($"✔️ {message}");
+        }
     }
 }
