@@ -20,10 +20,8 @@ namespace CarPupsTelegramBot.Commands
                 switch(country) {
                     case "gb":
                         return ParseGbPlate(plate);
-                        break;
                     case "gg":
                         return ParseGgPlate(plate);
-                        break;
                     default:
                         return HelpData.GetHelp("parseplate", true);
                 }
