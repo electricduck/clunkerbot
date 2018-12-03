@@ -40,9 +40,19 @@ namespace CarPupsTelegramBot.Commands
             }
         }
 
-        private static double Calculate(double power, double weight, string driveType, string transmission, string powerUnit = "lbs", string weightUnit = "kg")
+        private static double Calculate(double power, double weight, string driveType, string transmission, string powerUnit = "hp", string weightUnit = "lbs")
         {
             // Ported from https://www.carspecs.us/calculator/0-60
+
+            if(powerUnit == "ps") {
+                power *= 0.9863;
+            } else if(powerUnit == "kw") {
+                power *= 1.341;
+            }
+
+            if(weightUnit == "kg") {
+                weight *= 2.2046;
+            }
 
             double r = 0.875;
 
