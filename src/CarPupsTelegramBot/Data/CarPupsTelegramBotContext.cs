@@ -3,7 +3,7 @@ using CarPupsTelegramBot.Models;
 
 namespace CarPupsTelegramBot.Data {
     public class CarPupsTelegramBotContext : DbContext {
-        public DbSet<FuellyModel> Fuelly { get; set; }
+        public DbSet<GarageModel> Garage { get; set; }
         public DbSet<UserModel> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {

@@ -1,6 +1,10 @@
 
 namespace CarPupsTelegramBot.Models {
     public class Enums {
+        public enum DriveTypeEnum {
+            FWD, RWD, AWD
+        }
+
         public enum EngineFuelEnum {
             Petrol, Diesel, Electric
         }
@@ -36,6 +40,12 @@ namespace CarPupsTelegramBot.Models {
             LordProvostsOfEdinburgh,
             LordProvostsOfGlasgow,
             LordProvostsOfAberdeen
+        }
+
+        public enum TransmissionEnum {
+            Manual,
+            Automatic,
+            SemiAutomatic
         }
     }
 }
