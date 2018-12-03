@@ -36,8 +36,7 @@ namespace CarPupsTelegramBot.Data
 <code>&lt;1&gt;</code> <b>Power</b> - Vehicle power at the flywheel, with optional unit (<b>hp</b>, <b>ps</b>, or <b>kw</b> -- defaults to <b>hp</b> with no unit) <i>(e.g. 64hp, 123ps, 250kw, 329)</i>
 <code>&lt;2&gt;</code> <b>Weight</b> - Curb weight of vehicle, with optional unit (<b>lbs</b>, or <b>kg</b> -- defaults to <b>kg</b> with no unit) <i>(e.g. 850kg, 2100lbs, 1024)</i>
 <code>&lt;3&gt;</code> <b>Drive Type</b> - Drive type of vehicle: either <b>FWD</b>, <b>RWD</b>, or <b>AWD</b>
-<code>&lt;4&gt;</code> <b>Transmission</b> - Transmission of vehicle: either <b>manual/man</b>, <b>automatic/auto</b>, or <b>dct</b> (Dual-Clutch Semi-Automatic)
-<code>&lt;5&gt;</code> <b>Result</b> <i>(Optional)</i> - Either <b>0-60mph</b>, or <b>0-100kph</b> -- defaults to <b>0-60mph</b>";
+<code>&lt;4&gt;</code> <b>Transmission</b> - Transmission of vehicle: either <b>manual/man</b>, <b>automatic/auto</b>, or <b>dct</b> (Dual-Clutch Semi-Automatic)";
 
         public static void CompileHelpDictionary()
         {
