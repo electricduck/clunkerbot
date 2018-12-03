@@ -32,5 +32,9 @@ namespace CarPupsTelegramBot.Utilities
         public static void OkayConsoleMessage(string message) {
             Console.WriteLine($"✔️ {message}");
         }
+
+        public static void ErrorConsoleMessage(string message) {
+            Console.WriteLine("⚠️ " + message);
+        }
     }
 }

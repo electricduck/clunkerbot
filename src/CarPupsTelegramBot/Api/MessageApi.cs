@@ -19,7 +19,7 @@ namespace CarPupsTelegramBot.Api
                     parseMode: ParseMode.Html
                 );
             } catch (Exception e) {
-                Console.WriteLine("⚠️ " + e);
+                ConsoleOutputUtilities.ErrorConsoleMessage(e.ToString());
             }
 
             ConsoleOutputUtilities.MessageOutConsoleMessage(message, telegramMessageEvent);
@@ -34,7 +34,7 @@ namespace CarPupsTelegramBot.Api
                     parseMode: ParseMode.Html
                 );
             } catch (Exception e) {
-                Console.WriteLine("⚠️ " + e);
+                ConsoleOutputUtilities.ErrorConsoleMessage(e.ToString());
             }
         }
 
@@ -47,7 +47,7 @@ namespace CarPupsTelegramBot.Api
                     photo: messageReturnModel.PhotoUrl
                 );
             } catch (Exception e) {
-                Console.WriteLine("⚠️ " + e);
+                ConsoleOutputUtilities.ErrorConsoleMessage(e.ToString());
             }
         }
     }

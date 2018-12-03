@@ -46,7 +46,7 @@ namespace CarPupsTelegramBot.Commands
 
                 return output;
             } catch (Exception e) {
-                Console.WriteLine("⚠️ " + e);
+                ConsoleOutputUtilities.ErrorConsoleMessage(e.ToString());
                 return HelpData.GetHelp("guessjourneyprice", true);
             }
         }

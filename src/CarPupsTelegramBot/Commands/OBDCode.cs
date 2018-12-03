@@ -16,7 +16,7 @@ namespace CarPupsTelegramBot.Commands
 
                 return null;
             } catch (Exception e) {
-                Console.WriteLine("⚠️ " + e);
+                ConsoleOutputUtilities.ErrorConsoleMessage(e.ToString());
                 return null;
             }
         }

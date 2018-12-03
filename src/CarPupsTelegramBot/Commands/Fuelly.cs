@@ -92,7 +92,7 @@ MPG summary for a <b>{extractedVehicleInfo}</b> <i>({extractedExtendedVehicleInf
 
                 return output;
             } catch (Exception e) {
-                Console.WriteLine("⚠️ " + e);
+                ConsoleOutputUtilities.ErrorConsoleMessage(e.ToString());
                 return null;
             }
         }
