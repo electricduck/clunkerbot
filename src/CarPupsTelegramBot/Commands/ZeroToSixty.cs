@@ -57,7 +57,7 @@ namespace CarPupsTelegramBot.Commands
                 weight *= 2.2046;
             }
 
-            double u = driveType == "rws" ? 0.9 : driveType == "awd" ? 0.85 : 1;
+            double u = driveType == "rwd" ? 0.9 : driveType == "awd" ? 0.85 : 1;
             double f = transmission == "aut" ? 1.1 : transmission == "dct" ? 0.925 : 1;
 
             double powerToWeightRatio = Math.Round(power / weight * 1e3) / 1e3;
