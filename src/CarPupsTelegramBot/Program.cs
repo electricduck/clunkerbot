@@ -79,6 +79,15 @@ namespace CarPupsTelegramBot
 
                         MessageApi.SendTextMessage(awooOutput, botClient, telegramMessageEvent);
                     break;
+                case "calculate0to60":
+                        string calculate0To60Output = "";
+
+                        if(arguments.Length == 4) {
+                            calculate0To60Output = ZeroToSixty.Calculate(arguments[0], arguments[1], arguments[2], arguments[3]);
+                        }
+
+                        MessageApi.SendTextMessage(calculate0To60Output, botClient, telegramMessageEvent);
+                    break;
                 case "calculatejourneyprice":
                         string calculateJourneyPriceOutput = "";
                 
