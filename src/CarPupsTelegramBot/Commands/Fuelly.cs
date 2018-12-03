@@ -98,32 +98,6 @@ MPG summary for a <b>{extractedVehicleInfo}</b> <i>({extractedExtendedVehicleInf
             }
         }
 
-        //public static string My() {
-        //
-        //}
-
-        public static string Set(string fuellyId) {
-            int telegramUserId = 63391517;
-
-            UserModel userItem = new UserModel {
-                TelegramId = telegramUserId
-            };
-
-            FuellyModel fuellyItem = new FuellyModel {
-                FuellyId = Convert.ToInt32(fuellyId),
-                User = userItem
-            };
-
-            using (var db = new CarPupsTelegramBotContext()) {
-                db.Fuelly.Add(fuellyItem);
-                var dbCount = db.SaveChanges();
-
-                Console.WriteLine($"🗄️ {dbCount} records saved to database");
-            }
-
-            return "derp";
-        }
-
         private static FuellyMpgUnitsReturnModel ConvertFuellyMpgUnits(string averageMpg, string bestMpg, string lastMpg, string unit) {
             double convertedAverageMpg = Convert.ToDouble(averageMpg);
             double convertedBestMpg = Convert.ToDouble(bestMpg);
