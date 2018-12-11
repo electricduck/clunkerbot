@@ -137,6 +137,7 @@ namespace CarPupsTelegramBot
                         MessageApi.SendTextMessage(calculateJourneyPriceOutput, botClient, telegramMessageEvent);
                     break;
                 case "findavailableplate":
+                case "findplate":
                         string findAvailablePlateOutput = "";
 
                         if(arguments.Length == 1) {

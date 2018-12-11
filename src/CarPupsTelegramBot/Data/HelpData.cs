@@ -75,6 +75,7 @@ To get additional help about the modules below (such as what arguments they acce
             HelpDictionary.Add("calculate0to60", ZeroToSixty_Calculate);
             HelpDictionary.Add("calculatejourneyprice", JourneyPrice_Calculate);
             HelpDictionary.Add("findavailableplate", AvailablePlate_Find);
+            HelpDictionary.Add("findplate", AvailablePlate_Find);
             HelpDictionary.Add("getfuelly", Fuelly_Get);
             HelpDictionary.Add("guessmileage", Mileage_Guess);
             HelpDictionary.Add("parseplate", Plate_Parse);
