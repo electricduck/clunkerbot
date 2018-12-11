@@ -24,6 +24,13 @@ To get additional help about the modules below (such as what arguments they acce
 <code>/help</code> - This page. Derp
 <code>/info</code> - Information about the bot, and its instance";
 
+        public static string AvailablePlate_Find = @"<code>/findavailableplate &lt;1&gt; &lt;[2]&gt;</code>
+—
+<code>&lt;1&gt;</code> <b>Plate</b> - The plate you wish to request, void of spaces <i>(e.g. AA15BEN, DU68CKY, 93FAR)</i>
+<code>&lt;2&gt;</code> <b>Country</b> <i>Optional</i> - The <a href='https://en.wikipedia.org/wiki/ISO_3166-1#Current'>ISO 3166-1</a> country code -- defaults to <b>gb</b> (Great Britain) <i>(e.g. gb, fr, nl)</i>*
+
+<b>*</b> <i>Supported: gb.</i>";
+
         public static string Fuelly_Get = @"<code>/getfuelly &lt;1&gt; &lt;[2]&gt;</code>
 —
 <code>&lt;1&gt;</code> <b>Fuelly ID</b> - ID from the profile URL of a car. So, for `http://www.fuelly.com/car/peugeot/106/2002/electricduck/713804`, the ID would be `713804` -- the integer at the end
@@ -67,6 +74,7 @@ To get additional help about the modules below (such as what arguments they acce
             HelpDictionary.Add("help", Help);
             HelpDictionary.Add("calculate0to60", ZeroToSixty_Calculate);
             HelpDictionary.Add("calculatejourneyprice", JourneyPrice_Calculate);
+            HelpDictionary.Add("findavailableplate", AvailablePlate_Find);
             HelpDictionary.Add("getfuelly", Fuelly_Get);
             HelpDictionary.Add("guessmileage", Mileage_Guess);
             HelpDictionary.Add("parseplate", Plate_Parse);

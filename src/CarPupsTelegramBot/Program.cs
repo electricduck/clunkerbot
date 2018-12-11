@@ -136,6 +136,19 @@ namespace CarPupsTelegramBot
                 
                         MessageApi.SendTextMessage(calculateJourneyPriceOutput, botClient, telegramMessageEvent);
                     break;
+                case "findavailableplate":
+                        string findAvailablePlateOutput = "";
+
+                        if(arguments.Length == 1) {
+                            findAvailablePlateOutput = AvailablePlate.Find(arguments[0], "gb");
+                        } else if(arguments.Length == 2) {
+                            findAvailablePlateOutput = AvailablePlate.Find(arguments[0], arguments[1]);
+                        } else {
+                            MessageApi.SendTextMessage(HelpData.GetHelp("findavailableplate", false), botClient, telegramMessageEvent);
+                        }
+
+                        MessageApi.SendTextMessage(findAvailablePlateOutput, botClient, telegramMessageEvent);
+                    break;
                 case "getcar":
                 case "getcarfromgarage":
                         ImageMessageReturnModel getCarFromGarageOutput = null;

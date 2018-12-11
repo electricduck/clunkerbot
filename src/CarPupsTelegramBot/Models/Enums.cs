@@ -45,6 +45,11 @@ namespace CarPupsTelegramBot.Models {
             LordProvostsOfAberdeen
         }
 
+        public enum PlatePurchaseType {
+            Unknown,
+            BuyNow, Auction, FutureAuction
+        }
+
         public enum TransmissionEnum {
             Manual, Automatic, DCT, CVT, AMT,
             Unknown
