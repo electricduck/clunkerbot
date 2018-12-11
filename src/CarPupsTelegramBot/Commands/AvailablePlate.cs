@@ -80,7 +80,7 @@ namespace CarPupsTelegramBot.Commands
 
                 string buyLink = "";
 
-                if (extractedPrice.Contains("<i>(auction)</i>")) {
+                if (extractedPrice.Contains("<i>(Auction)</i>")) {
                     purchaseType = Enums.PlatePurchaseType.Auction;
 
                     buyLink = "| <a href=\"http://www.dvlaauction.co.uk/index.php/live-auction/register-log-in/\">"
