@@ -111,7 +111,9 @@ namespace CarPupsTelegramBot.Commands
                     }
                 }
 
-                additionalOutput += $@"• <b>{extractedPlate}</b> | {extractedPrice} {buyLink}
+                string paddedExtractedPlate = extractedPlate.PadLeft(8, ' ');
+
+                additionalOutput += $@"• <code>🇬🇧 {paddedExtractedPlate}</code> | {extractedPrice} {buyLink}
 ";   
             }
 
