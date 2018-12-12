@@ -24,7 +24,7 @@ namespace CarPupsTelegramBot.Commands
                     case "gb":
                         return FindGbAvailablePlate(plate);
                     default:
-                        return $@"🔎 <i>Availabe Plate:</i> ❓ <code>{plate}</code>
+                        return $@"🔎 <i>Find Available Plate:</i> ❓ <code>{plate}</code>
 —
 <i>Country code '{country}' is currenty unsupported.</i>";
                 }
