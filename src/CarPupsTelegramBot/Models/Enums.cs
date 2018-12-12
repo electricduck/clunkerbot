@@ -33,7 +33,7 @@ namespace CarPupsTelegramBot.Models {
             diplomatic1979  // Diplomatic (1979 onwards)
         }
 
-        public enum GbPlatePost2001Type {
+        public enum GbPlateSpecial {
             Location,
             Reserved,
             Banned,

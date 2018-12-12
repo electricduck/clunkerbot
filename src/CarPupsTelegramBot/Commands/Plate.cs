@@ -51,13 +51,13 @@ namespace CarPupsTelegramBot.Commands
             if(plateReturn.Format == Enums.GbPlateFormat.yr1902) {
                 var specialOutput = "<i>No</i>";
 
-                if(plateReturn.Type == Enums.GbPlatePost2001Type.LordMayorOfLondon) {
+                if(plateReturn.Type == Enums.GbPlateSpecial.LordMayorOfLondon) {
                     specialOutput = "Lord Mayor of London";
-                } else if(plateReturn.Type == Enums.GbPlatePost2001Type.LordProvostsOfAberdeen) {
+                } else if(plateReturn.Type == Enums.GbPlateSpecial.LordProvostsOfAberdeen) {
                     specialOutput = "Lord Provosts Of Aberdeen";
-                } else if(plateReturn.Type == Enums.GbPlatePost2001Type.LordProvostsOfEdinburgh) {
+                } else if(plateReturn.Type == Enums.GbPlateSpecial.LordProvostsOfEdinburgh) {
                     specialOutput = "Lord Provosts of Edinburgh";
-                } else if(plateReturn.Type == Enums.GbPlatePost2001Type.LordProvostsOfGlasgow) {
+                } else if(plateReturn.Type == Enums.GbPlateSpecial.LordProvostsOfGlasgow) {
                     specialOutput = "Lord Provosts of Glasgow";
                 }
 
@@ -80,7 +80,7 @@ namespace CarPupsTelegramBot.Commands
             } else if(plateReturn.Format == Enums.GbPlateFormat.prefix) {
                 var specialOutput = "<i>No</i>";
 
-                if(plateReturn.Type == Enums.GbPlatePost2001Type.QPlate) {
+                if(plateReturn.Type == Enums.GbPlateSpecial.QPlate) {
                     specialOutput = "Q Plate";
                 }
 
@@ -91,9 +91,9 @@ namespace CarPupsTelegramBot.Commands
             } else if(plateReturn.Format == Enums.GbPlateFormat.current) {
                 var specialOutput = "<i>No</i>";
 
-                if(plateReturn.Type == Enums.GbPlatePost2001Type.Reserved) {
+                if(plateReturn.Type == Enums.GbPlateSpecial.Reserved) {
                     specialOutput = "Reserved";
-                } else if(plateReturn.Type == Enums.GbPlatePost2001Type.Export) {
+                } else if(plateReturn.Type == Enums.GbPlateSpecial.Export) {
                     specialOutput = "Personal Export";
                 }
                 

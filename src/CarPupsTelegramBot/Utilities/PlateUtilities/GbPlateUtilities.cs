@@ -56,20 +56,20 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
             var issue = match.Groups[3].Value;
 
             var location = GetPre2001GbLocationMnemonic(locationMnemonic);
-            Enums.GbPlatePost2001Type type = Enums.GbPlatePost2001Type.Location;
+            Enums.GbPlateSpecial type = Enums.GbPlateSpecial.Location;
 
             if(plate == "LM0") {
                 location = "London";
-                type = Enums.GbPlatePost2001Type.LordMayorOfLondon;
+                type = Enums.GbPlateSpecial.LordMayorOfLondon;
             } else if(plate == "S0") {
                 location = "Scotland";
-                type = Enums.GbPlatePost2001Type.LordProvostsOfEdinburgh;
+                type = Enums.GbPlateSpecial.LordProvostsOfEdinburgh;
             } else if(plate == "G0") {
                 location = "Glasgow";
-                type = Enums.GbPlatePost2001Type.LordProvostsOfGlasgow;
+                type = Enums.GbPlateSpecial.LordProvostsOfGlasgow;
             } else if(plate == "RG0") {
                 location = "Aberdeen";
-                type = Enums.GbPlatePost2001Type.LordProvostsOfAberdeen;
+                type = Enums.GbPlateSpecial.LordProvostsOfAberdeen;
             }
 
             PlateReturnModel plateReturn = new PlateReturnModel {
@@ -173,10 +173,10 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
 
             var location = GetPre2001GbLocationMnemonic(locationMnemonic);
             var year = GetGbPrefixYearMnemonic(Char.Parse(yearMnemonic));
-            var type = Enums.GbPlatePost2001Type.Location;
+            var type = Enums.GbPlateSpecial.Location;
 
             if(plate[0] == 'Q') {
-                type = Enums.GbPlatePost2001Type.QPlate;
+                type = Enums.GbPlateSpecial.QPlate;
             }
 
             PlateReturnModel plateReturn = new PlateReturnModel {
@@ -252,13 +252,13 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
         private static GetPost2001GbLocationMnemonicReturnModel GetPost2001GbLocationMnemonic(string locationMnemonic)
         {
             string location = "<i>Unknown</i>";
-            Enums.GbPlatePost2001Type type = Enums.GbPlatePost2001Type.Location;
+            Enums.GbPlateSpecial type = Enums.GbPlateSpecial.Location;
 
             if(CompareLetters(locationMnemonic, "AA", "AG") || CompareLetters(locationMnemonic, "AM", "AN"))
             {
                 location = "Peterborough <i>(Anglia)</i>";
             } else if(CompareLetters(locationMnemonic, "AH", "AL")) {
-                type = Enums.GbPlatePost2001Type.Reserved;
+                type = Enums.GbPlateSpecial.Reserved;
             } else if(CompareLetters(locationMnemonic, "AO", "AU")) {
                 location = "Norwich <i>(Anglia)</i>";
             } else if(CompareLetters(locationMnemonic, "AV", "AY")) {
@@ -267,7 +267,7 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
             } else if(CompareLetters(locationMnemonic, "BA", "BX")) {
                 location = "Birmingham";
             } else if(locationMnemonic == "BY") {
-                type = Enums.GbPlatePost2001Type.Reserved;
+                type = Enums.GbPlateSpecial.Reserved;
 
             } else if(CompareLetters(locationMnemonic, "CA", "CO")) {
                 location = "Cardiff <i>(Cymru)</i>";
@@ -276,33 +276,33 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
             } else if(CompareLetters(locationMnemonic, "CW", "CX")) {
                 location = "Bangor <i>(Cymru)</i>";
             } else if(locationMnemonic == "CY") {
-                type = Enums.GbPlatePost2001Type.Reserved;
+                type = Enums.GbPlateSpecial.Reserved;
 
             } else if(CompareLetters(locationMnemonic, "DA", "DK")) {
                 location = "Chester <i>(Deeside)</i>";
             } else if(CompareLetters(locationMnemonic, "DL", "DP") || CompareLetters(locationMnemonic, "DS", "DY")) {
                 location = "Shrewsbury <i>(Deeside)</i>";
             } else if(locationMnemonic == "DR") {
-                type = Enums.GbPlatePost2001Type.Reserved;
+                type = Enums.GbPlateSpecial.Reserved;
 
             } else if(CompareLetters(locationMnemonic, "EA", "EC") || CompareLetters(locationMnemonic, "EF", "EG") || CompareLetters(locationMnemonic, "EJ", "EY")) {
                 location = "Chelmsford <i>(Essex)</i>";
             } else if(locationMnemonic == "ED" || locationMnemonic == "EH") {
-                type = Enums.GbPlatePost2001Type.Reserved;
+                type = Enums.GbPlateSpecial.Reserved;
 
             } else if(CompareLetters(locationMnemonic, "FA", "FN") || locationMnemonic == "FP") {
                 location = "Nottingham <i>(Forest & Fens)</i>";
             } else if(CompareLetters(locationMnemonic, "FR", "FT") || CompareLetters(locationMnemonic, "FV", "FY")) {
                 location = "Lincoln <i>(Forest & Fens)</i>";
             } else if(locationMnemonic == "FO" || locationMnemonic == "FU") {
-                type = Enums.GbPlatePost2001Type.Reserved;
+                type = Enums.GbPlateSpecial.Reserved;
 
             } else if(CompareLetters(locationMnemonic, "GA", "GN")) {
                 location = "Maidstone <i>(Garden of England)</i>";
             } else if(CompareLetters(locationMnemonic, "GP", "GY")) {
                 location = "Brighton <i>(Garden of England)</i>";
             } else if(locationMnemonic == "GO") {
-                type = Enums.GbPlatePost2001Type.Reserved;
+                type = Enums.GbPlateSpecial.Reserved;
 
             } else if(CompareLetters(locationMnemonic, "HA", "HJ")) {
                 location = "Bournemouth <i>(Hampshire & Dorset)</i>";
@@ -311,7 +311,7 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
             } else if(locationMnemonic == "HW") {
                 location = "Isle of Wight <i>(Hampshire & Dorset)</i>";
             } else if(locationMnemonic == "HO") {
-                type = Enums.GbPlatePost2001Type.Reserved;
+                type = Enums.GbPlateSpecial.Reserved;
 
             } else if(CompareLetters(locationMnemonic, "KA", "KL")) {
                 location = "Borehamwood / Luton";
@@ -330,19 +330,19 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
             } else if(locationMnemonic == "MN") {
                 location = "Isle of Man";
             } else if(locationMnemonic == "MO" || locationMnemonic == "MR" || locationMnemonic == "MS" || locationMnemonic == "MY") {
-                type = Enums.GbPlatePost2001Type.Reserved;
+                type = Enums.GbPlateSpecial.Reserved;
                 
             } else if(CompareLetters(locationMnemonic, "NA", "NM")) {
                 location = "Newcastle <i>(North)</i>";
             } else if(CompareLetters(locationMnemonic, "NP", "NY")) {
                 location = "Stockton <i>(North)</i>";
             } else if(locationMnemonic == "NO") {
-                type = Enums.GbPlatePost2001Type.Banned;
+                type = Enums.GbPlateSpecial.Banned;
             
             } else if(CompareLetters(locationMnemonic, "OA", "OJ") || CompareLetters(locationMnemonic, "OL", "OM") || CompareLetters(locationMnemonic, "OO", "OP") || CompareLetters(locationMnemonic, "OT", "OY")) {
                 location = "Oxford";
             } else if(locationMnemonic == "OK" || locationMnemonic == "ON" || locationMnemonic == "OR" || locationMnemonic == "OS") {
-                type = Enums.GbPlatePost2001Type.Reserved;
+                type = Enums.GbPlateSpecial.Reserved;
 
             } else if(CompareLetters(locationMnemonic, "PA", "PT")) {
                 location = "Preston <i>(Preston)</i>";
@@ -352,7 +352,7 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
             } else if(CompareLetters(locationMnemonic, "RA", "RT") || CompareLetters(locationMnemonic, "RV", "RY")) {
                 location = "Reading";
             } else if(locationMnemonic == "RU") {
-                type = Enums.GbPlatePost2001Type.Reserved;
+                type = Enums.GbPlateSpecial.Reserved;
 
             } else if(CompareLetters(locationMnemonic, "SA", "SJ")) {
                 location = "Glasgow <i>(Scotland)</i>";
@@ -365,7 +365,7 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
             } else if(CompareLetters(locationMnemonic, "SX", "SY")) {
                 location = "Inverness";
             } else if(locationMnemonic == "SU") {
-                type = Enums.GbPlatePost2001Type.Reserved;
+                type = Enums.GbPlateSpecial.Reserved;
 
             } else if(locationMnemonic == "TN") {
                 location = "Scotland";
@@ -373,7 +373,7 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
             } else if(CompareLetters(locationMnemonic, "VA", "VC") || CompareLetters(locationMnemonic, "VE", "VV")) {
                 location = "Worcester <i>(Severn Valley)</i>";
             } else if(locationMnemonic == "VD" || locationMnemonic == "VW") {
-                type = Enums.GbPlatePost2001Type.Reserved;
+                type = Enums.GbPlateSpecial.Reserved;
 
             } else if(CompareLetters(locationMnemonic, "WA", "WB") || CompareLetters(locationMnemonic, "WD", "WJ")) {
                 location = "Exeter <i>(West of England)</i>";
@@ -382,12 +382,12 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
             } else if(CompareLetters(locationMnemonic, "WM", "WY")) {
                 location = "Bristol <i>(West of England)</i>";
             } else if(locationMnemonic == "C") {
-                type = Enums.GbPlatePost2001Type.Banned;
+                type = Enums.GbPlateSpecial.Banned;
             
             } else if(CompareLetters(locationMnemonic, "XA", "XF")) {
-                type = Enums.GbPlatePost2001Type.Export;
+                type = Enums.GbPlateSpecial.Export;
             } else if(CompareLetters(locationMnemonic, "XG", "XY")) {
-                type = Enums.GbPlatePost2001Type.Reserved;
+                type = Enums.GbPlateSpecial.Reserved;
 
             } else if(CompareLetters(locationMnemonic, "YA", "YK")) {
                 location = "Leeds <i>(Yorkshire)</i>";
