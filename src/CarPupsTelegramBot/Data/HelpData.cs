@@ -52,7 +52,7 @@ To get additional help about the modules below (such as what arguments they acce
 <code>&lt;3&gt;</code> <b>Last MOT Date</b> - The date the latest MOT occured <i>(e.g. 15-Aug-2017)</i>
 <code>&lt;4&gt;</code> <b>Date To Calculate To</b> <i>(Optional)</i> - Date to calculate to; reverts to current date by default <i>(e.g. 11-Aug-2020)</i>";
 
-        public static string Plate_Parse = @"<code>/parseplate</code> &lt;1&gt; &lt;[2]&gt;
+        public static string Plate_Parse = @"<code>/parseplate &lt;1&gt; &lt;[2]&gt;</code>
 —
 <code>&lt;1&gt;</code> <b>Plate</b> - The vehicle's numberplate, void of spaces <i>(e.g. N161CWW, 15210, 99-CL-VV)</i>
 <code>&lt;2&gt;</code> <b>Country</b> <i>Optional</i> - The <a href='https://en.wikipedia.org/wiki/ISO_3166-1#Current'>ISO 3166-1</a> country code -- defaults to <b>gb</b> (Great Britain) <i>(e.g. gb, fr, nl)</i>*

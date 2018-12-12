@@ -1,4 +1,5 @@
 using System;
+using HtmlAgilityPack;
 using Telegram.Bot.Args;
 using CarPupsTelegramBot.Api;
 using CarPupsTelegramBot.Data;
@@ -28,7 +29,7 @@ namespace CarPupsTelegramBot.Commands
 <i>Country code '{country}' is currenty unsupported.</i>";
                 }
             } catch {
-                return HelpData.GetHelp("parseplate", true);
+                return HelpData.GetHelp("parseplate", false);
             }
         }
 
