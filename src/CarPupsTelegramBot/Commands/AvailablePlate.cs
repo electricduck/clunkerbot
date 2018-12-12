@@ -24,7 +24,7 @@ namespace CarPupsTelegramBot.Commands
                     case "gb":
                         return FindGbAvailablePlate(plate);
                     default:
-                        return $@"#️⃣ <i>Availabe Plate:</i> ❓ <code>{plate}</code>
+                        return $@"🔎 <i>Availabe Plate:</i> ❓ <code>{plate}</code>
 —
 <i>Country code '{country}' is currenty unsupported.</i>";
                 }
@@ -38,7 +38,7 @@ namespace CarPupsTelegramBot.Commands
             string dvlaRegistrationsBaseUrlPrefix = "https://dvlaregistrations.direct.gov.uk/search/results.html?search=";
             string dvlaRegistrationsBaseUrlSuffix = "&action=index&pricefrom=0&priceto=&prefixmatches=&currentmatches=&limitprefix=&limitcurrent=&limitauction=&searched=true&openoption=&language=en&prefix2=Search&super=&super_pricefrom=&super_priceto=";
         
-            string output = $@"🔎 <i>Available Plate:</i> 🇬🇧 <code>{plate}</code>
+            string output = $@"🔎 <i>Find Available Plate:</i> 🇬🇧 <code>{plate}</code>
 —
 ";
             string additionalOutput = "";
