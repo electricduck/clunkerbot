@@ -53,10 +53,10 @@ namespace CarPupsTelegramBot.Commands
                     locationString = plateReturn.Location;
                 }
 
-                if(plateReturn.IsSpecial) {
-                    specialString = plateReturn.Special;
-                } else {
+                if(String.IsNullOrEmpty(plateReturn.Special)) {
                     specialString = "<i>No</i>";
+                } else {
+                    specialString = plateReturn.Special;
                 }
 
                 output += $@"<b>Location:</b> {locationString}

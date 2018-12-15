@@ -8,9 +8,9 @@ namespace  CarPupsTelegramBot.Utilities.PlateUtilities
 {
     public class DePlateUtilities
     {
-        private static string Year1956Regex = @"^(([A-Z]{1,3})-([A-Z]{1,2})\s?([0-9]{1,4}))$";
+        private static string Year1956Regex = @"^(([A-Z|Ü|Ö]{1,3})-([A-Z]{1,2})\s?([0-9]{1,4}))$";
         private static string Year1956DiplomaticRegex = @"^(([0]{1})-([0-9]{1,3})-([0-9]{1,3}))$";
-        private static string Year1956ElectricRegex = @"^(([A-Z]{1,3})-\s?([0-9]{1,4})([E]))$";
+        private static string Year1956ElectricRegex = @"^(([A-Z|Ü|Ö]{1,3})-\s?([0-9]{1,4})([E]))$";
 
         public static DePlateReturnModel ParseDePlate(string plate)
         {
@@ -22,7 +22,6 @@ namespace  CarPupsTelegramBot.Utilities.PlateUtilities
                 plateReturn = ParseDeYr1956Plate(plate);
             } else if(Regex.IsMatch(plate, Year1956ElectricRegex)) {
                 plateReturn = ParseDeYr1956Plate(plate, true);
-                plateReturn.IsSpecial = true;
                 plateReturn.Special = "Electric";
             } else if(Regex.IsMatch(plate, Year1956DiplomaticRegex)) {
                 plateReturn = new DePlateReturnModel {
@@ -56,7 +55,6 @@ namespace  CarPupsTelegramBot.Utilities.PlateUtilities
             DePlateReturnModel returnModel = new DePlateReturnModel {
                 Format = Enums.DePlateFormat.yr1956,
                 Location = "",
-                IsSpecial = false,
                 Special = ""
             };
 
@@ -65,7 +63,6 @@ namespace  CarPupsTelegramBot.Utilities.PlateUtilities
 
                 Post1956DeSpecialMnemonics.TryGetValue(locationAndSpecialMnemonic, out special);
 
-                returnModel.IsSpecial = true;
                 returnModel.Special = special;
                 return returnModel;
             } else if(Post1956DeLocationMnemonics.ContainsKey(locationAndSpecialMnemonic)) {
