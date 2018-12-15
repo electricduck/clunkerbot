@@ -54,10 +54,10 @@ To get additional help about the modules below (such as what arguments they acce
 
         public static string Plate_Parse = @"<code>/parseplate &lt;1&gt; &lt;[2]&gt;</code>
 —
-<code>&lt;1&gt;</code> <b>Plate</b> - The vehicle's numberplate, void of spaces <i>(e.g. N161CWW, 15210, 99-CL-VV)</i>
+<code>&lt;1&gt;</code> <b>Plate</b> - The vehicle's numberplate, void of spaces. Tags/seals/stickers must be separated by a '-' <i>(e.g. N161CWW, 15210, AN-US69)</i>
 <code>&lt;2&gt;</code> <b>Country</b> <i>Optional</i> - The <a href='https://en.wikipedia.org/wiki/ISO_3166-1#Current'>ISO 3166-1</a> country code -- defaults to <b>gb</b> (Great Britain) <i>(e.g. gb, fr, nl)</i>*
 
-<b>*</b> <i>Supported: gb, gg.</i>";
+<b>*</b> <i>Supported: de, gb, gg.</i>";
 
         public static string ZeroToSixty_Calculate = @"<code>/calculate0to60 &lt;1&gt; &lt;2&gt; &lt;3&gt; &lt;[4]&gt; &lt;[5]&gt; &lt;[6]&gt;</code>
 —

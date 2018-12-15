@@ -8,13 +8,13 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
 {
     public class GgPlateUtilities
     {
-        private static string AllPlatesRegex = @"^([0-9]{1,5})$";
+        private static string AllRegex = @"^([0-9]{1,5})$";
 
         public static GgPlateReturnModel ParseGgPlate(string plate)
         {
             GgPlateReturnModel ggPlateReturn;
 
-            if(Regex.IsMatch(plate, AllPlatesRegex)) {
+            if(Regex.IsMatch(plate, AllRegex)) {
                 ggPlateReturn = new GgPlateReturnModel {
                     Issue = Convert.ToInt32(plate),
                     Valid = true

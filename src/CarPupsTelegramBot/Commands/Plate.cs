@@ -19,6 +19,8 @@ namespace CarPupsTelegramBot.Commands
                 plate = plate.ToUpper();
 
                 switch(country) {
+                    case "de":
+                        return ParseDePlate(plate);
                     case "gb":
                         return ParseGbPlate(plate);
                     case "gg":
@@ -31,6 +33,40 @@ namespace CarPupsTelegramBot.Commands
             } catch {
                 return HelpData.GetHelp("parseplate", false);
             }
+        }
+
+        private static string ParseDePlate(string plate)
+        {
+            DePlateReturnModel plateReturn = DePlateUtilities.ParseDePlate(plate);
+        
+            string output = $@"#️⃣ <i>Parse Plate:</i> 🇩🇪 <code>{plate}</code>
+—
+";
+
+            string locationString;
+            string specialString;
+
+            if(plateReturn.Format == Enums.DePlateFormat.yr1956) {
+                if(plateReturn.IsSpecial) {
+                    locationString = "<i>Unknown</i>";
+                    specialString = plateReturn.Special;
+                } else {
+                    locationString = plateReturn.Location;
+                    specialString = "<i>No</i>";
+                }
+
+                output += $@"<b>Location:</b> {locationString}
+<b>Special:</b> {specialString}
+<b>Format:</b> Current <i>(1956 onwards)</i>";
+            } else if(plateReturn.Format == Enums.DePlateFormat.diplomatic1956) {
+                output += $@"Format: Diplomatic
+                
+<i>This is a diplomatic plate, found on cars used by foreign embassies, high commissions, consulates and international organisations. The cars themselves are usually not personally owned.</i>";
+            } else {
+                output += $@"<i>This plate is an unsupported format; possibly custom.</i>";
+            }
+
+            return output;
         }
 
         private static string ParseGbPlate(string plate)
@@ -50,21 +86,21 @@ namespace CarPupsTelegramBot.Commands
 ";
 
             if(plateReturn.Format == Enums.GbPlateFormat.yr1902) {
-                var specialOutput = "<i>No</i>";
+                var specialString = "<i>No</i>";
 
                 if(plateReturn.Type == Enums.GbPlateSpecial.LordMayorOfLondon) {
-                    specialOutput = "Lord Mayor of London";
+                    specialString = "Lord Mayor of London";
                 } else if(plateReturn.Type == Enums.GbPlateSpecial.LordProvostsOfAberdeen) {
-                    specialOutput = "Lord Provosts Of Aberdeen";
+                    specialString = "Lord Provosts Of Aberdeen";
                 } else if(plateReturn.Type == Enums.GbPlateSpecial.LordProvostsOfEdinburgh) {
-                    specialOutput = "Lord Provosts of Edinburgh";
+                    specialString = "Lord Provosts of Edinburgh";
                 } else if(plateReturn.Type == Enums.GbPlateSpecial.LordProvostsOfGlasgow) {
-                    specialOutput = "Lord Provosts of Glasgow";
+                    specialString = "Lord Provosts of Glasgow";
                 }
 
                 output += $@"<b>DVLA Office:</b> {plateReturn.Location}
 <b>Issue No.:</b> {plateReturn.Issue}
-<b>Special:</b> {specialOutput}
+<b>Special:</b> {specialString}
 <b>Format:</b> 1902 to 1932";
             } else if(plateReturn.Format == Enums.GbPlateFormat.yr1932) {
                 output += $@"<b>DVLA Office:</b> {plateReturn.Location}
@@ -79,28 +115,28 @@ namespace CarPupsTelegramBot.Commands
 <b>Year Reg.:</b> {yearString}
 <b>Format:</b> Suffix <i>(1963 to 1982)</i>";
             } else if(plateReturn.Format == Enums.GbPlateFormat.prefix) {
-                var specialOutput = "<i>No</i>";
+                var specialString = "<i>No</i>";
 
                 if(plateReturn.Type == Enums.GbPlateSpecial.QPlate) {
-                    specialOutput = "Q Plate";
+                    specialString = "Q Plate";
                 }
 
                 output += $@"<b>DVLA Office:</b> {plateReturn.Location}
 <b>Year Reg.:</b> {yearString}
-<b>Special:</b> {specialOutput}
+<b>Special:</b> {specialString}
 <b>Format:</b> Prefix <i>(1983 to 2001)</i>";
             } else if(plateReturn.Format == Enums.GbPlateFormat.current) {
-                var specialOutput = "<i>No</i>";
+                var specialString = "<i>No</i>";
 
                 if(plateReturn.Type == Enums.GbPlateSpecial.Reserved) {
-                    specialOutput = "Reserved";
+                    specialString = "Reserved";
                 } else if(plateReturn.Type == Enums.GbPlateSpecial.Export) {
-                    specialOutput = "Personal Export";
+                    specialString = "Personal Export";
                 }
                 
                 output += $@"<b>DVLA Office:</b> {plateReturn.Location}
 <b>Year Reg.:</b> {yearString} ({plateReturn.Month})
-<b>Special:</b> {specialOutput}
+<b>Special:</b> {specialString}
 <b>Format:</b> Current <i>(2001 to 2051)</i>";
             } else if(plateReturn.Format == Enums.GbPlateFormat.trade2015) {
                 output += $@"<b>Issue:</b> {plateReturn.Issue}
