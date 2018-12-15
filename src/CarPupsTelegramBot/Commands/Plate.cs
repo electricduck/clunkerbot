@@ -25,6 +25,8 @@ namespace CarPupsTelegramBot.Commands
                         return ParseGbPlate(plate);
                     case "gg":
                         return ParseGgPlate(plate);
+                    case "nl":
+                        return ParseNlPlate(plate);
                     default:
                         return $@"#️⃣ <i>Parse Plate:</i> ❓ <code>{plate}</code>
 —
@@ -172,7 +174,81 @@ namespace CarPupsTelegramBot.Commands
             if(plateReturn.Valid) {
                 output += $"<b>Issue:</b> {plate}";
             } else {
-                output += "<i>This is an invalid Guersney plate.</i>";
+                output += "<i>This is an invalid (or unsupported) Guersney plate.</i>";
+            }
+
+            return output;
+        }
+
+        private static string ParseNlPlate(string plate)
+        {
+            NlPlateReturnModel plateReturn = NlPlateUtilities.ParseNlPlate(plate);
+        
+            string output = $@"#️⃣ <i>Parse Plate:</i> 🇳🇱 <code>{plate}</code>
+—
+";
+
+            string specialString;
+            string yearString;
+
+            if(String.IsNullOrEmpty(plateReturn.Special)) {
+                specialString = "<i>No</i>";
+            } else {
+                specialString = plateReturn.Special;
+            }
+
+            if(String.IsNullOrEmpty(plateReturn.Year)) {
+                yearString = "<i>Unknown</i>";
+            } else {
+                yearString = plateReturn.Year;
+            }
+
+            if(plateReturn.Valid) {
+                if(plateReturn.Format == Enums.NlPlateFormat.yr1898) {
+                    output += $@"<b>Location:</b> {plateReturn.Location}
+<b>Issue:</b> {plateReturn.Issue}
+<b>Format:</b> 1989 to 1951";
+                } else if(plateReturn.Format == Enums.NlPlateFormat.yr1951) {
+                    output += $@"<b>Format:</b> Side Code 1 <i>(1951 to 1956)</i>";
+                } else if(plateReturn.Format == Enums.NlPlateFormat.yr1965) {
+                    output += $@"<b>Format:</b> Side Code 2 <i>(1965 to 1973)</i>";
+                } else if(plateReturn.Format == Enums.NlPlateFormat.yr1973) {
+                    output += $@"<b>Format:</b> Side Code 3 <i>(1973 to 1978)</i>";
+                } else if(plateReturn.Format == Enums.NlPlateFormat.yr1978) {
+                    output += $@"<b>Format:</b> Side Code 4 <i>(1978 to 1991)</i>";
+                } else if(plateReturn.Format == Enums.NlPlateFormat.yr1991) {
+                    output += $@"<b>Format:</b> Side Code 5 <i>(1991 to 1999)</i>";
+                } else if(plateReturn.Format == Enums.NlPlateFormat.yr1999) {
+                    output += $@"<b>Year:</b> {yearString}
+<b>Special:</b> {specialString}
+<b>Format:</b> Side Code 6 <i>(1999 to 2008)</i>";
+                } else if(plateReturn.Format == Enums.NlPlateFormat.yr2006) {
+                    output += $@"<b>Year:</b> {yearString}
+<b>Special:</b> {specialString}
+<b>Format:</b> Side Code 7 <i>(2006 onwards)</i>";
+                } else if(plateReturn.Format == Enums.NlPlateFormat.yr2006b) {
+                    output += $@"<b>Year:</b> {yearString}
+<b>Special:</b> {specialString}
+<b>Format:</b> Side Code 8 <i>(2006 onwards)</i>";
+                } else if(plateReturn.Format == Enums.NlPlateFormat.yr2006c) {
+                    output += $@"<b>Year:</b> {yearString}
+<b>Special:</b> {specialString}
+<b>Format:</b> Side Code 9 <i>(2006 onwards)</i>";
+                } else if(plateReturn.Format == Enums.NlPlateFormat.yr2011) {
+                    output += $@"<b>Year:</b> {yearString}
+<b>Special:</b> {specialString}
+<b>Format:</b> Side Code 10 <i>(2011 to 2015)</i>";
+                } else if(plateReturn.Format == Enums.NlPlateFormat.yr2015) {
+                    output += $@"<b>Year:</b> {yearString}
+<b>Special:</b> {specialString}
+<b>Format:</b> Side Code 11 <i>(2015 onwards)</i>";
+                } else if(plateReturn.Format == Enums.NlPlateFormat.yr2016) {
+                    output += $@"<b>Year:</b> {yearString}
+<b>Special:</b> {specialString}
+<b>Format:</b> Side Code 13 <i>(2016 onwards)</i>";
+                }
+            } else {
+                output += "<i>This is an invalid (or unsupported) Netherlands plate.</i>";
             }
 
             return output;
