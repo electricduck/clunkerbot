@@ -10,6 +10,7 @@ namespace  CarPupsTelegramBot.Utilities.PlateUtilities
     {
         private static string Year1956Regex = @"^(([A-Z]{1,3})-([A-Z]{1,2})\s?([0-9]{1,4}))$";
         private static string Year1956DiplomaticRegex = @"^(([0]{1})-([0-9]{1,3})-([0-9]{1,3}))$";
+        private static string Year1956ElectricRegex = @"^(([A-Z]{1,3})-\s?([0-9]{1,4})([E]))$";
 
         public static DePlateReturnModel ParseDePlate(string plate)
         {
@@ -19,6 +20,10 @@ namespace  CarPupsTelegramBot.Utilities.PlateUtilities
 
             if(Regex.IsMatch(plate, Year1956Regex)) {
                 plateReturn = ParseDeYr1956Plate(plate);
+            } else if(Regex.IsMatch(plate, Year1956ElectricRegex)) {
+                plateReturn = ParseDeYr1956Plate(plate, true);
+                plateReturn.IsSpecial = true;
+                plateReturn.Special = "Electric";
             } else if(Regex.IsMatch(plate, Year1956DiplomaticRegex)) {
                 plateReturn = new DePlateReturnModel {
                     Format = Enums.DePlateFormat.diplomatic1956
@@ -32,12 +37,21 @@ namespace  CarPupsTelegramBot.Utilities.PlateUtilities
             return plateReturn;
         }
 
-        private static DePlateReturnModel ParseDeYr1956Plate(string plate)
+        private static DePlateReturnModel ParseDeYr1956Plate(string plate, bool electricVehicle = false)
         {
-            Regex regex = new Regex(Year1956Regex);
-            Match match = regex.Match(plate);   
+            string locationAndSpecialMnemonic;
 
-            var locationAndSpecialMnemonic = match.Groups[2].Value;
+            if(electricVehicle == false) {
+                Regex regex = new Regex(Year1956Regex);
+                Match match = regex.Match(plate);   
+
+                locationAndSpecialMnemonic = match.Groups[2].Value;
+            } else {
+                Regex regex = new Regex(Year1956ElectricRegex);
+                Match match = regex.Match(plate);   
+
+                locationAndSpecialMnemonic = match.Groups[2].Value;
+            }
 
             DePlateReturnModel returnModel = new DePlateReturnModel {
                 Format = Enums.DePlateFormat.yr1956,

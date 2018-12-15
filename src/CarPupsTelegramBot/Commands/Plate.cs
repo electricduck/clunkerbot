@@ -47,11 +47,15 @@ namespace CarPupsTelegramBot.Commands
             string specialString;
 
             if(plateReturn.Format == Enums.DePlateFormat.yr1956) {
-                if(plateReturn.IsSpecial) {
+                if(String.IsNullOrEmpty(plateReturn.Location)) {
                     locationString = "<i>Unknown</i>";
-                    specialString = plateReturn.Special;
                 } else {
                     locationString = plateReturn.Location;
+                }
+
+                if(plateReturn.IsSpecial) {
+                    specialString = plateReturn.Special;
+                } else {
                     specialString = "<i>No</i>";
                 }
 
