@@ -38,6 +38,17 @@ namespace CarPupsTelegramBot.Commands
                         case "nl":
                             var parsedNlPlate = ParseNlPlate(plate);
                             return parsedNlPlate.Message;
+                        case "us":
+                            var parsedUsPlate = ParseAnyPlate(plate, true);
+                            
+                            if(parsedUsPlate.FoundMatch) {
+                                return parsedUsPlate.Message;
+                            } else {
+                        return $@"#️⃣ <i>Parse Plate:</i> 🇺🇸 <code>{plate}</code>
+—
+<i>No match for plate found.</i>
+<i>The state may not be supported — check the help (</i><code>/help parseplate</code><i>) for a list of supported states.</i>";
+                            }
                         default:
                             return countryCodeUnsupportedMessage;
                     }
