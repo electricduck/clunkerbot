@@ -93,12 +93,14 @@ namespace CarPupsTelegramBot.Commands
             if(!usOnly) {
                 var parsedAtPlate = ParseAtPlate(plate);
                 var parsedDePlate = ParseDePlate(plate);
+                var parsedFrPlate = ParseFrPlate(plate);
                 var parsedGbPlate = ParseGbPlate(plate);
                 var parsedGgPlate = ParseGgPlate(plate);
                 var parsedNlPlate = ParseNlPlate(plate);
 
                 if(parsedAtPlate.FoundMatch) { matches.Add(parsedAtPlate); }
                 if(parsedDePlate.FoundMatch) { matches.Add(parsedDePlate); }
+                if(parsedFrPlate.FoundMatch) { matches.Add(parsedFrPlate); }
                 if(parsedGbPlate.FoundMatch) { matches.Add(parsedGbPlate); }
                 if(parsedGgPlate.FoundMatch) { matches.Add(parsedGgPlate); }
                 if(parsedNlPlate.FoundMatch) { matches.Add(parsedNlPlate); }
@@ -223,6 +225,34 @@ namespace CarPupsTelegramBot.Commands
             }
 
             parsedPlateReturn.CountryCode = "de";
+            parsedPlateReturn.FoundMatch = plateReturn.Valid;
+            parsedPlateReturn.Message = output;
+
+            return parsedPlateReturn;
+        }
+
+        private static ParsedPlateMessageReturnModel ParseFrPlate(string plate)
+        {
+            ParsedPlateMessageReturnModel parsedPlateReturn = new ParsedPlateMessageReturnModel { };
+
+            FrPlateReturnModel plateReturn = FrPlateUtilities.ParseFrPlate(plate);
+
+            parsedPlateReturn.Flag = "🇫🇷";
+
+            string output = $@"#️⃣ <i>Parse Plate:</i> {parsedPlateReturn.Flag} <code>{plate}</code>
+—
+";
+
+            if(plateReturn.Valid) {
+                if(plateReturn.Format == Enums.FrPlateFormat.yr2002) {
+                    output += $@"<b>Issue No.:</b> {plateReturn.Issue} <i>(approx.)</i>
+<b>Format:</b> SIV <i>(2002 onwards)</i>";
+                }
+            } else {
+                output += "<i>This is an invalid, custom/private, or unsupported French plate. Contact</i> @theducky <i>if you believe it is a standard format.</i>";
+            }
+
+            parsedPlateReturn.CountryCode = "fr";
             parsedPlateReturn.FoundMatch = plateReturn.Valid;
             parsedPlateReturn.Message = output;
 

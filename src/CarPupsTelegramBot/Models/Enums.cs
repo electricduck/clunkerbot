@@ -32,6 +32,11 @@ namespace CarPupsTelegramBot.Models {
             Unknown
         }
 
+        public enum FrPlateFormat {
+            unspecified,
+            yr2002          // 2002 onwards / SIV
+        }
+
         public enum GbPlateFormat {
             unspecified,
             yr1902,         // 1902 to 1932
