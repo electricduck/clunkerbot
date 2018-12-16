@@ -14,5 +14,6 @@ namespace CarPupsTelegramBot.Models.ReturnModels {
         public string DiplomaticOrganisation { get; set; }
         public string DiplomaticType { get; set; }
         public string DiplomaticRank { get; set; }
+        public bool Valid { get; set; }
     }
 }

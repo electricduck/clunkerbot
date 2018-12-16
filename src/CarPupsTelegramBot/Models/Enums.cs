@@ -34,7 +34,6 @@ namespace CarPupsTelegramBot.Models {
             suffix,         // 1963 to 1982 / Suffix
             prefix,         // 1982 to 2001 / Prefix
             current,        // 2001 to 2051 / Current
-            custom,         // Non-standard private
             trade2015,      // Trade (2015 onwards)
             diplomatic1979  // Diplomatic (1979 onwards)
         }

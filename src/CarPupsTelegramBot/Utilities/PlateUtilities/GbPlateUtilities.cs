@@ -25,23 +25,31 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
 
             if(Regex.IsMatch(plate, Year1902Regex)) {
                 plateReturn = ParseGbYr1902Plate(plate);
+                plateReturn.Valid = true;
             } else if(Regex.IsMatch(plate, Year1932Regex)) {
                 plateReturn = ParseGbYr1932Plate(plate);
+                plateReturn.Valid = true;
             } else if(Regex.IsMatch(plate, Year1953Regex)) {
                 plateReturn = ParseGbYr1953Plate(plate);
+                plateReturn.Valid = true;
             } else if(Regex.IsMatch(plate, Year1963Regex)) {
                 plateReturn = ParseGbYr1963Plate(plate);
+                plateReturn.Valid = true;
             } else if(Regex.IsMatch(plate, Year1979DiplomaticRegex)) {
                 plateReturn = ParseGbYr1979DiplomaticPlate(plate);
+                plateReturn.Valid = true;
             } else if(Regex.IsMatch(plate, Year1983Regex)) {
                 plateReturn = ParseGbYr1983Plate(plate);
+                plateReturn.Valid = true;
             } else if(Regex.IsMatch(plate, Year2001Regex)) {
                 plateReturn = ParseGbYr2001Plate(plate);
+                plateReturn.Valid = true;
             } else if(Regex.IsMatch(plate, Year2015TradeRegex)) {
                 plateReturn = ParseGbYr2015TradePlate(plate);
+                plateReturn.Valid = true;
             } else {
                 plateReturn = new PlateReturnModel {
-                    Format = Enums.GbPlateFormat.custom
+                    Valid = false
                 };
             }
 

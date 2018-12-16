@@ -20,16 +20,19 @@ namespace  CarPupsTelegramBot.Utilities.PlateUtilities
 
             if(Regex.IsMatch(plate, Year1956Regex)) {
                 plateReturn = ParseDeYr1956Plate(plate);
+                plateReturn.Valid = true;
             } else if(Regex.IsMatch(plate, Year1956ElectricRegex)) {
                 plateReturn = ParseDeYr1956Plate(plate, true);
-                plateReturn.Special = "Electric";
+                plateReturn.Special = "Electric"; // TODO: Find a better way to match this
+                plateReturn.Valid = true;
             } else if(Regex.IsMatch(plate, Year1956DiplomaticRegex)) {
                 plateReturn = new DePlateReturnModel {
-                    Format = Enums.DePlateFormat.diplomatic1956
+                    Format = Enums.DePlateFormat.diplomatic1956,
+                    Valid = true
                 };
             } else {
                 plateReturn = new DePlateReturnModel {
-                    Format = Enums.DePlateFormat.unspecified
+                    Valid = false
                 };
             }
 
