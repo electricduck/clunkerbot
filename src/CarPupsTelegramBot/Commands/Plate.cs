@@ -46,6 +46,9 @@ namespace CarPupsTelegramBot.Commands
                         case "us-oh":
                             var parsedUsOhPlate = ParseUsOhPlate(plate);
                             return parsedUsOhPlate.Message;
+                        case "us-sc":
+                            var parsedUsScPlate = ParseUsScPlate(plate);
+                            return parsedUsScPlate.Message;
                         default:
                             return countryCodeUnsupportedMessage;
                     }
@@ -84,7 +87,10 @@ namespace CarPupsTelegramBot.Commands
             }
 
             var parsedUsOhPlate = ParseUsOhPlate(plate);
+            var parsedUsScPlate = ParseUsScPlate(plate);
+
             if(parsedUsOhPlate.FoundMatch) { matches.Add(parsedUsOhPlate); }
+            if(parsedUsScPlate.FoundMatch) { matches.Add(parsedUsScPlate); }
 
             if(matches.Count == 0) {
                 parsedPlateReturn = new ParsedPlateMessageReturnModel {
@@ -407,6 +413,36 @@ namespace CarPupsTelegramBot.Commands
             }
 
             parsedPlateReturn.CountryCode = "us-oh";
+            parsedPlateReturn.FoundMatch = plateReturn.Valid;
+            parsedPlateReturn.Message = output;
+
+            return parsedPlateReturn;
+        }
+
+        private static ParsedPlateMessageReturnModel ParseUsScPlate(string plate)
+        {
+            ParsedPlateMessageReturnModel parsedPlateReturn = new ParsedPlateMessageReturnModel { };
+
+            UsScPlateReturnModel plateReturn = UsScPlateUtilities.ParseUsScPlate(plate);
+
+            parsedPlateReturn.Flag = "🇺🇸";
+        
+            string output = $@"#️⃣ <i>Parse Plate:</i> {parsedPlateReturn.Flag} <code>{plate}</code>
+—
+";
+
+            string usState = "South Carolina";
+
+            if(plateReturn.Valid) {
+                if(plateReturn.Format == Enums.UsScPlateFormat.yr2008) {
+                    output += $@"<b>US State:</b> {usState}
+<b>Format:</b> 2008 onwards";
+                }
+            } else {
+                output += "<i>This is an invalid, custom/private, or unsupported South Carolina plate. Contact</i> @theducky <i>if you believe it is a standard format.</i>";
+            }
+
+            parsedPlateReturn.CountryCode = "us-sc";
             parsedPlateReturn.FoundMatch = plateReturn.Valid;
             parsedPlateReturn.Message = output;
 

@@ -83,5 +83,10 @@ namespace CarPupsTelegramBot.Models {
             yr2015Bike,
             duiOffender
         }
+
+        public enum UsScPlateFormat {
+            unspecified,
+            yr2008
+        }
     }
 }
