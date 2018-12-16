@@ -76,5 +76,12 @@ namespace CarPupsTelegramBot.Models {
             Manual, Automatic, DCT, CVT, AMT,
             Unknown
         }
+
+        public enum UsOhPlateFormat {
+            unspecified,
+            yr2004,
+            yr2015Bike,
+            duiOffender
+        }
     }
 }
