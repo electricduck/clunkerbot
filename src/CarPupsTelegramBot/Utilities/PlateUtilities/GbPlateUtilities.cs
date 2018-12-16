@@ -15,7 +15,7 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
         private static string Year1979DiplomaticRegex = "^(([0-9]{3})([A-Z]{1})([0-9]{3}))$";
         private static string Year1983Regex = @"^(([A-Z]{1})([0-9]{2,3})\s?([A-Z]{1})([A-Z]{2}))$";
         private static string Year2001Regex = @"(([A-Z]{2,2})([0-9]{2})\s?([A-Z]{3,3}))$";
-        private static string Year2015TradeRegex = @"([0-9]{5})";
+        private static string Year2015TradeRegex = @"^([0-9]{5})$";
 
         public static PlateReturnModel ParseGbPlate(string plate, Enums.GbPlateFormat format)
         {
@@ -82,7 +82,7 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
 
             PlateReturnModel plateReturn = new PlateReturnModel {
                 Location = location,
-                Issue = Convert.ToInt32(issue),
+                Issue = issue,
                 Type = type,
                 Format = Enums.GbPlateFormat.yr1902
             };
@@ -102,7 +102,7 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
 
             PlateReturnModel plateReturn = new PlateReturnModel {
                 Location = location,
-                Issue = Convert.ToInt32(issue),
+                Issue = issue,
                 Format = Enums.GbPlateFormat.yr1932
             };
 
@@ -121,7 +121,7 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
 
             PlateReturnModel plateReturn = new PlateReturnModel {
                 Location = location,
-                Issue = Convert.ToInt32(issue),
+                Issue = issue,
                 Format = Enums.GbPlateFormat.yr1953
             };
 
@@ -233,7 +233,7 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
         private static PlateReturnModel ParseGbYr2015TradePlate(string plate)
         {
             PlateReturnModel plateReturn = new PlateReturnModel {
-                Issue = Convert.ToInt32(plate),
+                Issue = plate,
                 Format = Enums.GbPlateFormat.trade2015
             };
 

@@ -7,6 +7,7 @@ using CarPupsTelegramBot.Data;
 using CarPupsTelegramBot.Models;
 using CarPupsTelegramBot.Models.ReturnModels;
 using CarPupsTelegramBot.Models.ReturnModels.PlateReturnModels;
+using CarPupsTelegramBot.Utilities;
 using CarPupsTelegramBot.Utilities.PlateUtilities;
 
 namespace CarPupsTelegramBot.Commands
@@ -26,6 +27,9 @@ namespace CarPupsTelegramBot.Commands
                     country = country.ToLower().Substring(0, 2);
 
                     switch(country) {
+                        case "at":
+                            var parsedAtPlate = ParseAtPlate(plate);
+                            return parsedAtPlate.Message;
                         case "de":
                             var parsedDePlate = ParseDePlate(plate);
                             return parsedDePlate.Message;
@@ -75,7 +79,8 @@ namespace CarPupsTelegramBot.Commands
 <i>The country may not be supported — check the help (</i><code>/help parseplate</code><i>) for a list of supported countries.</i>";
                     }
                 }
-            } catch {
+            } catch (Exception e) {
+                ConsoleOutputUtilities.ErrorConsoleMessage(e.ToString());
                 return HelpData.GetHelp("parseplate", false);
             }
         }
@@ -86,11 +91,13 @@ namespace CarPupsTelegramBot.Commands
             List<ParsedPlateMessageReturnModel> matches = new List<ParsedPlateMessageReturnModel>();
 
             if(!usOnly) {
+                var parsedAtPlate = ParseAtPlate(plate);
                 var parsedDePlate = ParseDePlate(plate);
                 var parsedGbPlate = ParseGbPlate(plate);
                 var parsedGgPlate = ParseGgPlate(plate);
                 var parsedNlPlate = ParseNlPlate(plate);
 
+                if(parsedAtPlate.FoundMatch) { matches.Add(parsedAtPlate); }
                 if(parsedDePlate.FoundMatch) { matches.Add(parsedDePlate); }
                 if(parsedGbPlate.FoundMatch) { matches.Add(parsedGbPlate); }
                 if(parsedGgPlate.FoundMatch) { matches.Add(parsedGgPlate); }
@@ -126,6 +133,50 @@ namespace CarPupsTelegramBot.Commands
 <i>Type one of the commands to specify the country.</i>"
                 };
             }
+
+            return parsedPlateReturn;
+        }
+
+        private static ParsedPlateMessageReturnModel ParseAtPlate(string plate)
+        {
+            ParsedPlateMessageReturnModel parsedPlateReturn = new ParsedPlateMessageReturnModel { };
+
+            AtPlateReturnModel plateReturn = AtPlateUtilities.ParseAtPlate(plate);
+
+            parsedPlateReturn.Flag = "🇦🇹";
+
+            string output = $@"#️⃣ <i>Parse Plate:</i> {parsedPlateReturn.Flag} <code>{plate}</code>
+—
+";
+
+            string locationString;
+            string specialString;
+
+            if(plateReturn.Valid) {
+                if(String.IsNullOrEmpty(plateReturn.Location)) {
+                    locationString = "<i>Unknown</i>";
+                } else {
+                    locationString = plateReturn.Location;
+                }
+
+                if(String.IsNullOrEmpty(plateReturn.Special)) {
+                    specialString = "<i>No</i>";
+                } else {
+                    specialString = plateReturn.Special;
+                }
+
+                if(plateReturn.Format == Enums.AtPlateFormat.yr1990) {
+                    output += $@"<b>Reg. Office:</b> {locationString}
+<b>Special:</b> {specialString}
+<b>Format:</b> 1990 onwards";
+                }
+            } else {
+                output += "<i>This is an invalid, custom/private, or unsupported Austrian plate. Contact</i> @theducky <i>if you believe it is a standard format.</i>";
+            }
+
+            parsedPlateReturn.CountryCode = "at";
+            parsedPlateReturn.FoundMatch = plateReturn.Valid;
+            parsedPlateReturn.Message = output;
 
             return parsedPlateReturn;
         }

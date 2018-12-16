@@ -1,6 +1,12 @@
 
 namespace CarPupsTelegramBot.Models {
     public class Enums {
+        public enum AtPlateFormat {
+            unspecified,
+            yr1990,
+            yr1990Official
+        }
+
         public enum DePlateFormat {
             unspecified,
             yr1956,         // 1956 onwards / Current
