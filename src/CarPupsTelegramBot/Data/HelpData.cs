@@ -16,6 +16,7 @@ To get additional help about the modules below (such as what arguments they acce
 <b>Utilities</b>
 <code>/calculate0to60</code> - Calculate 0-60mph/0-100kph times
 <code>/calculatejourneyprice</code> - Calculate price of a fuel costs for a journey
+<code>/findavailableplate</code> - Find custom numberplate from your local office
 <code>/getfuelly</code> - Get a summary from a Fuelly profile
 <code>/guessmileage</code> - Guess mileage of a vehicle from previous known records
 <code>/parseplate</code> - Parse number/license plate and &quot;decode&quot; it
@@ -55,9 +56,9 @@ To get additional help about the modules below (such as what arguments they acce
         public static string Plate_Parse = @"<code>/parseplate &lt;1&gt; &lt;[2]&gt;</code>
 —
 <code>&lt;1&gt;</code> <b>Plate</b> - The vehicle's numberplate, void of spaces. Tags/seals/stickers must be separated by a '-' <i>(e.g. N161CWW, 15210, AN-US69)</i>
-<code>&lt;2&gt;</code> <b>Country</b> <i>Optional</i> - The <a href='https://en.wikipedia.org/wiki/ISO_3166-1#Current'>ISO 3166-1</a> country code -- defaults to <b>gb</b> (Great Britain) <i>(e.g. gb, fr, nl)</i>*
+<code>&lt;2&gt;</code> <b>Country</b> <i>Optional</i> - The <a href='https://en.wikipedia.org/wiki/ISO_3166-1#Current'>ISO 3166-1</a> country code. Not supplying a CC will cause the parser to try and guess (if multiple matches are found, you will be told). <i>(e.g. gb, fr, nl)</i>*
 
-<b>*</b> <i>Supported: de, gb, gg.</i>";
+<b>*</b> <i>Supported: de, gb, gg, nl.</i>";
 
         public static string ZeroToSixty_Calculate = @"<code>/calculate0to60 &lt;1&gt; &lt;2&gt; &lt;3&gt; &lt;[4]&gt; &lt;[5]&gt; &lt;[6]&gt;</code>
 —
