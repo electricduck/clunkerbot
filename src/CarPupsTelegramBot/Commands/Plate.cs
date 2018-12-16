@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using HtmlAgilityPack;
 using Telegram.Bot.Args;
 using CarPupsTelegramBot.Api;
@@ -12,33 +13,89 @@ namespace CarPupsTelegramBot.Commands
 {
     public class Plate
     {
-        public static string Parse(string plate, string country)
+        public static string Parse(string plate, string country = "")
         {
             try {
-                country = country.ToLower().Substring(0, 2);
                 plate = plate.ToUpper();
 
-                switch(country) {
-                    case "de":
-                        var parsedDePlate = ParseDePlate(plate);
-                        return parsedDePlate.Message;
-                    case "gb":
-                        var parsedGbPlate = ParseGbPlate(plate);
-                        return parsedGbPlate.Message;
-                    case "gg":
-                        var parsedGgPlate = ParseGgPlate(plate);
-                        return parsedGgPlate.Message;
-                    case "nl":
-                        var parsedNlPlate = ParseNlPlate(plate);
-                        return parsedNlPlate.Message;
-                    default:
-                        return $@"#️⃣ <i>Parse Plate:</i> ❓ <code>{plate}</code>
+                if(!String.IsNullOrEmpty(country)) {
+                    country = country.ToLower().Substring(0, 2);
+
+                    switch(country) {
+                        case "de":
+                            var parsedDePlate = ParseDePlate(plate);
+                            return parsedDePlate.Message;
+                        case "gb":
+                            var parsedGbPlate = ParseGbPlate(plate);
+                            return parsedGbPlate.Message;
+                        case "gg":
+                            var parsedGgPlate = ParseGgPlate(plate);
+                            return parsedGgPlate.Message;
+                        case "nl":
+                            var parsedNlPlate = ParseNlPlate(plate);
+                            return parsedNlPlate.Message;
+                        default:
+                            return $@"#️⃣ <i>Parse Plate:</i> ❓ <code>{plate}</code>
 —
 <i>Country code '{country}' is currenty unsupported.</i>";
+                    }
+                } else {
+                    var parsedPlate = ParseAnyPlate(plate);
+
+                    if(parsedPlate.FoundMatch) {
+                        return parsedPlate.Message;
+                    } else {
+                        return $@"#️⃣ <i>Parse Plate:</i> ❓ <code>{plate}</code>
+—
+<i>No match for plate found.</i>
+<i>The country may not be supported — check the help (</i><code>/help parseplate</code><i>) for a list of supported countries.</i>";
+                    }
                 }
             } catch {
                 return HelpData.GetHelp("parseplate", false);
             }
+        }
+
+        private static ParsedPlateMessageReturnModel ParseAnyPlate(string plate)
+        {
+            ParsedPlateMessageReturnModel parsedPlateReturn = null;
+            List<ParsedPlateMessageReturnModel> matches = new List<ParsedPlateMessageReturnModel>();
+
+            var parsedDePlate = ParseDePlate(plate);
+            var parsedGbPlate = ParseGbPlate(plate);
+            var parsedGgPlate = ParseGgPlate(plate);
+            var parsedNlPlate = ParseNlPlate(plate);
+
+            if(parsedDePlate.FoundMatch) { matches.Add(parsedDePlate); }
+            if(parsedGbPlate.FoundMatch) { matches.Add(parsedGbPlate); }
+            if(parsedGgPlate.FoundMatch) { matches.Add(parsedGgPlate); }
+            if(parsedNlPlate.FoundMatch) { matches.Add(parsedNlPlate); }
+
+            if(matches.Count == 0) {
+                parsedPlateReturn = new ParsedPlateMessageReturnModel {
+                    FoundMatch = false
+                };
+            } else if(matches.Count == 1) {
+                parsedPlateReturn = matches[0];
+            } else {
+                string multipleMatchesMessage = "";
+
+                foreach(var match in matches) {
+                    multipleMatchesMessage += $@"• <b>{match.Flag} {match.CountryCode.ToUpper()}:</b> <code>/parseplate {plate} {match.CountryCode.ToLower()}</code>
+";
+                }
+
+                parsedPlateReturn = new ParsedPlateMessageReturnModel {
+                    FoundMatch = true,
+                    Message = $@"#️⃣ <i>Parse Plate:</i> ❓ <code>{plate}</code>
+—
+<b>Multiple matches found</b>
+{multipleMatchesMessage}
+<i>Type one of the commands to specify the country.</i>"
+                };
+            }
+
+            return parsedPlateReturn;
         }
 
         private static ParsedPlateMessageReturnModel ParseDePlate(string plate)
@@ -46,8 +103,10 @@ namespace CarPupsTelegramBot.Commands
             ParsedPlateMessageReturnModel parsedPlateReturn = new ParsedPlateMessageReturnModel { };
 
             DePlateReturnModel plateReturn = DePlateUtilities.ParseDePlate(plate);
+
+            parsedPlateReturn.Flag = "🇩🇪";
         
-            string output = $@"#️⃣ <i>Parse Plate:</i> 🇩🇪 <code>{plate}</code>
+            string output = $@"#️⃣ <i>Parse Plate:</i> {parsedPlateReturn.Flag} <code>{plate}</code>
 —
 ";
 
@@ -93,7 +152,9 @@ namespace CarPupsTelegramBot.Commands
 
             PlateReturnModel plateReturn = GbPlateUtilities.ParseGbPlate(plate, Enums.GbPlateFormat.unspecified);
 
-            string output = $@"#️⃣ <i>Parse Plate:</i> 🇬🇧 <code>{plate}</code>
+            parsedPlateReturn.Flag = "🇬🇧";
+
+            string output = $@"#️⃣ <i>Parse Plate:</i> {parsedPlateReturn.Flag} <code>{plate}</code>
 —
 ";
 
@@ -177,7 +238,7 @@ namespace CarPupsTelegramBot.Commands
             }
 
             parsedPlateReturn.CountryCode = "gb";
-            //parsedPlateReturn.FoundMatch = plateReturn.Valid;
+            parsedPlateReturn.FoundMatch = plateReturn.Valid;
             parsedPlateReturn.Message = output;
 
             return parsedPlateReturn;
@@ -189,7 +250,9 @@ namespace CarPupsTelegramBot.Commands
 
             GgPlateReturnModel plateReturn = GgPlateUtilities.ParseGgPlate(plate);
 
-            string output = $@"#️⃣ <i>Parse Plate:</i> 🇬🇬 <code>{plate}</code>
+            parsedPlateReturn.Flag = "🇬🇬";
+
+            string output = $@"#️⃣ <i>Parse Plate:</i> {parsedPlateReturn.Flag} <code>{plate}</code>
 —
 ";
 
@@ -211,8 +274,10 @@ namespace CarPupsTelegramBot.Commands
             ParsedPlateMessageReturnModel parsedPlateReturn = new ParsedPlateMessageReturnModel { };
 
             NlPlateReturnModel plateReturn = NlPlateUtilities.ParseNlPlate(plate);
+
+            parsedPlateReturn.Flag = "🇳🇱";
         
-            string output = $@"#️⃣ <i>Parse Plate:</i> 🇳🇱 <code>{plate}</code>
+            string output = $@"#️⃣ <i>Parse Plate:</i> {parsedPlateReturn.Flag} <code>{plate}</code>
 —
 ";
 

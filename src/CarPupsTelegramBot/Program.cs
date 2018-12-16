@@ -219,7 +219,7 @@ namespace CarPupsTelegramBot
                         string parsePlateOutput = "";
 
                         if(arguments.Length == 1) {
-                            parsePlateOutput = Plate.Parse(arguments[0], "gb");
+                            parsePlateOutput = Plate.Parse(arguments[0]);
                         } else if (arguments.Length == 2) {
                             parsePlateOutput = Plate.Parse(arguments[0], arguments[1]);
                         } else {
