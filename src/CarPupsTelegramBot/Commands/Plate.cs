@@ -33,6 +33,9 @@ namespace CarPupsTelegramBot.Commands
                         case "de":
                             var parsedDePlate = ParseDePlate(plate);
                             return parsedDePlate.Message;
+                        case "fr":
+                            var parsedFrPlate = ParseFrPlate(plate);
+                            return parsedFrPlate.Message;
                         case "gb":
                             var parsedGbPlate = ParseGbPlate(plate);
                             return parsedGbPlate.Message;
@@ -243,10 +246,24 @@ namespace CarPupsTelegramBot.Commands
 —
 ";
 
+            string locationString;
+
             if(plateReturn.Valid) {
-                if(plateReturn.Format == Enums.FrPlateFormat.yr2002) {
+                if(String.IsNullOrEmpty(plateReturn.Location)) {
+                    locationString = "<i>Unknown</i>";
+                } else {
+                    locationString = plateReturn.Location;
+                }
+
+                if(plateReturn.Format == Enums.FrPlateFormat.yr1950) {
+                    output += $@"<b>Reg. Department:</b> {locationString}
+<b>Format:</b> FNI <i>(1950 to 2009)</i>";
+                } else if(plateReturn.Format == Enums.FrPlateFormat.yr2009) {
                     output += $@"<b>Issue No.:</b> {plateReturn.Issue} <i>(approx.)</i>
-<b>Format:</b> SIV <i>(2002 onwards)</i>";
+<b>Year:</b> {plateReturn.Year} <i>(approx.)</i>*
+<b>Format:</b> SIV <i>(2009 onwards)</i>
+
+<b>*</b> <i>This is based on a steady average amount of cars per year, providing the SIV system lasts the estimated 80 years initially planned. The further away from 2004 it is, the more inaccurate this may be.</i>";
                 }
             } else {
                 output += "<i>This is an invalid, custom/private, or unsupported French plate. Contact</i> @theducky <i>if you believe it is a standard format.</i>";

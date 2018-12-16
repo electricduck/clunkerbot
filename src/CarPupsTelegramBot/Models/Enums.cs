@@ -34,7 +34,8 @@ namespace CarPupsTelegramBot.Models {
 
         public enum FrPlateFormat {
             unspecified,
-            yr2002          // 2002 onwards / SIV
+            yr1950,         // 1950 to 2009 / FNI
+            yr2009          // 2009 onwards / SIV
         }
 
         public enum GbPlateFormat {

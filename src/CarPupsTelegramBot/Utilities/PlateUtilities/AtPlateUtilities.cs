@@ -52,18 +52,18 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
 
             string mnemonic = match.Groups[2].Value;
 
-            returnModel.Location = GetPost1990AtLocationMnemonic(mnemonic);
-            returnModel.Special = GetPost1990AtSpecialMnemonic(mnemonic);
+            returnModel.Location = GetYr1990AtLocationMnemnic(mnemonic);
+            returnModel.Special = GetYr1990AtSpecialMnemnic(mnemonic);
 
             return returnModel;
         }
 
-        private static string GetPost1990AtLocationMnemonic(string locationMnemonic)
+        private static string GetYr1990AtLocationMnemnic(string locationMnemonic)
         {
-            if(Post1990AtLocationMnemonics.ContainsKey(locationMnemonic)) {
+            if(Yr1990AtLocationMnemnics.ContainsKey(locationMnemonic)) {
                 string location;
 
-                Post1990AtLocationMnemonics.TryGetValue(locationMnemonic, out location);
+                Yr1990AtLocationMnemnics.TryGetValue(locationMnemonic, out location);
 
                 return location;
             } else {
@@ -71,12 +71,12 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
             }
         }
 
-        private static string GetPost1990AtSpecialMnemonic(string specialMnemonic)
+        private static string GetYr1990AtSpecialMnemnic(string specialMnemonic)
         {
-            if(Post1990AtSpecialMnemonics.ContainsKey(specialMnemonic)) {
+            if(Yr1990AtSpecialMnemnics.ContainsKey(specialMnemonic)) {
                 string special;
 
-                Post1990AtSpecialMnemonics.TryGetValue(specialMnemonic, out special);
+                Yr1990AtSpecialMnemnics.TryGetValue(specialMnemonic, out special);
 
                 return special;
             } else {
@@ -84,7 +84,7 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
             }
         }
 
-        private static Dictionary<string, string> Post1990AtLocationMnemonics = new Dictionary<string, string>()
+        private static Dictionary<string, string> Yr1990AtLocationMnemnics = new Dictionary<string, string>()
         {
             {"AM", "Amstetten"},
             {"BA", "Bad Aussee"},
@@ -189,7 +189,7 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
             {"ZT", "Zwettl"}
         };
 
-        private static Dictionary<string, string> Post1990AtSpecialMnemonics = new Dictionary<string, string>()
+        private static Dictionary<string, string> Yr1990AtSpecialMnemnics = new Dictionary<string, string>()
         {
             {"A", "Federal official"},
             {"B", "Bregenz, Burgenland official"},
