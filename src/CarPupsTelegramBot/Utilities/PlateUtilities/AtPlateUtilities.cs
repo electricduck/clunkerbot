@@ -33,7 +33,7 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
             return plateReturn;
         }
 
-        public static AtPlateReturnModel ParseAtYr1990Plate(string plate, bool official = false)
+        private static AtPlateReturnModel ParseAtYr1990Plate(string plate, bool official = false)
         {
             Match match = null;
 
