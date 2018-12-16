@@ -401,7 +401,7 @@ namespace CarPupsTelegramBot.Commands
             if(String.IsNullOrEmpty(plateReturn.Special)) {
                 specialString = "<i>No</i>";
             } else {
-                specialString = plateReturn.Special;
+                specialString = $@"Reserved for <i>{plateReturn.Special}</i>";
             }
 
             if(plateReturn.Valid) {
