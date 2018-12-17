@@ -104,10 +104,6 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
             int maxThirdLetter = (maxSecondLetter*maxSecondLetter);
             int maxFourthLetter = (maxThirdLetter*maxSecondLetter);
 
-            Console.WriteLine("----- " + maxSecondLetter);
-            Console.WriteLine("----- " + maxThirdLetter);
-            Console.WriteLine("----- " + maxFourthLetter);
-
             //int letterTotal = (22*12167)+(22*529)+(22*23)+22
 
             int letterTotal = (fourthLetter * maxFourthLetter) +
