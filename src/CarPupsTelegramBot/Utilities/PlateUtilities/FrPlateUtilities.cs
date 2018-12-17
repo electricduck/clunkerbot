@@ -95,45 +95,30 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
 
             string letters = $@"{firstLetters}{lastLetters}";
 
-            // for (int i = 0; i < letters.Length; i++)
-            // {
-            //     result *= 26;
-            //     //result *= 23;
-            //     char letter = letters[i];
-
-            //     if (letter < 'A') letter = 'A';
-            //     if (letter > 'Z') letter = 'Z';
-
-            //     int letterCode = GetYr2009FrIssueCodeLocation(letter);
-
-            //     int maxLetter = GetYr2009FrIssueCodeLocation('Z');
-
-            //     result += (int)letter - (int)'A' + 1;
-            //     //result += letterCode - (int)'A' + 1;
-            // }
-
-            //int maxLetter = GetYr2009FrIssueCodeLocation('Z');
-
-            //result = (result-18278)*999+number-999;
-
             int firstLetter = GetYr2009FrIssueCodeLocation(letters[3]);
             int secondLetter = GetYr2009FrIssueCodeLocation(letters[2]);
             int thirdLetter = GetYr2009FrIssueCodeLocation(letters[1]);
             int fourthLetter = GetYr2009FrIssueCodeLocation(letters[0]);
 
+            int maxSecondLetter = GetYr2009FrIssueCodeLocation('Z')+1;
+            int maxThirdLetter = (maxSecondLetter*maxSecondLetter);
+            int maxFourthLetter = (maxThirdLetter*maxSecondLetter);
+
+            Console.WriteLine("----- " + maxSecondLetter);
+            Console.WriteLine("----- " + maxThirdLetter);
+            Console.WriteLine("----- " + maxFourthLetter);
+
             //int letterTotal = (22*12167)+(22*529)+(22*23)+22
 
-            int letterTotal = (fourthLetter * 12167) +
-                (thirdLetter * 529) +
-                (secondLetter * 23) +
+            int letterTotal = (fourthLetter * maxFourthLetter) +
+                (thirdLetter * maxThirdLetter) +
+                (secondLetter * maxSecondLetter) +
                 firstLetter
                 + 1;
 
-            int plateTotal = ((fourthLetter * 12167) +
-                (thirdLetter * 529) +
-                (letterTotal * 999) +
-                (secondLetter * 23) +
-                firstLetter);
+            Console.WriteLine(letterTotal);
+
+            int plateTotal = (letterTotal-1) * 999 + number;
 
             return plateTotal;
         }
