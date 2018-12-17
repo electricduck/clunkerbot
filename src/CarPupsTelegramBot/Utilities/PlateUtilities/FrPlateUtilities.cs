@@ -123,13 +123,13 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
 
             //int letterTotal = (22*12167)+(22*529)+(22*23)+22
 
-            int letterTotal = (fourthLetter * 22) +
+            int letterTotal = (fourthLetter * 12167) +
                 (thirdLetter * 529) +
                 (secondLetter * 23) +
                 firstLetter
                 + 1;
 
-            int plateTotal = ((fourthLetter * 22) +
+            int plateTotal = ((fourthLetter * 12167) +
                 (thirdLetter * 529) +
                 (letterTotal * 999) +
                 (secondLetter * 23) +
