@@ -95,21 +95,62 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
 
             string letters = $@"{firstLetters}{lastLetters}";
 
-            for (int i = 0; i < letters.Length; i++)
-            {
-                result *= 26;
-                char letter = letters[i];
+            // for (int i = 0; i < letters.Length; i++)
+            // {
+            //     result *= 26;
+            //     //result *= 23;
+            //     char letter = letters[i];
 
-                if (letter < 'A') letter = 'A';
-                if (letter > 'Z') letter = 'Z';
+            //     if (letter < 'A') letter = 'A';
+            //     if (letter > 'Z') letter = 'Z';
 
-                result += (int)letter - (int)'A' + 1;
-            }
+            //     int letterCode = GetYr2009FrIssueCodeLocation(letter);
 
-            result = (result-18278)*999+number-999;
+            //     int maxLetter = GetYr2009FrIssueCodeLocation('Z');
 
-            return result;
+            //     result += (int)letter - (int)'A' + 1;
+            //     //result += letterCode - (int)'A' + 1;
+            // }
+
+            //int maxLetter = GetYr2009FrIssueCodeLocation('Z');
+
+            //result = (result-18278)*999+number-999;
+
+            int firstLetter = GetYr2009FrIssueCodeLocation(letters[3]);
+            int secondLetter = GetYr2009FrIssueCodeLocation(letters[2]);
+            int thirdLetter = GetYr2009FrIssueCodeLocation(letters[1]);
+            int fourthLetter = GetYr2009FrIssueCodeLocation(letters[0]);
+
+            //int letterTotal = (22*12167)+(22*529)+(22*23)+22
+
+            int letterTotal = (fourthLetter * 22) +
+                (thirdLetter * 529) +
+                (secondLetter * 23) +
+                firstLetter
+                + 1;
+
+            int plateTotal = ((fourthLetter * 22) +
+                (thirdLetter * 529) +
+                (letterTotal * 999) +
+                (secondLetter * 23) +
+                firstLetter);
+
+            return plateTotal;
         }
+
+        private static int GetYr2009FrIssueCodeLocation(char issueCode)
+        {
+            if(Yr2009FrIssueCodeLocations.ContainsKey(issueCode)) {
+                int issue;
+
+                Yr2009FrIssueCodeLocations.TryGetValue(issueCode, out issue);
+
+                return issue;
+            } else {
+                return 0;
+            }
+        }
+
 
         private static string GetYr1950FrLocationCode(int locationCode)
         {
@@ -123,6 +164,33 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
                 return "";
             }
         }
+
+        private static Dictionary<char, int> Yr2009FrIssueCodeLocations = new Dictionary<char, int>()
+        {
+            {'A', 0},
+            {'B', 1},
+            {'C', 2},
+            {'D', 3},
+            {'E', 4},
+            {'F', 5},
+            {'G', 6},
+            {'H', 7},
+            {'J', 8},
+            {'K', 9},
+            {'L', 10},
+            {'M', 11},
+            {'N', 12},
+            {'P', 13},
+            {'Q', 14},
+            {'R', 15},
+            {'S', 16},
+            {'T', 17},
+            {'V', 18},
+            {'W', 19},
+            {'X', 20},
+            {'Y', 21},
+            {'Z', 22}
+        };
 
         private static Dictionary<int, string> Yr1950FrLocationCodes = new Dictionary<int, string>()
         {
