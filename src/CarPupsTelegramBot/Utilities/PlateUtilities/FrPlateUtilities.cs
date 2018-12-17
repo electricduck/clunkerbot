@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 using CarPupsTelegramBot.Models;
 using CarPupsTelegramBot.Models.ReturnModels.PlateReturnModels;
 
-// TODO: Include all the overseas territories
+// TODO: Include all the overseas territories?
 // SEE: https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_France
 
 namespace CarPupsTelegramBot.Utilities.PlateUtilities
@@ -65,7 +65,7 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
                 Convert.ToInt32(match.Groups[3].Value)
             );
 
-            returnModel.Issue = issue.ToString();
+            returnModel.Issue = String.Format("{0:n0}", issue);
             returnModel.Year = GuessYr2009Year(issue).ToString();
 
             return returnModel;
@@ -88,7 +88,6 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
             return year;
         }
 
-        // TODO: Ignore I, O, and U letters
         private static int GetYr2009Issue(string firstLetters, string lastLetters, int number)
         {
             int result = 0;
