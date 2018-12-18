@@ -27,7 +27,7 @@ namespace CarPupsTelegramBot.Commands
                 opsys = "Linux";
             }
 
-            string allInfo = $@"<b>Clunker Bot</b> v{AppVersion.FullVersion}
+            string allInfo = $@"<b>ClunkerBot</b> v{AppVersion.FullVersion}
 —
 A bot for Telegram providing handy vehicular utlities. See `/help` for all commands.
 Code available on <a href='https://github.com/electricduck/CarPupsTelegramBot'>Ducky's GitHub</a>; licensed under <a href='https://mit-license.org/'>the MIT license</a>.
