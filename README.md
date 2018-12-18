@@ -66,7 +66,7 @@ Copy `appsettings.json.example` to `appsettings.json` and modify it as follows:
 
     $ dotnet run
     
-You should see various messages spat out into your terminal. If all went well, you should see `✔️ Listening for triggers` &mdash; the bot is ready for work. If the application has panicked and run for the hills, and you swear it wasn't your own dumbass fault, [https://github.com/electricduck/clunkerbot/issues/new](create an issue).
+You should see various messages spat out into your terminal. If all went well, you should see `✔️ Listening for triggers` &mdash; the bot is ready for work. If the application has panicked and run for the hills, and you swear it wasn't your own dumbass fault, [create an issue](https://github.com/electricduck/clunkerbot/issues/new).
     
 ##### Build Docker image _(Optional)_
 
