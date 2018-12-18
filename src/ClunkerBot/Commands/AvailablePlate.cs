@@ -113,7 +113,7 @@ namespace ClunkerBot.Commands
 
                 string paddedExtractedPlate = extractedPlate.PadLeft(8, ' ');
 
-                additionalOutput += $@"• <code>🇬🇧 {paddedExtractedPlate}</code> | {extractedPrice} {buyLink}
+                additionalOutput += $@"• 🇬🇧 <code>{paddedExtractedPlate}</code> | {extractedPrice} {buyLink}
 ";   
             }
 
