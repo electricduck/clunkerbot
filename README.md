@@ -1,5 +1,7 @@
+<p align="center">
 ![Screenshot of ClunkerBot in Telegram Desktop](art/scrots/scrot001.png)
+</p>
 
-<center><h1>ClunkerBot</h1></center>
+<h1 align="center">ClunkerBot</h1>
 
-<center><h3>Something witty goes here.</h3></center>
+<h3 align="center">Something witty goes here.</h3>
