@@ -90,8 +90,6 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
 
         private static int GetYr2009Issue(string firstLetters, string lastLetters, int number)
         {
-            int result = 0;
-
             string letters = $@"{firstLetters}{lastLetters}";
 
             int firstLetter = GetYr2009FrIssueCodeLocation(letters[3]);
