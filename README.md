@@ -55,7 +55,7 @@ Copy `appsettings.json.example` to `appsettings.json` and modify it as follows:
 ##### Configuration keys
 
  * `apiKeys`
-   * `telegram` &mdash; Your bot API key. Set this up with [BotFather](https://t.me/botfather), who will give you an API like the nice gentleman he is. If you're confused, there's plenty of help on the Intertubes.
+   * `telegram` &mdash; Your Telegram bot's API key. Set this up with [BotFather](https://t.me/botfather), who will give you an API like the nice gentleman he is. If you're confused, there's plenty of help on the Intertubes.
  * `config`
    * `awoo` &mdash; This is a dumb feature leftover from testing that I decided to keep because it amused me. It outputs the word configurd below on `/awoo`.
      * `word` &mdash; The word to output.
