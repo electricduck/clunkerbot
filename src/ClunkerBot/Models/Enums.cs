@@ -84,6 +84,10 @@ namespace ClunkerBot.Models {
             BuyNow, Auction, FutureAuction
         }
 
+        public enum Temperatures {
+            Kelvin, Celcius, Fahrenheit
+        }
+
         public enum TransmissionEnum {
             Manual, Automatic, DCT, CVT, AMT,
             Unknown

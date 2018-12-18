@@ -186,6 +186,21 @@ namespace ClunkerBot
 
                         MessageApi.SendTextMessage(getGarageOutput, botClient, telegramMessageEvent);
                     break;
+                case "getweather":
+                case "weather":
+                    string getWeatherOutput = "";
+
+                    // TODO: Fix this, it doesn't work. Command is still send through, since the arguments array is still over 0... somehow.
+                    if(arguments.Length > 0) {
+                        // TODO: Add some way of forcing C/F/K only?
+                        // TODO: Add some way of bringing back short version
+                        getWeatherOutput = Weather.Get(String.Join(" ", arguments));
+                    } else {
+                        MessageApi.SendTextMessage(HelpData.GetHelp("getweather"), botClient, telegramMessageEvent);
+                    }
+
+                    MessageApi.SendTextMessage(getWeatherOutput, botClient, telegramMessageEvent);
+                    break;
                 case "guessmileage":
                         string guessMileageOutput = "";
 

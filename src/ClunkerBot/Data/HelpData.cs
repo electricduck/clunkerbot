@@ -21,6 +21,9 @@ To get additional help about the modules below (such as what arguments they acce
 <code>/guessmileage</code> - Guess mileage of a vehicle from previous known records
 <code>/parseplate</code> - Parse number/license plate and &quot;decode&quot; it
 
+<b>Misc. Utilities</b>
+<code>/getweather</code> - Get weather for a location
+
 <b>Meta</b>
 <code>/help</code> - This page. Derp
 <code>/info</code> - Information about the bot, and its instance";
@@ -61,6 +64,10 @@ To get additional help about the modules below (such as what arguments they acce
 <b>*</b> <i>Supported: at**, de, fr**, gb, gg, nl**, us, us-oh**, us-sc.</i>
 <b>**</b> <i>Some formats not supported yet.</i>";
 
+        public static string Weather_Get = @"<code>/getweather &lt;∞&gt;</code>
+—
+<code>&lt;∞&gt;</code> <b>Location</b> - Location of requested weather, expressed by city name, long/lat, postcode/zipcode, etc.";
+
         public static string ZeroToSixty_Calculate = @"<code>/calculate0to60 &lt;1&gt; &lt;2&gt; &lt;3&gt; &lt;[4]&gt; &lt;[5]&gt; &lt;[6]&gt;</code>
 —
 <code>&lt;1&gt;</code> <b>Power</b> - Vehicle power at the flywheel, with optional unit (<b>hp</b>, <b>ps</b>, or <b>kw</b> -- defaults to <b>hp</b> with no unit) <i>(e.g. 64hp, 123ps, 250kw, 329)</i>
@@ -79,6 +86,8 @@ To get additional help about the modules below (such as what arguments they acce
             HelpDictionary.Add("findavailableplate", AvailablePlate_Find);
             HelpDictionary.Add("findplate", AvailablePlate_Find);
             HelpDictionary.Add("getfuelly", Fuelly_Get);
+            HelpDictionary.Add("getweather", Weather_Get);
+            HelpDictionary.Add("weather", Weather_Get);
             HelpDictionary.Add("guessmileage", Mileage_Guess);
             HelpDictionary.Add("parseplate", Plate_Parse);
         }
