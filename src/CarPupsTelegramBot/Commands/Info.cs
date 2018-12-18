@@ -21,6 +21,10 @@ namespace ClunkerBot.Commands
 
             if(System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows)) {
                 opsys = "Windows";
+
+                if(System.Environment.OSVersion.Version.Build > 9600) {
+                    opsysVersion = "10.0." + System.Environment.OSVersion.Version.Build;
+                }
             } else if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.OSX)) {
                 opsys = "macOS";
             } else if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Linux)) {
