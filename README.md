@@ -1,5 +1,5 @@
 <p align="center">
-![Screenshot of ClunkerBot in Telegram Desktop](art/scrots/scrot001.png)
+  <img src="art/scrots/scrot001.png" />
 </p>
 
 <h1 align="center">ClunkerBot</h1>
