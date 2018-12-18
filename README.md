@@ -1,5 +1,3 @@
-# CPTB
-
-#### A Telegram bot for the good folk of [@CarPups](https://t.meCarPups).
+# Clunker Bot
 
 _README will get done. Eventually. One day. Maybe._
