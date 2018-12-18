@@ -69,21 +69,21 @@ namespace ClunkerBot.Commands
 
                 string result = $@"{icon} {weather}
 
-<b>🌡️ Temperature</b>
-<i>Current:</i> {temperatureCelcius} / {temperatureFahrenheit}
-<i>High:</i> {temperatureMaxCelcius} / {temperatureMaxFahrenheit}
-<i>Low:</i> {temperatureMinCelcius} / {temperatureMinFahrenheit}
+<header>🌡️ Temperature</header>
+<subitem>Current:</subitem> {temperatureCelcius} / {temperatureFahrenheit}
+<subitem>High:</subitem> {temperatureMaxCelcius} / {temperatureMaxFahrenheit}
+<subitem>Low:</subitem> {temperatureMinCelcius} / {temperatureMinFahrenheit}
 
-<b>☁️ Atmosphere</b>
-<i>Pressure:</i> {pressure}
-<i>Humidity:</i> {humidity}
-<i>Wind:</i> {windSpeed} ({windDirection})
-<i>Clouds:</i> {cloudCover}
-<i>Visibility:</i> {visibility}
+<header>☁️ Atmosphere</header>
+<subitem>Pressure:</subitem> {pressure}
+<subitem>Humidity:</subitem> {humidity}
+<subitem>Wind:</subitem> {windSpeed} ({windDirection})
+<subitem>Clouds:</subitem> {cloudCover}
+<subitem>Visibility:</subitem> {visibility}
 
-<b>☀️ Day Cycle</b>
-<i>Sunrise:</i> {parsedSunrise}
-<i>Sunset:</i> {parsedSunset}";
+<header>☀️ Day Cycle</header>
+<subitem>Sunrise:</subitem> {parsedSunrise}
+<subitem>Sunset:</subitem> {parsedSunset}";
 
                 return BuildOutput(outputEmoji, outputHeader, fullLocation, result);
             } catch (Exception e) {

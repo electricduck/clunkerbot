@@ -25,6 +25,10 @@ namespace ClunkerBot.Commands
                 headerFull = $"<i>{header}:</i> {input}";
             }
 
+            message = message
+                .Replace("header>", "b>")
+                .Replace("subitem>", "i>");
+
             return $@"{emoji} {headerFull}
 {Separator}
 {message}";
