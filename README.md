@@ -85,4 +85,4 @@ Message your bot on Telegram and issue a command. Try `/awoo` or `/info`. You'll
 
 ### Gimme' the legal gubbins
 
-This project is licensed under **MIT**. See (https://github.com/electricduck/clunkerbot/blob/master/LICENSE)[LICENSE] for details.
+This project is licensed under **MIT**. See [https://github.com/electricduck/clunkerbot/blob/master/LICENSE](LICENSE) for details.
