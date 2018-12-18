@@ -1,3 +1,5 @@
-# ClunkerBot
+![Screenshot of ClunkerBot in Telegram Desktop](art/scrots/scrot001.png)
 
-_README will get done. Eventually. One day. Maybe._
+<center><h1>ClunkerBot</h1></center>
+
+<center><h3>Something witty goes here.</h3></center>
