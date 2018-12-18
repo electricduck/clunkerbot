@@ -263,7 +263,7 @@ namespace CarPupsTelegramBot.Commands
 <b>Year:</b> {plateReturn.Year} <i>(approx.)</i>*
 <b>Format:</b> SIV <i>(2009 onwards)</i>
 
-<b>*</b> <i>This is based on a steady average amount of cars per year, providing the SIV system lasts the estimated 80 years initially planned. The further away from 2004 it is, the more inaccurate this may be.</i>";
+<b>*</b> <i>This is based on a steady average amount of cars per year, providing the SIV system lasts the estimated 80 years initially planned.</i>";
                 }
             } else {
                 output += "<i>This is an invalid, custom/private, or unsupported French plate. Contact</i> @theducky <i>if you believe it is a standard format.</i>";
