@@ -34,12 +34,23 @@ namespace ClunkerBot.Commands
 {message}";
         }
 
+        public static string BuildOutput(
+            string emoji,
+            string header,
+            string message
+        )
+        {
+            return BuildOutput(emoji, header, null, message);
+        }
+
         public static string BuildErrorOutput(Exception e)
         {
-            ConsoleOutputUtilities.ErrorConsoleMessage(e.ToString());
+            Guid errorGuid = Guid.NewGuid();
 
-            string message = $@"{e.Message}
-<code>{Guid.NewGuid()}</code>
+            ConsoleOutputUtilities.ErrorConsoleMessage(e.ToString(), errorGuid.ToString());
+
+            string message = $@"{e.Message} Fuck.
+<code>{errorGuid}</code>
 {Separator} 
 <b>This is an error. Please forward me to </b>@theducky<b>.</b>";
 

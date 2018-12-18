@@ -64,9 +64,9 @@ namespace ClunkerBot.Utilities
             ResetConsoleColor();
         }
 
-        public static void ErrorConsoleMessage(string message) {
+        public static void ErrorConsoleMessage(string message, string identifier = "(No error identifier)") {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("🚫 " + message);
+            Console.WriteLine("🚫 Error: " + identifier + Environment.NewLine + message);
             ResetConsoleColor();
         }
 

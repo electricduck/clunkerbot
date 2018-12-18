@@ -4,7 +4,7 @@ using ClunkerBot.Utilities;
 
 namespace ClunkerBot.Commands
 {
-    class JourneyPrice
+    class JourneyPrice : CommandsBase
     {
         private static string currencySymbol = "¤";
         private static double imperialGallonsLitresRate = 4.54609188;
@@ -43,12 +43,11 @@ namespace ClunkerBot.Commands
                 double penceTotalCost = volume * (parsedFuelPrice * 100);
                 double poundsTotalCost = Math.Round((penceTotalCost / 100), 2, MidpointRounding.ToEven);
 
-                string output = $"This journey will cost you <b>{currencySymbol}{String.Format("{0:f2}", poundsTotalCost)}</b> in fuel.";
+                string result = $"<b>Fuel Cost:</b> {currencySymbol}{String.Format("{0:f2}", poundsTotalCost)}";
 
-                return output;
+                return BuildOutput("🛣️", "Calculate Journey Price", result);
             } catch (Exception e) {
-                ConsoleOutputUtilities.ErrorConsoleMessage(e.ToString());
-                return HelpData.GetHelp("calculatejourneyprice", true);
+                return BuildErrorOutput(e);
             }
         }
     
