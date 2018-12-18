@@ -24,6 +24,8 @@ namespace ClunkerBot
 
         static void Main()
         {
+            ConsoleOutputUtilities.ResetConsoleColor();
+
             StartupMessageUtlities.GenerateStartupMessage();
 
             ConsoleOutputUtilities.InfoConsoleMessage($"Started at {DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss zzz")}");
@@ -68,11 +70,10 @@ namespace ClunkerBot
                         arguments = (messageText.Substring(messageText.IndexOf(' ') + 1)).Split(" ");
                         RunCommand(command, arguments, e);
                     }
-                } catch {
-
+                } catch (Exception exception) {
+                    ConsoleOutputUtilities.ErrorConsoleMessage(exception.ToString());
                 }
             }
-            ConsoleOutputUtilities.SeparatorMinorConsoleMessage();
         }
 
         static void RunCommand(string command, string[] arguments, MessageEventArgs telegramMessageEvent)
@@ -251,6 +252,9 @@ namespace ClunkerBot
                         }
 
                         MessageApi.SendTextMessage(setCarPhotoOutput, botClient, telegramMessageEvent);
+                    break;
+                default:
+                    ConsoleOutputUtilities.WarnConsoleMessage($@"Command '{command}' doesn't exist");
                     break;
             }
         }
