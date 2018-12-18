@@ -12,7 +12,7 @@ using ClunkerBot.Utilities;
 
 namespace ClunkerBot.Commands
 {
-    class AvailablePlate
+    class AvailablePlate : CommandsBase
     {
         public static string Find(string plate, string country)
         {
@@ -28,7 +28,7 @@ namespace ClunkerBot.Commands
 —
 <i>Country code '{country}' is currenty unsupported.</i>";
                 }
-            } catch {
+            } catch(Exception e) {
                 return BuildErrorOutput(e);
             }
         }
