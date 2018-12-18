@@ -56,8 +56,6 @@ namespace CarPupsTelegramBot
                     var command = messageText.Split(" ")[0].Replace("/", "").Replace(AppSettings.Config_BotUsername, "").ToLower();
                     string[] arguments = null;
 
-                    Console.WriteLine(StringUtilities.CountWords(messageText));
-
                     if(StringUtilities.CountWords(messageText) == 1) {
                         if(HelpData.HelpDictionary.ContainsKey(command)) {
                             string helpOutput = HelpData.GetHelp(command, false);
