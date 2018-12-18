@@ -128,6 +128,8 @@ namespace ClunkerBot
                         MessageApi.SendTextMessage(calculate0To60Output, botClient, telegramMessageEvent);
                     break;
                 case "calculatejourneyprice":
+                case "journeyprice":
+                case "tripprice":
                         string calculateJourneyPriceOutput = "";
                 
                         if (arguments.Length == 3) {
