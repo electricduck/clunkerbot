@@ -1,6 +1,6 @@
-using CarPupsTelegramBot.Models;
+using ClunkerBot.Models;
 
-namespace CarPupsTelegramBot.Models.ReturnModels.PlateReturnModels {
+namespace ClunkerBot.Models.ReturnModels.PlateReturnModels {
     public class FrPlateReturnModel {
         public Enums.FrPlateFormat Format { get; set; }
         public string Issue { get; set; }

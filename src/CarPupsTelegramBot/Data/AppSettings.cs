@@ -1,6 +1,6 @@
 using System;
 
-namespace CarPupsTelegramBot.Data
+namespace ClunkerBot.Data
 {
     public class AppSettings
     {

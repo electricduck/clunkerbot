@@ -1,7 +1,7 @@
 using System;
 using Telegram.Bot.Args;
 
-namespace CarPupsTelegramBot.Utilities
+namespace ClunkerBot.Utilities
 {
     class ConsoleOutputUtilities
     {

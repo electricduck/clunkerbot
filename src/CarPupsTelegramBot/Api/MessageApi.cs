@@ -3,10 +3,10 @@ using System.Threading;
 using Telegram.Bot;
 using Telegram.Bot.Args;
 using Telegram.Bot.Types.Enums;
-using CarPupsTelegramBot.Models.ReturnModels.MessageReturnModels;
-using CarPupsTelegramBot.Utilities;
+using ClunkerBot.Models.ReturnModels.MessageReturnModels;
+using ClunkerBot.Utilities;
 
-namespace CarPupsTelegramBot.Api
+namespace ClunkerBot.Api
 {
     class MessageApi
     {

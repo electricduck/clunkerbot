@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace CarPupsTelegramBot.Data
+namespace ClunkerBot.Data
 {
     class HelpData
     {

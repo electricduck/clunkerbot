@@ -1,9 +1,9 @@
 using System;
 using Telegram.Bot.Args;
-using CarPupsTelegramBot.Api;
-using CarPupsTelegramBot.Data;
+using ClunkerBot.Api;
+using ClunkerBot.Data;
 
-namespace CarPupsTelegramBot.Commands
+namespace ClunkerBot.Commands
 {
     class Mileage
     {

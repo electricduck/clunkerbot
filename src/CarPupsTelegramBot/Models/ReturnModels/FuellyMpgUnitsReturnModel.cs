@@ -1,6 +1,6 @@
 using System;
 
-namespace CarPupsTelegramBot.Models.ReturnModels
+namespace ClunkerBot.Models.ReturnModels
 {
     public class FuellyMpgUnitsReturnModel
     {

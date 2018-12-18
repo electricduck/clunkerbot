@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using CarPupsTelegramBot.Models;
+using ClunkerBot.Models;
 
-namespace CarPupsTelegramBot.Data {
-    public class CarPupsTelegramBotContext : DbContext {
+namespace ClunkerBot.Data {
+    public class ClunkerBotContext : DbContext {
         public DbSet<GarageModel> Garage { get; set; }
         public DbSet<UserModel> Users { get; set; }
 

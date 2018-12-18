@@ -1,8 +1,8 @@
 using System;
-using CarPupsTelegramBot.Data;
-using CarPupsTelegramBot.Utilities;
+using ClunkerBot.Data;
+using ClunkerBot.Utilities;
 
-namespace CarPupsTelegramBot.Utilities
+namespace ClunkerBot.Utilities
 {
     class StartupMessageUtlities
     {

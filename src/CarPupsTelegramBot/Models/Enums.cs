@@ -1,5 +1,5 @@
 
-namespace CarPupsTelegramBot.Models {
+namespace ClunkerBot.Models {
     public class Enums {
         public enum AtPlateFormat {
             unspecified,

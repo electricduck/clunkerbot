@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using CarPupsTelegramBot.Models;
-using CarPupsTelegramBot.Models.ReturnModels;
+using ClunkerBot.Models;
+using ClunkerBot.Models.ReturnModels;
 
-namespace CarPupsTelegramBot.Utilities.PlateUtilities
+namespace ClunkerBot.Utilities.PlateUtilities
 {
     public class GbPlateUtilities
     {

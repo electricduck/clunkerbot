@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using CarPupsTelegramBot.Models;
-using CarPupsTelegramBot.Models.ReturnModels.PlateReturnModels;
+using ClunkerBot.Models;
+using ClunkerBot.Models.ReturnModels.PlateReturnModels;
 
 // TODO: Include all the overseas territories?
 // SEE: https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_France
 
-namespace CarPupsTelegramBot.Utilities.PlateUtilities
+namespace ClunkerBot.Utilities.PlateUtilities
 {
     public class FrPlateUtilities
     {

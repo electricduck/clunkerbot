@@ -8,14 +8,14 @@ using Microsoft.Extensions.Configuration.Json;
 using Telegram.Bot;
 using Telegram.Bot.Args;
 using Telegram.Bot.Types.Enums;
-using CarPupsTelegramBot.Api;
-using CarPupsTelegramBot.Commands;
-using CarPupsTelegramBot.Data;
-using CarPupsTelegramBot.Models;
-using CarPupsTelegramBot.Models.ReturnModels.MessageReturnModels;
-using CarPupsTelegramBot.Utilities;
+using ClunkerBot.Api;
+using ClunkerBot.Commands;
+using ClunkerBot.Data;
+using ClunkerBot.Models;
+using ClunkerBot.Models.ReturnModels.MessageReturnModels;
+using ClunkerBot.Utilities;
 
-namespace CarPupsTelegramBot
+namespace ClunkerBot
 {
     class Program
     {

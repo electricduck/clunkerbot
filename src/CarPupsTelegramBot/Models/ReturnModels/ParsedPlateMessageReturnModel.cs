@@ -1,6 +1,6 @@
-using CarPupsTelegramBot.Models;
+using ClunkerBot.Models;
 
-namespace CarPupsTelegramBot.Models.ReturnModels {
+namespace ClunkerBot.Models.ReturnModels {
     public class ParsedPlateMessageReturnModel {
         public string CountryCode { get; set; }
         public string Flag { get; set; }

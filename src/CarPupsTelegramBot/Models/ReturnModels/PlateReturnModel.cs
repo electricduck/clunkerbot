@@ -1,8 +1,8 @@
 // TODO: Rename this 'GbPlateReturnModel' in the 'PlateReturnModels' namespace
 
-using CarPupsTelegramBot.Models;
+using ClunkerBot.Models;
 
-namespace CarPupsTelegramBot.Models.ReturnModels {
+namespace ClunkerBot.Models.ReturnModels {
     public class PlateReturnModel {
         public string Location { get; set; }
 

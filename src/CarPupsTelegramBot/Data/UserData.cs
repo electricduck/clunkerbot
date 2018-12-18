@@ -1,16 +1,16 @@
 using System;
 using System.Linq;
-using CarPupsTelegramBot.Models;
-using CarPupsTelegramBot.Utilities;
+using ClunkerBot.Models;
+using ClunkerBot.Utilities;
 
-namespace CarPupsTelegramBot.Data
+namespace ClunkerBot.Data
 {
     class UserData
     {
         public void AddUpdateUser(UserModel user)
         {
             try {
-                using (var db = new CarPupsTelegramBotContext())
+                using (var db = new ClunkerBotContext())
                 {
                     int dbCount = 0;
 
@@ -37,7 +37,7 @@ namespace CarPupsTelegramBot.Data
         public UserModel GetUserByTelegramId(long telegramId)
         {
             try {
-                using (var db = new CarPupsTelegramBotContext())
+                using (var db = new ClunkerBotContext())
                 {
                     var result = db.Users.SingleOrDefault(u => u.TelegramId == telegramId);
 
@@ -52,7 +52,7 @@ namespace CarPupsTelegramBot.Data
         public UserModel GetUserByTelegramUsername(string telegramUsername)
         {
             try {
-                using (var db = new CarPupsTelegramBotContext())
+                using (var db = new ClunkerBotContext())
                 {
                     var result = db.Users.SingleOrDefault(u => u.TelegramUsername == telegramUsername);
 

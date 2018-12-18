@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace CarPupsTelegramBot.Models {
+namespace ClunkerBot.Models {
     public class UserModel {
         [Key]
         public long TelegramId { get; set; }

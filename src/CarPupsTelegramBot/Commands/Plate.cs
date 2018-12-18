@@ -2,15 +2,15 @@ using System;
 using System.Collections.Generic;
 using HtmlAgilityPack;
 using Telegram.Bot.Args;
-using CarPupsTelegramBot.Api;
-using CarPupsTelegramBot.Data;
-using CarPupsTelegramBot.Models;
-using CarPupsTelegramBot.Models.ReturnModels;
-using CarPupsTelegramBot.Models.ReturnModels.PlateReturnModels;
-using CarPupsTelegramBot.Utilities;
-using CarPupsTelegramBot.Utilities.PlateUtilities;
+using ClunkerBot.Api;
+using ClunkerBot.Data;
+using ClunkerBot.Models;
+using ClunkerBot.Models.ReturnModels;
+using ClunkerBot.Models.ReturnModels.PlateReturnModels;
+using ClunkerBot.Utilities;
+using ClunkerBot.Utilities.PlateUtilities;
 
-namespace CarPupsTelegramBot.Commands
+namespace ClunkerBot.Commands
 {
     public class Plate
     {

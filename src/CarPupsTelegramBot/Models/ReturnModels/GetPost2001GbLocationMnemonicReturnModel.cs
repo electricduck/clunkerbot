@@ -1,6 +1,6 @@
-using CarPupsTelegramBot.Models;
+using ClunkerBot.Models;
 
-namespace CarPupsTelegramBot.Models.ReturnModels {
+namespace ClunkerBot.Models.ReturnModels {
     public class GetPost2001GbLocationMnemonicReturnModel {
         public string Location { get; set; }
         public Enums.GbPlateSpecial Type { get; set; }

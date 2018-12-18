@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
-using CarPupsTelegramBot.Data;
+using ClunkerBot.Data;
 
-namespace CarPupsTelegramBot.Models {
+namespace ClunkerBot.Models {
     public class GarageModel {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

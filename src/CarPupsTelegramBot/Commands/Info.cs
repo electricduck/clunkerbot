@@ -1,7 +1,7 @@
 using System;
-using CarPupsTelegramBot.Data;
+using ClunkerBot.Data;
 
-namespace CarPupsTelegramBot.Commands
+namespace ClunkerBot.Commands
 {
     class Info
     {
@@ -30,7 +30,7 @@ namespace CarPupsTelegramBot.Commands
             string allInfo = $@"<b>ClunkerBot</b> v{AppVersion.FullVersion}
 —
 A bot for Telegram providing handy vehicular utlities. See `/help` for all commands.
-Code available on <a href='https://github.com/electricduck/CarPupsTelegramBot'>Ducky's GitHub</a>; licensed under <a href='https://mit-license.org/'>the MIT license</a>.
+Code available on <a href='https://github.com/electricduck/ClunkerBot'>Ducky's GitHub</a>; licensed under <a href='https://mit-license.org/'>the MIT license</a>.
 —
 <b>Bot</b>
 📈 Mem.: <code>{memoryUsage}mb</code>

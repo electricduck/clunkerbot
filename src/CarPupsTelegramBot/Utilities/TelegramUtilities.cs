@@ -1,8 +1,8 @@
 using System;
-using CarPupsTelegramBot.Data;
-using CarPupsTelegramBot.Models;
+using ClunkerBot.Data;
+using ClunkerBot.Models;
 
-namespace CarPupsTelegramBot.Utilities
+namespace ClunkerBot.Utilities
 {
     class TelegramUtilities
     {

@@ -1,9 +1,9 @@
 using System;
 using HtmlAgilityPack;
-using CarPupsTelegramBot.Models.ReturnModels.MessageReturnModels;
-using CarPupsTelegramBot.Utilities;
+using ClunkerBot.Models.ReturnModels.MessageReturnModels;
+using ClunkerBot.Utilities;
 
-namespace CarPupsTelegramBot.Commands
+namespace ClunkerBot.Commands
 {
     public class OBDCode
     {

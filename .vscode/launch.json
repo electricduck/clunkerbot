@@ -9,7 +9,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/src/CarPupsTelegramBot/bin/Debug/netcoreapp2.1/CarPupsTelegramBot.dll",
+            "program": "${workspaceFolder}/src/ClunkerBot/bin/Debug/netcoreapp2.1/ClunkerBot.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",

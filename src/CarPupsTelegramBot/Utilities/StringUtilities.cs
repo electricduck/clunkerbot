@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace CarPupsTelegramBot.Utilities
+namespace ClunkerBot.Utilities
 {
     class StringUtilities
     {

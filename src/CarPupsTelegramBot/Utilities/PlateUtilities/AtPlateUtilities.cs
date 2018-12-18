@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using CarPupsTelegramBot.Models;
-using CarPupsTelegramBot.Models.ReturnModels.PlateReturnModels;
+using ClunkerBot.Models;
+using ClunkerBot.Models.ReturnModels.PlateReturnModels;
 
 // TODO: Add support for diplomatic plates (GK, KK, SD, SK, TD, TK, VK, WD, WK)
 // SEE: https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_Austria
 
-namespace CarPupsTelegramBot.Utilities.PlateUtilities
+namespace ClunkerBot.Utilities.PlateUtilities
 {
     public class AtPlateUtilities
     {

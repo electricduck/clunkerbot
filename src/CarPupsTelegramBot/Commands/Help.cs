@@ -1,6 +1,6 @@
-using CarPupsTelegramBot.Data;
+using ClunkerBot.Data;
 
-namespace CarPupsTelegramBot.Commands
+namespace ClunkerBot.Commands
 {
     class Help {
         public static string Get()

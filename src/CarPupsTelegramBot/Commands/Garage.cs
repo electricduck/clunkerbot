@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
-using CarPupsTelegramBot.Data;
-using CarPupsTelegramBot.Models;
-using CarPupsTelegramBot.Models.ReturnModels;
-using CarPupsTelegramBot.Models.ReturnModels.MessageReturnModels;
-using CarPupsTelegramBot.Utilities;
+using ClunkerBot.Data;
+using ClunkerBot.Models;
+using ClunkerBot.Models.ReturnModels;
+using ClunkerBot.Models.ReturnModels.MessageReturnModels;
+using ClunkerBot.Utilities;
 
-namespace CarPupsTelegramBot.Commands
+namespace ClunkerBot.Commands
 {
     public class Garage
     {

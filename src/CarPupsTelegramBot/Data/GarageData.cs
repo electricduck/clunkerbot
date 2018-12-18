@@ -1,17 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using CarPupsTelegramBot.Models;
-using CarPupsTelegramBot.Utilities;
+using ClunkerBot.Models;
+using ClunkerBot.Utilities;
 
-namespace CarPupsTelegramBot.Data
+namespace ClunkerBot.Data
 {
     class GarageData
     {
         public void AddUpdateCarPhoto(GarageModel garageItem)
         {
             try {
-                using (var db = new CarPupsTelegramBotContext())
+                using (var db = new ClunkerBotContext())
                 {
                     int dbCount = 0;
 
@@ -37,7 +37,7 @@ namespace CarPupsTelegramBot.Data
         public void AddUpdateGarageItem(GarageModel garageItem)
         {
             try {
-                using (var db = new CarPupsTelegramBotContext())
+                using (var db = new ClunkerBotContext())
                 {
                     int dbCount = 0;
 
@@ -76,7 +76,7 @@ namespace CarPupsTelegramBot.Data
         public List<GarageModel> GetCarsForUser(long TelegramId)
         {
             try {
-                using (var db = new CarPupsTelegramBotContext())
+                using (var db = new ClunkerBotContext())
                 {
                     var results = db.Garage
                         .Where(g => g.TelegramUserId == TelegramId)
@@ -93,7 +93,7 @@ namespace CarPupsTelegramBot.Data
         public GarageModel GetCarFromGarageById(int id)
         {
             try {
-                using (var db = new CarPupsTelegramBotContext())
+                using (var db = new ClunkerBotContext())
                 {
                     var result = db.Garage.SingleOrDefault(g => g.Id == id);
 
@@ -108,7 +108,7 @@ namespace CarPupsTelegramBot.Data
         public GarageModel GetCarFromGarageByPlate(string plate)
         {
             try {
-                using (var db = new CarPupsTelegramBotContext())
+                using (var db = new ClunkerBotContext())
                 {
                     var result = db.Garage.SingleOrDefault(g => g.Plate == plate);
 

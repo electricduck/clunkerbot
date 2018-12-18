@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace CarPupsTelegramBot.Migrations
+namespace ClunkerBot.Migrations
 {
     public partial class _000_Initial : Migration
     {

@@ -1,6 +1,6 @@
 using System;
 
-namespace CarPupsTelegramBot.Data
+namespace ClunkerBot.Data
 {
     class AppVersion
     {

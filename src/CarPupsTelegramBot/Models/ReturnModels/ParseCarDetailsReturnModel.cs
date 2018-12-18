@@ -1,6 +1,6 @@
-using CarPupsTelegramBot.Models;
+using ClunkerBot.Models;
 
-namespace CarPupsTelegramBot.Models.ReturnModels {
+namespace ClunkerBot.Models.ReturnModels {
     public class ParseCarDetailsReturnModel {
         public string ParsedEngine { get; set; }
         public string ParsedEngineSize { get; set; }
