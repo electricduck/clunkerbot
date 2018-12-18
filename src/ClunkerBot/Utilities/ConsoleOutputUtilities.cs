@@ -21,7 +21,13 @@ namespace ClunkerBot.Utilities
 
         public static void SeparatorConsoleMessage() {
             Console.ForegroundColor = ConsoleColor.DarkGray;
-            Console.WriteLine($"---");
+            Console.WriteLine($"========================================");
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
+        public static void SeparatorMinorConsoleMessage() {
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine($"----------------------------------------");
             Console.ForegroundColor = ConsoleColor.White;
         }
 

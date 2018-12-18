@@ -72,6 +72,7 @@ namespace ClunkerBot
 
                 }
             }
+            ConsoleOutputUtilities.SeparatorMinorConsoleMessage();
         }
 
         static void RunCommand(string command, string[] arguments, MessageEventArgs telegramMessageEvent)
