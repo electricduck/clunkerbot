@@ -5,7 +5,7 @@ namespace CarPupsTelegramBot.Data
     class AppVersion
     {
         public static readonly int Major = 18;
-        public static readonly int Minor = 17;
+        public static readonly int Minor = 18;
         public static readonly int Patch = 0;
 
         public static readonly string FullVersion = $"{Major}.{Minor}.{Patch}";
