@@ -13,7 +13,7 @@ namespace ClunkerBot.Data
 —
 To get additional help about the modules below (such as what arguments they accept), type <code>/help &lt;module&gt;</code> (for example, <code>/help calculate0to60</code>). Any modules which require arguments will output their help when no arguments (or the wrong ones) are supplied.
 
-<b>Utilities</b>
+<b>Car Utilities</b>
 <code>/calculate0to60</code> - Calculate 0-60mph/0-100kph times
 <code>/calculatejourneyprice</code> - Calculate price of a fuel costs for a journey
 <code>/findavailableplate</code> - Find custom numberplate from your local office
