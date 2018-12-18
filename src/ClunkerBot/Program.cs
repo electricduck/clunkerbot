@@ -167,6 +167,7 @@ namespace ClunkerBot
                         }
                     break;
                 case "getfuelly":
+                case "fuelly":
                         ImageMessageReturnModel getFuellyOutput = null;
 
                         if (arguments.Length == 1) {
