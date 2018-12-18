@@ -38,9 +38,21 @@ namespace ClunkerBot
 
             ConsoleOutputUtilities.DoingConsoleMessage("Connecting to Telegram");
             botClient = new TelegramBotClient(AppSettings.ApiKeys_Telegram);
-            ConsoleOutputUtilities.OkayConsoleMessage("Telegram connection successful");
+
+            bool isApiKeyValid = botClient.TestApiAsync().Result;
+
+            if(!isApiKeyValid) {
+                ConsoleOutputUtilities.ErrorConsoleMessage("Connection to Telegram unsuccessful: Invalid API key");
+                System.Environment.Exit(1);
+            } else {
+                ConsoleOutputUtilities.OkayConsoleMessage("Connection to Telegram successful");
+            }
+
+            string botId = botClient.BotId.ToString();
+            ConsoleOutputUtilities.InfoConsoleMessage($"ID of bot is {botId}");
 
             botClient.OnMessage += Bot_OnMessage;
+
             botClient.StartReceiving();
             ConsoleOutputUtilities.OkayConsoleMessage("Listening for triggers");
             ConsoleOutputUtilities.SeparatorConsoleMessage();
