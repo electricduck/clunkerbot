@@ -48,7 +48,7 @@ namespace ClunkerBot.Commands
                 return output;
             } catch (Exception e) {
                 ConsoleOutputUtilities.ErrorConsoleMessage(e.ToString());
-                return HelpData.GetHelp("guessjourneyprice", true);
+                return HelpData.GetHelp("calculatejourneyprice", true);
             }
         }
     

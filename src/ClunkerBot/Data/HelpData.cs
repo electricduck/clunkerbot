@@ -44,7 +44,7 @@ To get additional help about the modules below (such as what arguments they acce
 —
 <code>&lt;1&gt;</code> <b>Distance</b> - Distance to cover, with optional unit (<b>mi</b> or <b>km</b> -- defaults to <b>mi</b> with no unit) <i>(e.g. 100mi, 741km, 31)</i>
 <code>&lt;2&gt;</code> <b>MPG</b> - MPG you are able to achieve, with optional unit (<b>mpg</b>*; to force US: <b>usmpg</b>; to force UK/imperial: <b>ukmpg</b> or <b>impmpg</b> -- defaults to <b>mpg</b> with no unit) <i>(e.g. 34.5mpg, 60ukmpg, 45)</i>
-<code>&lt;3&gt;</code> <b>Fuel price</b> - Price of fuel per unit, with optional unit (<b>/L</b> or <b>/G</b>* -- defaults to <b>/L</b> with no unit), and currency** (<b>£</b>, <b>$**</b>, <b>€</b>, etc.) <i>(e.g. £1.15/L, $2.60/G, 1.30)</i>
+<code>&lt;3&gt;</code> <b>Fuel price</b> - Price of fuel per unit, with optional unit (<b>/L</b> or <b>/G</b>* -- defaults to <b>/L</b> with no unit), and currency** (<b>£</b>, <b>$*</b>, <b>€</b>, etc.) <i>(e.g. £1.15/L, $2.60/G, 1.30)</i>
 
 <b>*</b> <i>If you use '/G' and/or '$' in the fuel price, this will use US MPG, not imperial MPG. You can force it by using the units described above.</i>
 <b>**</b> <i>This makes no difference, but presents your currency in the output message for niceness.</i>";
