@@ -29,7 +29,7 @@ namespace ClunkerBot.Commands
 <i>Country code '{country}' is currenty unsupported.</i>";
                 }
             } catch {
-                return HelpData.GetHelp("findavailableplate", true);
+                return return BuildErrorOutput(e);
             }
         }
 
