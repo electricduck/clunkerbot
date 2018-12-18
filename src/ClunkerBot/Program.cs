@@ -60,7 +60,7 @@ namespace ClunkerBot
 
                     if(StringUtilities.CountWords(messageText) == 1) {
                         if(HelpData.HelpDictionary.ContainsKey(command)) {
-                            string helpOutput = HelpData.GetHelp(command, false);
+                            string helpOutput = HelpData.GetHelp(command);
                             MessageApi.SendTextMessage(helpOutput, botClient, e);
                         } else {
                             arguments = (messageText.Substring(messageText.IndexOf(' ') + 1)).Split(" ");
@@ -123,7 +123,7 @@ namespace ClunkerBot
                         } else if(arguments.Length == 7) {
                             calculate0To60Output = ZeroToSixty.Calculate(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4], arguments[5], arguments[6]);
                         } else {
-                            MessageApi.SendTextMessage(HelpData.GetHelp("calculate0to60", false), botClient, telegramMessageEvent);
+                            MessageApi.SendTextMessage(HelpData.GetHelp("calculate0to60"), botClient, telegramMessageEvent);
                         }
 
                         MessageApi.SendTextMessage(calculate0To60Output, botClient, telegramMessageEvent);
@@ -148,7 +148,7 @@ namespace ClunkerBot
                         } else if(arguments.Length == 2) {
                             findAvailablePlateOutput = AvailablePlate.Find(arguments[0], arguments[1]);
                         } else {
-                            MessageApi.SendTextMessage(HelpData.GetHelp("findavailableplate", false), botClient, telegramMessageEvent);
+                            MessageApi.SendTextMessage(HelpData.GetHelp("findavailableplate"), botClient, telegramMessageEvent);
                         }
 
                         MessageApi.SendTextMessage(findAvailablePlateOutput, botClient, telegramMessageEvent);
@@ -176,7 +176,7 @@ namespace ClunkerBot
                         } else if (arguments.Length == 2) {
                             getFuellyOutput = Fuelly.Get(arguments[0], arguments[1]);
                         } else {
-                            MessageApi.SendTextMessage(HelpData.GetHelp("getfuelly", false), botClient, telegramMessageEvent);
+                            MessageApi.SendTextMessage(HelpData.GetHelp("getfuelly"), botClient, telegramMessageEvent);
                         }
 
                         MessageApi.SendPhotoMessage(getFuellyOutput, botClient, telegramMessageEvent);
@@ -187,7 +187,7 @@ namespace ClunkerBot
                         if(arguments.Length == 1) {
                             getGarageOutput = Garage.Get(arguments[0]);
                         } else {
-                            MessageApi.SendTextMessage(HelpData.GetHelp("getgarage", false), botClient, telegramMessageEvent);
+                            MessageApi.SendTextMessage(HelpData.GetHelp("getgarage"), botClient, telegramMessageEvent);
                         }
 
                         MessageApi.SendTextMessage(getGarageOutput, botClient, telegramMessageEvent);
@@ -242,7 +242,7 @@ namespace ClunkerBot
                         } else if (arguments.Length == 2) {
                             parsePlateOutput = Plate.Parse(arguments[0], arguments[1]);
                         } else {
-                            MessageApi.SendTextMessage(HelpData.GetHelp("parseplate", false), botClient, telegramMessageEvent);
+                            MessageApi.SendTextMessage(HelpData.GetHelp("parseplate"), botClient, telegramMessageEvent);
                         }
 
                         MessageApi.SendTextMessage(parsePlateOutput, botClient, telegramMessageEvent);

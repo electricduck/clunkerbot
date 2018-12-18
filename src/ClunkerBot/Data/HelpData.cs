@@ -6,9 +6,6 @@ namespace ClunkerBot.Data
     {
         public static Dictionary<string, string> HelpDictionary = new Dictionary<string, string>();
 
-        public static string IncorrectFormat = @"🚫 <b>Incorrect format. Try again!</b>
-—\r\n";
-
         public static string Help = @"❓ <i>Help</i>
 —
 To get additional help about the modules below (such as what arguments they accept), type <code>/help &lt;module&gt;</code> (for example, <code>/help calculate0to60</code>). Any modules which require arguments will output their help when no arguments (or the wrong ones) are supplied.
@@ -99,12 +96,7 @@ To get additional help about the modules below (such as what arguments they acce
                 string output;
 
                 HelpData.HelpDictionary.TryGetValue(command, out helpText);
-
-                if(incorrectFormatWarning) {
-                    output = IncorrectFormat + helpText;
-                } else {
-                    output = helpText;
-                }
+                output = helpText;
 
                 return output;
             } else {
