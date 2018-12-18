@@ -111,6 +111,7 @@ namespace ClunkerBot
                         MessageApi.SendTextMessage(awooOutput, botClient, telegramMessageEvent);
                     break;
                 case "calculate0to60":
+                case "0to60":
                         string calculate0To60Output = "";
 
                         if(arguments.Length == 4) {
