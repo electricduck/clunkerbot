@@ -111,8 +111,6 @@ namespace CarPupsTelegramBot.Utilities.PlateUtilities
                 firstLetter
                 + 1;
 
-            Console.WriteLine(letterTotal);
-
             int plateTotal = (letterTotal-1) * 999 + number;
 
             return plateTotal;
