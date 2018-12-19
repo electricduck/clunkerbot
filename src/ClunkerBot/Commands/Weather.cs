@@ -11,7 +11,12 @@ namespace ClunkerBot.Commands
 {
     public class Weather : CommandsBase
     {
-        public static string Get(string location)
+        /// <summary>
+        /// Returns Weather from OpenWeatherMaps in a pre-formatted text output
+        /// </summary>
+        /// <param name="location">Location to send to OWM (Whether name of city, postcode, longitute/latitude, etc.)</param>
+        /// <param name="brief">Whather to show a short or long version of current weather</param>
+        public static string Get(string location, bool brief = false)
         {
             OwnApiService _ownApiService = new OwnApiService();
 
@@ -50,7 +55,7 @@ namespace ClunkerBot.Commands
                 string visibility = ParseVisibility((double)parsedJson["visibility"]);
                 
                 string windSpeed = (string)parsedJson["wind"]["speed"] + "m/s";
-                string windDirection = (string)parsedJson["wind"]["deg"] + "°";
+                string windDirection = ConvertHeadingToCompass((int)parsedJson["wind"]["deg"]);
 
                 long sunrise = (long)parsedJson["sys"]["sunrise"];
                 long sunset = (long)parsedJson["sys"]["sunset"];
@@ -67,7 +72,13 @@ namespace ClunkerBot.Commands
                     weather = $"<b>{weatherType}</b>";
                 }
 
-                string result = $@"{icon} {weather}
+                string result = "";
+
+                if(brief) {
+                    result = $@"{icon} <b>{weatherDescription}</b>
+🌡️ {temperatureCelcius} / {temperatureFahrenheit} | 🌬️ {windSpeed} ({windDirection}) | 💦 {humidity}";
+                } else {
+                    result = $@"{icon} {weather}
 
 <header>🌡️ Temperature</header>
 <subitem>Current:</subitem> {temperatureCelcius} / {temperatureFahrenheit}
@@ -84,6 +95,7 @@ namespace ClunkerBot.Commands
 <header>☀️ Day Cycle</header>
 <subitem>Sunrise:</subitem> {parsedSunrise}
 <subitem>Sunset:</subitem> {parsedSunset}";
+                }
 
                 return BuildOutput(outputEmoji, outputHeader, fullLocation, result);
             } catch (Exception e) {
@@ -91,14 +103,23 @@ namespace ClunkerBot.Commands
             }
         }
 
+        public static string ConvertHeadingToCompass(int heading){
+            var directions = new string[] {
+                "N", "NE", "E", "SE", "S", "SW", "W", "NW", "N"
+            };
+            var index = (heading + 23) / 45;
+            
+            return directions[index];
+        }
+
         private static double ConvertKelvinToSomethingLessSilly(double kelvin, Enums.Temperatures outputTemperature)
         {
             if(outputTemperature == Enums.Temperatures.Celcius) {
-                return Math.Round(kelvin - 273.15, 2);
+                return Math.Round(kelvin - 273.15, 1);
             } else if(outputTemperature == Enums.Temperatures.Fahrenheit) {
-                return Math.Round((kelvin * 1.8) - 459.67, 2);
+                return Math.Round((kelvin * 1.8) - 459.67, 1);
             } else {
-                return Math.Round(kelvin, 2);
+                return Math.Round(kelvin, 1);
             }
         }
         

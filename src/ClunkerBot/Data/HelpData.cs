@@ -61,9 +61,10 @@ To get additional help about the modules below (such as what arguments they acce
 <b>*</b> <i>Supported: at**, de, fr**, gb, gg, nl**, us, us-oh**, us-sc.</i>
 <b>**</b> <i>Some formats not supported yet.</i>";
 
-        public static string Weather_Get = @"<code>/getweather &lt;∞&gt;</code>
+        public static string Weather_Get = @"<code>/getweather &lt;∞&gt; &lt;[2]&gt;</code>
 —
-<code>&lt;∞&gt;</code> <b>Location</b> - Location of requested weather, expressed by city name, long/lat, postcode/zipcode, etc.";
+<code>&lt;∞&gt;</code> <b>Location</b> - Location of requested weather, expressed by city name, long/lat, postcode/zipcode, etc. <i>(e.g. new york; london, uk; paris, france)</i>
+<code>&lt;2&gt;</code> <b>Full Details?</b> <i>(Optional)</i> - If you want more details, use <b>full</b>.";
 
         public static string ZeroToSixty_Calculate = @"<code>/calculate0to60 &lt;1&gt; &lt;2&gt; &lt;3&gt; &lt;[4]&gt; &lt;[5]&gt; &lt;[6]&gt;</code>
 —
@@ -96,7 +97,7 @@ To get additional help about the modules below (such as what arguments they acce
             HelpDictionary.Add("weather", Weather_Get);
 
             HelpDictionary.Add("guessmileage", Mileage_Guess);
-            
+
             HelpDictionary.Add("parseplate", Plate_Parse);
         }
 

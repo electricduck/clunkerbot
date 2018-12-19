@@ -94,6 +94,8 @@ namespace ClunkerBot
 
             UserModel currentTelegramUser = program.GetCurrentTelegramUser(telegramMessageEvent);
                 
+            string joinedArguments = String.Join(" ", arguments);
+
             Console.WriteLine($"{currentTelegramUser.TelegramName}");
             
             switch(command) {
@@ -208,11 +210,18 @@ namespace ClunkerBot
                 case "weather":
                     string getWeatherOutput = "";
 
-                    // TODO: Fix this, it doesn't work. Command is still send through, since the arguments array is still over 0... somehow.
                     if(arguments.Length > 0) {
-                        // TODO: Add some way of forcing C/F/K only?
-                        // TODO: Add some way of bringing back short version
-                        getWeatherOutput = Weather.Get(String.Join(" ", arguments));
+                        string getWeather_fullDetailsTrigger = " full";
+
+                        var getWeather_RequstedLocation = joinedArguments
+                            .Replace(getWeather_fullDetailsTrigger, String.Empty);
+
+                        // IDEA: Add some way of forcing C/F/K only?
+                        if(joinedArguments.Contains(getWeather_fullDetailsTrigger)) {
+                            getWeatherOutput = Weather.Get(getWeather_RequstedLocation, false);
+                        } else {
+                            getWeatherOutput = Weather.Get(getWeather_RequstedLocation, true);
+                        }
                     } else {
                         MessageApi.SendTextMessage(HelpData.GetHelp("getweather"), botClient, telegramMessageEvent);
                     }
