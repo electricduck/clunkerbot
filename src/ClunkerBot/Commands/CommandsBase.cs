@@ -17,21 +17,31 @@ namespace ClunkerBot.Commands
             string message
         )
         {
+            string output = "";
+
             string headerFull = "";
 
-            if(String.IsNullOrEmpty(input)) {
-                headerFull = $"<i>{header}</i>";
+            if(String.IsNullOrEmpty(emoji)) {
+                headerFull = $"{headerFull}";
             } else {
-                headerFull = $"<i>{header}:</i> {input}";
+                headerFull = $"{emoji} {headerFull}";
             }
 
             message = message
                 .Replace("header>", "b>")
-                .Replace("subitem>", "i>");
+                .Replace("subitem>", "i>")
+                .Replace("<subitem-icon>", String.Empty)
+                .Replace("</subitem-icon>", String.Empty);
 
-            return $@"{emoji} {headerFull}
+            if(String.IsNullOrEmpty(header)) {
+                output = $@"{message}";
+            } else {
+                output = $@"{headerFull}
 {Separator}
 {message}";
+            }
+
+            return output;
         }
 
         public static string BuildOutput(
@@ -41,6 +51,13 @@ namespace ClunkerBot.Commands
         )
         {
             return BuildOutput(emoji, header, null, message);
+        }
+
+        public static string BuildOutput(
+            string message
+        )
+        {
+            return BuildOutput(null, null, null, message);
         }
 
         public static string BuildErrorOutput(Exception e)
@@ -54,7 +71,7 @@ namespace ClunkerBot.Commands
 {Separator} 
 <b>This is an error. Please forward me to </b>@theducky<b>.</b>";
 
-            return BuildOutput("⚠", "He's dead, Jim!", null, message);
+            return BuildOutput("⚠", "He's dead, Jim!", message);
         }
     }
 }
