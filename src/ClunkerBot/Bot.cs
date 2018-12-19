@@ -25,19 +25,19 @@ namespace ClunkerBot
             Console.WriteLine($"{currentTelegramUser.TelegramName}");
             
             switch(command) {
-                case "addcar":
-                case "addcartogarage":
-                        string addCarToGarageOutput = "";
+                // case "addcar":
+                // case "addcartogarage":
+                //         string addCarToGarageOutput = "";
 
-                        if(arguments.Length == 11) {
-                            addCarToGarageOutput = Garage.AddCarTo(
-                                currentTelegramUser,
-                                arguments[0], arguments[1], arguments[2], arguments[3], arguments[4], arguments[5], arguments[6], arguments[7], arguments[8], arguments[9], arguments[10]
-                            );
-                        }
+                //         if(arguments.Length == 11) {
+                //             addCarToGarageOutput = Garage.AddCarTo(
+                //                 currentTelegramUser,
+                //                 arguments[0], arguments[1], arguments[2], arguments[3], arguments[4], arguments[5], arguments[6], arguments[7], arguments[8], arguments[9], arguments[10]
+                //             );
+                //         }
 
-                        MessageApi.SendTextMessage(addCarToGarageOutput, Program.BotClient, telegramMessageEvent);
-                    break;
+                //         MessageApi.SendTextMessage(addCarToGarageOutput, Program.BotClient, telegramMessageEvent);
+                //     break;
                 case "awoo":
                         string awooOutput;
 
@@ -93,20 +93,20 @@ namespace ClunkerBot
 
                         MessageApi.SendTextMessage(findAvailablePlateOutput, Program.BotClient, telegramMessageEvent);
                     break;
-                case "getcar":
-                case "getcarfromgarage":
-                        ImageMessageReturnModel getCarFromGarageOutput = null;
+                // case "getcar":
+                // case "getcarfromgarage":
+                //         ImageMessageReturnModel getCarFromGarageOutput = null;
 
-                        if(arguments.Length == 1) {
-                            getCarFromGarageOutput = Garage.GetCarFrom(arguments[0]);
-                        }
+                //         if(arguments.Length == 1) {
+                //             getCarFromGarageOutput = Garage.GetCarFrom(arguments[0]);
+                //         }
 
-                        if(String.IsNullOrEmpty(getCarFromGarageOutput.PhotoUrl)) {
-                            MessageApi.SendTextMessage(getCarFromGarageOutput.Caption, Program.BotClient, telegramMessageEvent);
-                        } else {
-                            MessageApi.SendPhotoMessage(getCarFromGarageOutput, Program.BotClient, telegramMessageEvent);
-                        }
-                    break;
+                //         if(String.IsNullOrEmpty(getCarFromGarageOutput.PhotoUrl)) {
+                //             MessageApi.SendTextMessage(getCarFromGarageOutput.Caption, Program.BotClient, telegramMessageEvent);
+                //         } else {
+                //             MessageApi.SendPhotoMessage(getCarFromGarageOutput, Program.BotClient, telegramMessageEvent);
+                //         }
+                //     break;
                 case "getfuelly":
                 case "fuelly":
                         ImageMessageReturnModel getFuellyOutput = null;
@@ -121,17 +121,17 @@ namespace ClunkerBot
 
                         MessageApi.SendPhotoMessage(getFuellyOutput, Program.BotClient, telegramMessageEvent);
                     break;
-                case "getgarage":
-                        string getGarageOutput = "";
+                // case "getgarage":
+                //         string getGarageOutput = "";
 
-                        if(arguments.Length == 1) {
-                            getGarageOutput = Garage.Get(arguments[0]);
-                        } else {
-                            MessageApi.SendTextMessage(HelpData.GetHelp("getgarage"), Program.BotClient, telegramMessageEvent);
-                        }
+                //         if(arguments.Length == 1) {
+                //             getGarageOutput = Garage.Get(arguments[0]);
+                //         } else {
+                //             MessageApi.SendTextMessage(HelpData.GetHelp("getgarage"), Program.BotClient, telegramMessageEvent);
+                //         }
 
-                        MessageApi.SendTextMessage(getGarageOutput, Program.BotClient, telegramMessageEvent);
-                    break;
+                //         MessageApi.SendTextMessage(getGarageOutput, Program.BotClient, telegramMessageEvent);
+                //     break;
                 case "getweather":
                 case "weather":
                     string getWeatherOutput = "";
@@ -195,15 +195,15 @@ namespace ClunkerBot
                         MessageApi.SendTextMessage(parsePlateOutput, Program.BotClient, telegramMessageEvent);
 
                     break;
-                case "setcarphoto":
-                        string setCarPhotoOutput = "";
+                // case "setcarphoto":
+                //         string setCarPhotoOutput = "";
 
-                        if(arguments.Length == 2) {
-                            setCarPhotoOutput = Garage.SetCarPhoto(arguments[0], arguments[1]);
-                        }
+                //         if(arguments.Length == 2) {
+                //             setCarPhotoOutput = Garage.SetCarPhoto(arguments[0], arguments[1]);
+                //         }
 
-                        MessageApi.SendTextMessage(setCarPhotoOutput, Program.BotClient, telegramMessageEvent);
-                    break;
+                //         MessageApi.SendTextMessage(setCarPhotoOutput, Program.BotClient, telegramMessageEvent);
+                //     break;
                 default:
                     ConsoleOutputUtilities.WarnConsoleMessage($@"Command '{command}' doesn't exist");
                     break;
