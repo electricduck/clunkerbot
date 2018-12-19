@@ -31,13 +31,19 @@ namespace ClunkerBot
             ConsoleOutputUtilities.InfoConsoleMessage($"Started at {DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss zzz")}");
 
             ConsoleOutputUtilities.DoingConsoleMessage("Setting up application");
-            SetupApp();
+            try {
+                SetupApp();
+            } catch(Exception e) {
+                ConsoleOutputUtilities.ErrorConsoleMessage("Configuration file missing");
+                System.Environment.Exit(1);
+            }
 
             ConsoleOutputUtilities.DoingConsoleMessage("Building help dictionary");
             HelpData.CompileHelpDictionary();
 
             ConsoleOutputUtilities.DoingConsoleMessage("Connecting to Telegram");
             botClient = new TelegramBotClient(AppSettings.ApiKeys_Telegram);
+            
 
             bool isApiKeyValid = botClient.TestApiAsync().Result;
 
