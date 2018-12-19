@@ -3,7 +3,7 @@ using ClunkerBot.Data;
 
 namespace ClunkerBot.Commands
 {
-    class Info
+    class Info : CommandsBase
     {
         public static string Get() {
             var thisProcess = System.Diagnostics.Process.GetCurrentProcess();

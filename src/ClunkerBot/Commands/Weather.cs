@@ -11,11 +11,6 @@ namespace ClunkerBot.Commands
 {
     public class Weather : CommandsBase
     {
-        /// <summary>
-        /// Returns Weather from OpenWeatherMaps in a pre-formatted text output
-        /// </summary>
-        /// <param name="location">Location to send to OWM (Whether name of city, postcode, longitute/latitude, etc.)</param>
-        /// <param name="brief">Whather to show a short or long version of current weather</param>
         public static string Get(string location, bool brief = false)
         {
             OwnApiService _ownApiService = new OwnApiService();
@@ -127,11 +122,6 @@ namespace ClunkerBot.Commands
         {
             return (new DateTime(1970, 1, 1, 0, 0, 0).AddSeconds(unixTimestamp));
         }
-
-        //private static string GetDegreeValue(int degree)
-        //{
-        //    return ["N","NNE","NE","ENE","E","ESE","SE","SSE","S","SSW","SW","WSW","W","WNW","NW","NNW","N"][Math.round((degreeValue/22.5)+.5 % 16)];
-        //}
 
         private static string ParseVisibility(double visibility)
         {
