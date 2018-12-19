@@ -21,6 +21,12 @@ namespace ClunkerBot.Commands
 
             string headerFull = "";
 
+            if(String.IsNullOrEmpty(input)) {
+                headerFull = $"<i>{header}</i>";
+            } else {
+                headerFull = $"<i>{header}:</i> {input}";
+            }
+
             if(String.IsNullOrEmpty(emoji)) {
                 headerFull = $"{headerFull}";
             } else {
