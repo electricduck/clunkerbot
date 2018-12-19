@@ -18,6 +18,8 @@ _(TODO)_
 
 Heck, yeah. It's so simple even an idiot can do it.
 
+**Remember, you don't need to run this yourself &mdash; unless you're interested in adding new features, or fixing them, or you're just that kinda bloke. A working version is available at [@clunkerbot](https://t.me/clunkerbot), which is always kept up-to-date!**
+
 ~~If you are an idiot, head over the [releases](https://github.com/electricduck/clunkerbot/releases) page for pre-built binaries. I'm not judging.~~
 
 #### Prerequisites
@@ -32,6 +34,12 @@ Heck, yeah. It's so simple even an idiot can do it.
     $ git pull https://github.com/electricduck/clunkerbot
     $ cd clunkerbot/src/ClunkerBot
     $ dotnet restore
+
+##### Setup bot on Telegram
+
+Message [BotFather](https://t.me/botfather) to create a bot, who will give you an API like the nice gentleman he is. If you're confused, there's plenty of help on the Intertubes.
+
+If you need a list of available commands to add to the bot, they are available in [`list-of-commands.txt`](https://github.com/electricduck/clunkerbot/blob/master/misc/list-of-commands.txt).
     
 #### Configuration
 
@@ -55,7 +63,7 @@ Copy `appsettings.json.example` to `appsettings.json` and modify it as follows:
 ##### Configuration keys
 
  * `apiKeys`
-   * `telegram` &mdash; Your Telegram bot's API key. Set this up with [BotFather](https://t.me/botfather), who will give you an API like the nice gentleman he is. If you're confused, there's plenty of help on the Intertubes.
+   * `telegram` &mdash; Your Telegram bot's API key provided by BotFather.
  * `config`
    * `awoo` &mdash; This is a dumb feature leftover from testing that I decided to keep because it amused me. It outputs the word configurd below on `/awoo`.
      * `word` &mdash; The word to output.
