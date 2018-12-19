@@ -2,6 +2,7 @@ using System.Collections.Generic;
 
 namespace ClunkerBot.Data
 {
+    // TODO: Some way of generating this for `list-of-commands.txt`
     class HelpData
     {
         public static Dictionary<string, string> HelpDictionary = new Dictionary<string, string>();
