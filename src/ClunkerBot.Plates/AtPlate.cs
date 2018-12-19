@@ -1,15 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using ClunkerBot.Models;
-using ClunkerBot.Models.ReturnModels.PlateReturnModels;
+using ClunkerBot.Plates.Models;
+using ClunkerBot.Plates.Models.ReturnModels;
 
 // TODO: Add support for diplomatic plates (GK, KK, SD, SK, TD, TK, VK, WD, WK)
 // SEE: https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_Austria
 
-namespace ClunkerBot.Utilities.PlateUtilities
+namespace ClunkerBot.Plates
 {
-    public class AtPlateUtilities
+    public class AtPlate
     {
         private static string Year1990Regex = @"^(([A-Z]{1,2})-([A-Z0-9]{4,6}))$";
         private static string Year1990OfficialRegex = @"^(([A-Z]{1,2})-([0-9]{1,5}))$";
@@ -29,6 +29,9 @@ namespace ClunkerBot.Utilities.PlateUtilities
                     Valid = false
                 };
             }
+
+            plateReturn.CountryFlag = "🇦🇹";
+            plateReturn.CountryCode = "at";
 
             return plateReturn;
         }

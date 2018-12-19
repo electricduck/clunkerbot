@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 using ClunkerBot.Models;
 using ClunkerBot.Models.ReturnModels;
 
-namespace ClunkerBot.Utilities.PlateUtilities
+namespace ClunkerBot.Plates
 {
     public class GbPlateUtilities
     {

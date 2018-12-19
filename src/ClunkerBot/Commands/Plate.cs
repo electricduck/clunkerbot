@@ -7,6 +7,8 @@ using ClunkerBot.Data;
 using ClunkerBot.Models;
 using ClunkerBot.Models.ReturnModels;
 using ClunkerBot.Models.ReturnModels.PlateReturnModels;
+using ClunkerBot.Plates;
+using ClunkerBot.Plates.Models.ReturnModels;
 using ClunkerBot.Utilities;
 using ClunkerBot.Utilities.PlateUtilities;
 
@@ -146,9 +148,10 @@ namespace ClunkerBot.Commands
         {
             ParsedPlateMessageReturnModel parsedPlateReturn = new ParsedPlateMessageReturnModel { };
 
-            AtPlateReturnModel plateReturn = AtPlateUtilities.ParseAtPlate(plate);
+            AtPlateReturnModel plateReturn = AtPlate.ParseAtPlate(plate);
 
-            parsedPlateReturn.Flag = "🇦🇹";
+            parsedPlateReturn.CountryCode = plateReturn.CountryCode;
+            parsedPlateReturn.Flag = plateReturn.CountryFlag;
 
             string output = $@"#️⃣ <i>Parse Plate:</i> {parsedPlateReturn.Flag} <code>{plate}</code>
 —
@@ -179,7 +182,6 @@ namespace ClunkerBot.Commands
                 output += "<i>This is an invalid, custom/private, or unsupported Austrian plate. Contact</i> @theducky <i>if you believe it is a standard format.</i>";
             }
 
-            parsedPlateReturn.CountryCode = "at";
             parsedPlateReturn.FoundMatch = plateReturn.Valid;
             parsedPlateReturn.Message = output;
 
@@ -280,7 +282,7 @@ namespace ClunkerBot.Commands
         {
             ParsedPlateMessageReturnModel parsedPlateReturn = new ParsedPlateMessageReturnModel { };
 
-            PlateReturnModel plateReturn = GbPlateUtilities.ParseGbPlate(plate, Enums.GbPlateFormat.unspecified);
+            ClunkerBot.Models.ReturnModels.PlateReturnModel plateReturn = GbPlateUtilities.ParseGbPlate(plate, Enums.GbPlateFormat.unspecified);
 
             parsedPlateReturn.Flag = "🇬🇧";
 

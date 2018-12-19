@@ -1,12 +1,7 @@
+using ClunkerBot.Plates;
 
 namespace ClunkerBot.Models {
-    public class Enums {
-        public enum AtPlateFormat {
-            unspecified,
-            yr1990,
-            yr1990Official
-        }
-
+    public class Enums : ClunkerBot.Plates.Models.Enums {
         public enum DePlateFormat {
             unspecified,
             yr1956,         // 1956 onwards / Current
