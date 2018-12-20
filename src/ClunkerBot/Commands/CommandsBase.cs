@@ -64,7 +64,7 @@ namespace ClunkerBot.Commands
             string message
         )
         {
-            return BuildOutput(null, null, null, message);
+            return BuildOutput(message, null, null, null);
         }
 
         public static string BuildErrorOutput(Exception e)
