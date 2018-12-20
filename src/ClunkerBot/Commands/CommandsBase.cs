@@ -36,6 +36,7 @@ namespace ClunkerBot.Commands
             message = message
                 .Replace("header>", "b>")
                 .Replace("subitem>", "i>")
+                .Replace("item>", "b>")
                 .Replace("<subitem-icon>", String.Empty)
                 .Replace("</subitem-icon>", String.Empty);
 

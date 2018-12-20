@@ -5,7 +5,7 @@ using ClunkerBot.Data;
 
 namespace ClunkerBot.Commands
 {
-    class Mileage
+    class Mileage : CommandsBase
     {
         public static string Guess(string dateRegistered, int lastMotMileage, string lastMotDate, string dateToCalculateTo = "")
         {
@@ -14,6 +14,8 @@ namespace ClunkerBot.Commands
 
                 if(!String.IsNullOrEmpty(dateToCalculateTo)) {
                     currentDate = DateTime.Parse(dateToCalculateTo);
+                } else if(dateToCalculateTo == "today" || dateToCalculateTo == "now") {
+                    currentDate = DateTime.Now;
                 }
 
                 double daysSinceRegistration = (currentDate - DateTime.Parse(dateRegistered)).TotalDays;
@@ -26,11 +28,12 @@ namespace ClunkerBot.Commands
                 string calculatedMileageFormatted = calculatedMileage.ToString("N0");
                 string unit = "Miles";
 
-                string output = $"Approximate mileage for <b>{currentDate.ToString("dd-MMM-yyyy")}</b> is <b>{calculatedMileageFormatted.ToString()} {unit}</b>";
+                string result = $@"<item>Approx. Mileage:</item> {calculatedMileageFormatted.ToString()} {unit}
+<item>For Date:</item> {currentDate.ToString("dd-MMM-yyyy")}";
 
-                return output;
-            } catch {
-                return HelpData.GetHelp("guessmileage", true);
+                return BuildOutput("🚘", "Guess Mileage", result);
+            } catch (Exception e) {
+                return BuildErrorOutput(e);
             }
         }
     }

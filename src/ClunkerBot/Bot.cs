@@ -155,12 +155,15 @@ namespace ClunkerBot
                     MessageApi.SendTextMessage(getWeatherOutput, Program.BotClient, telegramMessageEvent);
                     break;
                 case "guessmileage":
+                case "mileage":
                         string guessMileageOutput = "";
 
                         if (arguments.Length == 3) {
                            guessMileageOutput = Mileage.Guess(arguments[0], Convert.ToInt32(arguments[1]), arguments[2]);
                         } else if (arguments.Length == 4)  {
                            guessMileageOutput = Mileage.Guess(arguments[0], Convert.ToInt32(arguments[1]), arguments[2], arguments[3]);
+                        } else {
+                            MessageApi.SendTextMessage(HelpData.GetHelp("guessmileage"), Program.BotClient, telegramMessageEvent);
                         }
 
                         MessageApi.SendTextMessage(guessMileageOutput, Program.BotClient, telegramMessageEvent);
