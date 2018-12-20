@@ -11,5 +11,6 @@ parseplate - <Plate> <[Country]>
 findplace - Alias for /findavailableplate
 fuelly - Alias for /getfuelly
 journeyprice - Alias for /calculatejourneyprice
+mileage - Alias for /guessmileage
 tripprice - Alias for /calculatejourneyprice
 weather - Alias for /getweather
