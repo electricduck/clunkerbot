@@ -28,7 +28,7 @@ namespace ClunkerBot.Commands
                 string code = (string)parsedJson["cod"];
 
                 if(code == "404") {
-                    return BuildOutput(outputEmoji, outputHeader, location, "<i>Location not found.</i>");
+                    return BuildOutput("<i>Location not found.</i>", outputHeader, outputEmoji, location);
                 }
 
                 string weatherType = (string)parsedJson["weather"][0]["main"];
@@ -92,7 +92,7 @@ namespace ClunkerBot.Commands
 <subitem>Sunset:</subitem> {parsedSunset}";
                 }
 
-                return BuildOutput(outputEmoji, outputHeader, fullLocation, result);
+                return BuildOutput(result, outputHeader, outputEmoji, fullLocation);
             } catch (Exception e) {
                 return BuildErrorOutput(e);
             }

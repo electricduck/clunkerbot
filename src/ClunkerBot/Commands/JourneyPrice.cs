@@ -45,7 +45,7 @@ namespace ClunkerBot.Commands
 
                 string result = $"<b>Fuel Cost:</b> {currencySymbol}{String.Format("{0:f2}", poundsTotalCost)}";
 
-                return BuildOutput("🛣️", "Calculate Journey Price", result);
+                return BuildOutput(result, "Calculate Journey Price", "🛣️");
             } catch (Exception e) {
                 return BuildErrorOutput(e);
             }
