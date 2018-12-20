@@ -21,9 +21,9 @@ namespace ClunkerBot.Plates
             plate.Replace(" ", "");
 
             if(Regex.IsMatch(plate, Year1990OfficialRegex)) {
-                plateReturn = ParseAtYr1990Plate(plate, true);
+                plateReturn = ParseYear1990Plate(plate, true);
             } else if(Regex.IsMatch(plate, Year1990Regex)) {
-                plateReturn = ParseAtYr1990Plate(plate);
+                plateReturn = ParseYear1990Plate(plate);
             } else {
                 plateReturn = new AtPlateReturnModel {
                     Valid = false
@@ -36,7 +36,7 @@ namespace ClunkerBot.Plates
             return plateReturn;
         }
 
-        private static AtPlateReturnModel ParseAtYr1990Plate(string plate, bool official = false)
+        private static AtPlateReturnModel ParseYear1990Plate(string plate, bool official = false)
         {
             Match match = null;
 
@@ -55,18 +55,18 @@ namespace ClunkerBot.Plates
 
             string mnemonic = match.Groups[2].Value;
 
-            returnModel.Location = GetYr1990AtLocationMnemnic(mnemonic);
-            returnModel.Special = GetYr1990AtSpecialMnemnic(mnemonic);
+            returnModel.Location = GetYear1990LocationMnemnic(mnemonic);
+            returnModel.Special = GetYear1990SpecialMnemnic(mnemonic);
 
             return returnModel;
         }
 
-        private static string GetYr1990AtLocationMnemnic(string locationMnemonic)
+        private static string GetYear1990LocationMnemnic(string locationMnemonic)
         {
-            if(Yr1990AtLocationMnemnics.ContainsKey(locationMnemonic)) {
+            if(Year1990LocationMnemnics.ContainsKey(locationMnemonic)) {
                 string location;
 
-                Yr1990AtLocationMnemnics.TryGetValue(locationMnemonic, out location);
+                Year1990LocationMnemnics.TryGetValue(locationMnemonic, out location);
 
                 return location;
             } else {
@@ -74,12 +74,12 @@ namespace ClunkerBot.Plates
             }
         }
 
-        private static string GetYr1990AtSpecialMnemnic(string specialMnemonic)
+        private static string GetYear1990SpecialMnemnic(string specialMnemonic)
         {
-            if(Yr1990AtSpecialMnemnics.ContainsKey(specialMnemonic)) {
+            if(Year1990SpecialMnemnics.ContainsKey(specialMnemonic)) {
                 string special;
 
-                Yr1990AtSpecialMnemnics.TryGetValue(specialMnemonic, out special);
+                Year1990SpecialMnemnics.TryGetValue(specialMnemonic, out special);
 
                 return special;
             } else {
@@ -87,7 +87,7 @@ namespace ClunkerBot.Plates
             }
         }
 
-        private static Dictionary<string, string> Yr1990AtLocationMnemnics = new Dictionary<string, string>()
+        private static Dictionary<string, string> Year1990LocationMnemnics = new Dictionary<string, string>()
         {
             {"AM", "Amstetten"},
             {"BA", "Bad Aussee"},
@@ -192,7 +192,7 @@ namespace ClunkerBot.Plates
             {"ZT", "Zwettl"}
         };
 
-        private static Dictionary<string, string> Yr1990AtSpecialMnemnics = new Dictionary<string, string>()
+        private static Dictionary<string, string> Year1990SpecialMnemnics = new Dictionary<string, string>()
         {
             {"A", "Federal official"},
             {"B", "Bregenz, Burgenland official"},
