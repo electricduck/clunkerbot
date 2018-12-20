@@ -11,10 +11,10 @@ namespace ClunkerBot.Commands
         public static string Separator = "—";
 
         public static string BuildOutput(
-            string emoji,
+            string message,
             string header,
-            string input,
-            string message
+            string emoji,
+            string input
         )
         {
             string output = "";
@@ -52,12 +52,12 @@ namespace ClunkerBot.Commands
         }
 
         public static string BuildOutput(
-            string emoji,
+            string message,
             string header,
-            string message
+            string emoji
         )
         {
-            return BuildOutput(emoji, header, null, message);
+            return BuildOutput(message, header, emoji, null);
         }
 
         public static string BuildOutput(
@@ -69,6 +69,11 @@ namespace ClunkerBot.Commands
 
         public static string BuildErrorOutput(Exception e)
         {
+            if(e.Message.Contains("not recognized as a valid DateTime"))
+            {
+                return BuildSoftError("Invalid date. Try using the format '01-Jan-2000'.");
+            }
+
             Guid errorGuid = Guid.NewGuid();
 
             ConsoleOutputUtilities.ErrorConsoleMessage(e.ToString(), errorGuid.ToString());
@@ -78,7 +83,12 @@ namespace ClunkerBot.Commands
 {Separator} 
 <b>This is an error. Please forward me to </b>@theducky<b>.</b>";
 
-            return BuildOutput("⚠", "He's dead, Jim!", message);
+            return BuildOutput(message, "He's dead, Jim!", "🚫");
+        }
+
+        public static string BuildSoftError(string message)
+        {
+            return BuildOutput(message, "Oops!", "⚠");
         }
     }
 }
