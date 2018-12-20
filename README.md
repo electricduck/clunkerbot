@@ -80,7 +80,7 @@ You should see various messages spat out into your terminal. If all went well, y
 
 Oh hey, you noticed a `Dockerfile` in the root. Good eye. Although mostly untested, it does run and broadly seem to work.
 
-    $ docker build -t clunkerwatch .
+    $ docker build -t clunkerbot .
     $ docker run -d --name clunkerbot clunkerbot -v /path/to/appsettings.json:/app/appsettings.json
     
 #### Moment of Truth
