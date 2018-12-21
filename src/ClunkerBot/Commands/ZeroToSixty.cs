@@ -12,7 +12,7 @@ using ClunkerBot.Models.ReturnModels.MessageReturnModels;
 
 namespace ClunkerBot.Commands
 {
-    class ZeroToSixty
+    class ZeroToSixty : CommandsBase
     {
         private static Regex PowerRegex = new Regex(@"^(([0-9]{1,})((hp|ps|kw))?)$");
         private static Regex WeightRegex = new Regex(@"^(([0-9]{1,})((lbs|kg))?)$");
@@ -47,7 +47,7 @@ namespace ClunkerBot.Commands
 
                 if(fuelVolumeValue != 0) {
                     if(fuelVolumeUnit == "l" || String.IsNullOrEmpty(fuelVolumeUnit)) {
-                        fuelVolumeUnit = "l";
+                        fuelVolumeUnit = "L";
                         weightValue += fuelType == "petrol" ? (fuelVolumeValue*AveragePetrolWeight) : fuelType == "diesel" ? fuelVolumeValue*AverageDieselWeight : 0;
                     } else if(fuelVolumeUnit == "gal") {
                         fuelVolumeValue = fuelVolumeValue*0.22;
@@ -57,16 +57,22 @@ namespace ClunkerBot.Commands
 
                 ZeroToSixtyCalculationReturnModel zeroToSixtyResult = Calculate(powerValue, weightValue, driveType.ToLower(), transmission.ToLower().Substring(0, 3), powerUnit.ToLower(), weightUnit.ToLower());
 
-                output = $@"⏱️ <i>Calculate 0-60</i>
-—
-<b>0-60mph:</b> {zeroToSixtyResult.ZeroToSixtyMphAcceleration}s
+                string result;
+
+                if(fuelVolumeValue == 0 && passengersInt == 0) {
+                    result = $@"<b>0-60mph:</b> {zeroToSixtyResult.ZeroToSixtyMphAcceleration}s
+<b>0-100kph:</b> {zeroToSixtyResult.ZeroToOneHundredKphAcceleration}s";
+                } else {
+                    result = $@"<b>0-60mph:</b> {zeroToSixtyResult.ZeroToSixtyMphAcceleration}s
 <b>0-100kph:</b> {zeroToSixtyResult.ZeroToOneHundredKphAcceleration}s
 
 <i>This calculation includes {passengersInt} passengers, and {fuelVolumeValue}{fuelVolumeUnit} of {fuelType} on board.</i>";
+                }
+                
 
-                return output;
-            } catch {
-                return HelpData.GetHelp("calculate0to60", true);
+                return BuildOutput(result, "Calculate 0-60", "️⏱️");
+            } catch (Exception e) {
+                return BuildErrorOutput(e);
             }
         }
 
