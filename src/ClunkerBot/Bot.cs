@@ -121,6 +121,22 @@ namespace ClunkerBot
 
                         MessageApi.SendPhotoMessage(getFuellyOutput, Program.BotClient, telegramMessageEvent);
                     break;
+                case "getobdcode":
+                case "getobd":
+                case "obd":
+                case "getobd2code":
+                case "getobd2":
+                case "obd2":
+                        string getObdCodeOutput = "";
+
+                        if(arguments.Length == 1) {
+                            getObdCodeOutput = OBDCode.Get(arguments[0]);
+                        } else {
+                            MessageApi.SendTextMessage(HelpData.GetHelp("getobdcode"), Program.BotClient, telegramMessageEvent);
+                        }
+
+                        MessageApi.SendTextMessage(getObdCodeOutput, Program.BotClient, telegramMessageEvent);
+                    break;
                 // case "getgarage":
                 //         string getGarageOutput = "";
 

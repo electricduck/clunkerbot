@@ -5,20 +5,28 @@ using ClunkerBot.Utilities;
 
 namespace ClunkerBot.Commands
 {
-    public class OBDCode
+    public class OBDCode : CommandsBase
     {
         public static readonly string autoCodesBaseUrl = "https://www.autocodes.com";
 
-        public static TextMessageReturnModel Get(string code) {
+        public static string Get(string code) {
             try {
                 var document = ScrapeAutoCodesCodePage(code);
 
                 //var test = document.SelectNodes("//h4")[0].
 
-                return null;
+                string result = $@"<header>Possible Causes</header>
+...
+
+<header>Possible Symptoms</header>
+...
+
+<header>Description</header>
+...";
+
+                return BuildOutput(result, "Get OBDII Code", "🔌");
             } catch (Exception e) {
-                ConsoleOutputUtilities.ErrorConsoleMessage(e.ToString());
-                return null;
+                return BuildErrorOutput(e);
             }
         }
 

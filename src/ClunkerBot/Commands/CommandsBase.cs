@@ -37,8 +37,12 @@ namespace ClunkerBot.Commands
                 .Replace("header>", "b>")
                 .Replace("subitem>", "i>")
                 .Replace("item>", "b>")
+                .Replace("<subitem-bullet>", "• ")
+                .Replace("</subitem-bullet", String.Empty)
                 .Replace("<subitem-icon>", String.Empty)
-                .Replace("</subitem-icon>", String.Empty);
+                .Replace("</subitem-icon>", String.Empty)
+                .Replace("<subtext>", String.Empty)
+                .Replace("</subtext>", String.Empty);
 
             if(String.IsNullOrEmpty(header)) {
                 output = $@"{message}";
