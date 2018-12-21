@@ -71,7 +71,7 @@ namespace ClunkerBot.Commands
         {
             if(e.Message.Contains("not recognized as a valid DateTime"))
             {
-                return BuildSoftError("Invalid date. Try using the format '01-Jan-2000'.");
+                return BuildSoftErrorOutput("Invalid date. Try using the format '01-Jan-2000'.");
             }
 
             Guid errorGuid = Guid.NewGuid();
@@ -86,7 +86,7 @@ namespace ClunkerBot.Commands
             return BuildOutput(message, "He's dead, Jim!", "🚫");
         }
 
-        public static string BuildSoftError(string message)
+        public static string BuildSoftErrorOutput(string message)
         {
             return BuildOutput(message, "Oops!", "⚠");
         }

@@ -54,6 +54,7 @@ namespace ClunkerBot
             ConsoleOutputUtilities.InfoConsoleMessage($"ID of bot is {botId}");
 
             BotClient.OnMessage += Bot_OnMessage;
+            BotClient.OnMessageEdited += Bot_OnMessageEdited;
 
             BotClient.StartReceiving();
             ConsoleOutputUtilities.OkayConsoleMessage("Listening for triggers");
@@ -88,6 +89,11 @@ namespace ClunkerBot
                     ConsoleOutputUtilities.ErrorConsoleMessage(exception.ToString());
                 }
             }
+        }
+
+        static void Bot_OnMessageEdited(object sender, MessageEventArgs e) {
+            string output = CommandsBase.BuildSoftErrorOutput("Message edits are unsupported. Please type the command again into a new message.");
+            MessageApi.SendTextMessage(output, BotClient, e);
         }
 
         public static void SetupApp() {
