@@ -57,7 +57,7 @@ To get additional help about the modules below (such as what arguments they acce
 
         public static string OBDCode_Get = @"<code>/getobdcode &lt;1&gt;</code>
 —
-<code>&lt;1&gt;</code> <b>Plate</b> - The OBDII code. <i>(e.g. p0204, P0803, P0420)</i>";
+<code>&lt;1&gt;</code> <b>OBDII Code</b> - The OBDII code. <i>(e.g. p0204, P0803, P0420)</i>";
         
         public static string Plate_Parse = @"<code>/parseplate &lt;1&gt; &lt;[2]&gt;</code>
 —
