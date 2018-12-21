@@ -16,6 +16,7 @@ To get additional help about the modules below (such as what arguments they acce
 <code>/calculatejourneyprice</code> - Calculate price of a fuel costs for a journey
 <code>/findavailableplate</code> - Find custom numberplate from your local office
 <code>/getfuelly</code> - Get a summary from a Fuelly profile
+<code>/getobdcode</code> - Get symptoms & causes of an OBDII code
 <code>/guessmileage</code> - Guess mileage of a vehicle from previous known records
 <code>/parseplate</code> - Parse number/license plate and &quot;decode&quot; it
 
