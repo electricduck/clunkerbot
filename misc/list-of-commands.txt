@@ -3,6 +3,7 @@ calculate0to60 - <Power> <Weight> <Drive Type> <Transmission>
 calculatejourneyprice - <Distance> <MPG> <Fuel Price>
 findavailableplate - <Plate> <[Country]>
 getfuelly - <Fuelly ID>
+getobdcode - <OBDII Code>
 getweather - <Location>
 guessmileage - <Date Registered> <Last MOT Mileage> <[Last MOT Date]>
 help - <[Module]>
@@ -10,7 +11,12 @@ parseplate - <Plate> <[Country]>
 0to60 - Alias for /calculate0to60
 findplace - Alias for /findavailableplate
 fuelly - Alias for /getfuelly
+getobd - Alias for /getobdcode
+getobd2 - Alias for /getobdcode
+getobd2code - Alias for /getobdcode
 journeyprice - Alias for /calculatejourneyprice
 mileage - Alias for /guessmileage
+obd - Alias for /getobdcode
+obd2 - Alias for /getobdcode
 tripprice - Alias for /calculatejourneyprice
 weather - Alias for /getweather
