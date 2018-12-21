@@ -84,7 +84,7 @@ namespace ClunkerBot.Commands
 
             ConsoleOutputUtilities.ErrorConsoleMessage(e.ToString(), errorGuid.ToString());
 
-            string message = $@"{e.Message} Fuck.
+            string message = $@"{e.Message}
 <code>{errorGuid}</code>
 {Separator} 
 <b>This is an error. Please forward me to </b>@theducky<b>.</b>";
