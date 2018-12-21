@@ -54,6 +54,10 @@ To get additional help about the modules below (such as what arguments they acce
 <code>&lt;3&gt;</code> <b>Last MOT Date</b> - The date the latest MOT occured <i>(e.g. 15-Aug-2017)</i>
 <code>&lt;4&gt;</code> <b>Date To Calculate To</b> <i>(Optional)</i> - Date to calculate to; reverts to current date by default <i>(e.g. 11-Aug-2020)</i>";
 
+        public static string OBDCode_Get = @"<code>/getobdcode &lt;1&gt;</code>
+—
+<code>&lt;1&gt;</code> <b>Plate</b> - The OBDII code. <i>(e.g. p0204, P0803, P0420)</i>";
+        
         public static string Plate_Parse = @"<code>/parseplate &lt;1&gt; &lt;[2]&gt;</code>
 —
 <code>&lt;1&gt;</code> <b>Plate</b> - The vehicle's numberplate, void of spaces. Tags/seals/stickers must be separated by a '-' <i>(e.g. N161CWW, 15210, AN-US69)</i>
@@ -93,6 +97,13 @@ To get additional help about the modules below (such as what arguments they acce
 
             HelpDictionary.Add("getfuelly", Fuelly_Get);
             HelpDictionary.Add("fuelly", Fuelly_Get);
+
+            HelpDictionary.Add("getobdcode", OBDCode_Get);
+            HelpDictionary.Add("getobd", OBDCode_Get);
+            HelpDictionary.Add("obd", OBDCode_Get);
+            HelpDictionary.Add("getobd2code", OBDCode_Get);
+            HelpDictionary.Add("getobd2", OBDCode_Get);
+            HelpDictionary.Add("obd2", OBDCode_Get);
 
             HelpDictionary.Add("getweather", Weather_Get);
             HelpDictionary.Add("weather", Weather_Get);
