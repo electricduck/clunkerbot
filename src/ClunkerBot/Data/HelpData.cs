@@ -67,7 +67,7 @@ To get additional help about the modules below (such as what arguments they acce
 <code>&lt;∞&gt;</code> <b>Location</b> - Location of requested weather, expressed by city name, long/lat, postcode/zipcode, etc. <i>(e.g. new york; london, uk; paris, france)</i>
 <code>&lt;2&gt;</code> <b>Full Details?</b> <i>(Optional)</i> - If you want more details, use <b>full</b>.";
 
-        public static string ZeroToSixty_Calculate = @"<code>/calculate0to60 &lt;1&gt; &lt;2&gt; &lt;3&gt; &lt;[4]&gt; &lt;[5]&gt; &lt;[6]&gt;</code>
+        public static string ZeroToSixty_Calculate = @"<code>/calculate0to60 &lt;1&gt; &lt;2&gt; &lt;3&gt; &lt;4&gt; &lt;[5]&gt; &lt;[6]&gt;</code>
 —
 <code>&lt;1&gt;</code> <b>Power</b> - Vehicle power at the flywheel, with optional unit (<b>hp</b>, <b>ps</b>, or <b>kw</b> -- defaults to <b>hp</b> with no unit) <i>(e.g. 64hp, 123ps, 250kw, 329)</i>
 <code>&lt;2&gt;</code> <b>Weight</b> - Curb weight of vehicle, with optional unit (<b>lbs</b>, or <b>kg</b> -- defaults to <b>kg</b> with no unit) <i>(e.g. 850kg, 2100lbs, 1024)</i>
