@@ -173,7 +173,7 @@ namespace ClunkerBot.Commands
                     specialString = plateReturn.Special;
                 }
 
-                if(plateReturn.Format == Enums.AtPlateFormat.yr1990) {
+                if(plateReturn.Format == Enums.AtPlateFormatEnum.yr1990) {
                     output += $@"<b>Reg. Office:</b> {locationString}
 <b>Special:</b> {specialString}
 <b>Format:</b> 1990 onwards";
@@ -192,7 +192,7 @@ namespace ClunkerBot.Commands
         {
             ParsedPlateMessageReturnModel parsedPlateReturn = new ParsedPlateMessageReturnModel { };
 
-            DePlateReturnModel plateReturn = DePlateUtilities.ParseDePlate(plate);
+            DePlateReturnModel plateReturn = DePlate.ParseDePlate(plate);
 
             parsedPlateReturn.Flag = "🇩🇪";
         
@@ -204,7 +204,7 @@ namespace ClunkerBot.Commands
             string specialString;
 
             if(plateReturn.Valid) {
-                if(plateReturn.Format == Enums.DePlateFormat.yr1956) {
+                if(plateReturn.Format == Enums.DePlateFormatEnum.yr1956) {
                     if(String.IsNullOrEmpty(plateReturn.Location)) {
                         locationString = "<i>Unknown</i>";
                     } else {
@@ -220,7 +220,7 @@ namespace ClunkerBot.Commands
                     output += $@"<b>Location:</b> {locationString}
 <b>Special:</b> {specialString}
 <b>Format:</b> Current <i>(1956 onwards)</i>";
-                } else if(plateReturn.Format == Enums.DePlateFormat.diplomatic1956) {
+                } else if(plateReturn.Format == Enums.DePlateFormatEnum.diplomatic1956) {
                     output += $@"Format: Diplomatic
                     
 <i>This is a diplomatic plate, found on cars used by foreign embassies, high commissions, consulates and international organisations. The cars themselves are usually not personally owned.</i>";

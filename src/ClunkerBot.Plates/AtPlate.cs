@@ -49,7 +49,7 @@ namespace ClunkerBot.Plates
             }
 
             AtPlateReturnModel returnModel = new AtPlateReturnModel {
-                Format = Enums.AtPlateFormat.yr1990,
+                Format = Enums.AtPlateFormatEnum.yr1990,
                 Valid = true
             };
 
