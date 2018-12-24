@@ -24,8 +24,6 @@ namespace ClunkerBot.Commands
         public static string Calculate(string power, string weight, string driveType, string transmission, string passengers = "0", string fuelVolume = "0L", string fuelType = "petrol")
         {
             try {
-                string output;
-
                 int passengersInt = Convert.ToInt32(passengers);
 
                 Match parsedPower = PowerRegex.Match(power.ToLower());
