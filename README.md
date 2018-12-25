@@ -62,6 +62,10 @@ The big thing to note is development takes place in `develop`, not the default `
 ##### PRs
 
 To re-iterate things said above &mdash; in case you were too lazy to read it &mdash; PRs should be merged into `develop`, but can also be merged into a `feature/` branch if its currently active.
+
+##### CI
+
+CI is provided by _Azure DevOps_, and is automatically ran against <a href="https://electricduck.visualstudio.com/ClunkerBot/_build?_a=allDefinitions&path=&definitionId=1">`master`</a> and <a href="https://electricduck.visualstudio.com/ClunkerBot/_build?_a=allDefinitions&path=&definitionId=2">`develop`</a> branch. PRs to `develop` are also validated by it. The badge at the top of this file showing the results of the `master` branch (as this is the default one).
     
 ##### Notes
 
