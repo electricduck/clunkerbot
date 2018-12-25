@@ -1,96 +1,31 @@
-<h1 align="center">ClunkerBot</h1>
-
 <p align="center">
-  <img src="art/scrots/scrot001.png" />
+  <a href="https://t.me/clunkerbot">
+    <img src="https://placekitten.com/80/80" width="80" height="80">
+  </a>
+
+  <h3 align="center">ClunkerBot</h3>
+
+  <p align="center">
+    Lots of handy vehicular utlities, provided over a bot on <a href="https://telegram.org">Telegram</a>.
+    <br>
+    <br>
+    Message <a href="https://t.me/clunkerbot">@ClunkerBot</a>
+    <br>
+    <a href="https://github.com/electricduck/clunkerbot">Github</a> | <a href="https://electricduck.visualstudio.com/ClunkerBot">Azure DevOps</a> | <a href="https://electricduck.github.io/clunkerbot/">Github.io</a>
+    <br>
+    <br>
+    <a href="https://electricduck.visualstudio.com/ClunkerBot/_build/latest?definitionId=1"><img src="https://electricduck.visualstudio.com/ClunkerBot/_apis/build/status/ClunkerBot%20-%20Production"></a>
+  </p>
 </p>
 
-<h2 align="center">Vehicular utilities for Telegram</h3>
-
-### What can this do?
+## Building
 
 _(TODO)_
 
-### What's under the hood?
+## License
 
-_(TODO)_
+Copyright © 2018-2019 <a href="https://github.com/electricduck">Ducky</a>.
 
-### Can I run it myself?
+ClunkerBot is free software: you can redistribute, modify, and use it for commercial purpouses it under the terms of the <a href="https://github.com/electricduck/clunkerbot/blob/master/LICENSE">MIT license</a>.
 
-Heck, yeah. It's so simple even an idiot can do it.
-
-**Remember, you don't need to run this yourself &mdash; unless you're interested in adding new features, or fixing them, or you're just that kinda bloke. A working version is available at [@clunkerbot](https://t.me/clunkerbot), which is always kept up-to-date!**
-
-~~If you are an idiot, head over the [releases](https://github.com/electricduck/clunkerbot/releases) page for pre-built binaries. I'm not judging.~~
-
-#### Prerequisites
-
- * **[.NET Core](https://dotnet.microsoft.com/download)** &mdash; At least version **2.1** of the **.NET Core SDK**
- * **[Git](https://git-scm.com/)** &mdash; _Duh._
- * **[Docker](https://www.docker.com/get-started)** _(Optional)_ &mdash; Yup, like all the cool software these days, you can run this in Docker too!
- * A few minutes of your precious time
- 
-#### Setup
-
-    $ git pull https://github.com/electricduck/clunkerbot
-    $ cd clunkerbot/src/ClunkerBot
-    $ dotnet restore
-
-##### Setup bot on Telegram
-
-Message [BotFather](https://t.me/botfather) to create a bot, who will give you an API like the nice gentleman he is. If you're confused, there's plenty of help on the Intertubes.
-
-If you need a list of available commands to add to the bot, they are available in [`list-of-commands.txt`](https://github.com/electricduck/clunkerbot/blob/master/misc/list-of-commands.txt).
-    
-#### Configuration
-
-Got this far? Good stuff. Now let's set it up.
-
-Copy `appsettings.json.example` to `appsettings.json` and modify it as follows:
-
-    {
-        "apiKeys": {
-            "telegram": "..."
-        },
-        "config": {
-            "awoo": {
-                "word": "Bork. ",
-                "repeat": false
-            },
-            "botUsername": "@CarPups_bot"
-        }
-    }
-    
-##### Configuration keys
-
- * `apiKeys`
-   * `telegram` &mdash; Your Telegram bot's API key provided by BotFather.
- * `config`
-   * `awoo` &mdash; This is a dumb feature leftover from testing that I decided to keep because it amused me. It outputs the word configurd below on `/awoo`.
-     * `word` &mdash; The word to output.
-     * `repeat` &mdash; If set to true, the bot will keep repeating the word in a single message, incrementing it each time.
-   * `botUsername` &mdash; The username you gave the bot. It's pretty imporant you set this right (commands will fail to work correctly otherwise), and don't forgot the **@**!
-    
-#### Build & Run
-
-    $ dotnet run
-    
-You should see various messages spat out into your terminal. If all went well, you should see `✔️ Listening for triggers` &mdash; the bot is ready for work. If the application has panicked and run for the hills, and you swear it wasn't your own dumbass fault, [create an issue](https://github.com/electricduck/clunkerbot/issues/new).
-    
-##### Build Docker image _(Optional)_
-
-Oh hey, you noticed a `Dockerfile` in the root. Good eye. Although mostly untested, it does run and broadly seem to work.
-
-    $ docker build -t clunkerbot .
-    $ docker run -d --name clunkerbot clunkerbot -v /path/to/appsettings.json:/app/appsettings.json
-    
-#### Moment of Truth
-
-Message your bot on Telegram and issue a command. Try `/awoo` or `/info`. You'll see a log of in/out messages along with errors in your terminal. Enjoy 😊.
-
-### Who created this thing?
-
-  * **[Ducky / ElectricDuck](https://github.com/electricduck)** &mdash; Lead developer. He makes shit happen.
-
-### Gimme' the legal gubbins
-
-This project is licensed under **MIT**. See [LICENSE](https://github.com/electricduck/clunkerbot/blob/master/LICENSE) for details.
+ClunkerBot is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the MIT license for more details.
