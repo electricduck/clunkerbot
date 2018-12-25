@@ -47,16 +47,21 @@ The big thing to note is development takes place in `develop`, not the default `
    * Changes to areas outside the software's code can be directly commited to here, and later merged into `develop`. This `README.md` file you're looking at usually is modified in the `master` branch, then merged into `develop` when changes are finished.
  * `develop` &mdash; Development/WIP code
     * This branch is allowed to be in a non-working state **if there is a good reason for it**.
-    * Usually things are merged from `feature/*` into here, but commiting directly to it is perfectly acceptable (branching out for tiny feature changes and/or bugfixes is annoying and time-consuming).
+    * Usually things are merged from `feature/*` into here, but commiting directly to it is perfectly acceptable (branching out for tiny feature changes and/or bugfixes is annoying and time-consuming). **And of course, this is where PRs should be merged into**.
  * `feature/*` &mdash; Features/buxfixes
-    * This branch is generally used for large changes, and later merged into `master` &mdash; don't squash commits!
-    * Always name this branch as `feature/{1}-{2}`, where:
+    * This branch is generally used for large changes, and later merged into `master`
+    * This branch is always named `feature/{1}-{2}`, where:
       * `{1}` - The issue ID, padded by four zeroes _(e.g. `0014`, `0007`, `0194`)
       * `{2}` - A brief explanation of the issue (or the title if its deemed short enough), with spaces separated by `-`'s _(e.g. `my-awesome-feature`, `broken-thing-fix`, `include-pictures-of-cats`)_
-    * To re-iterate, bugs can be done here.
+    * WIP feature branches **also accept PRs**
+    * Stale feature branches are usually removed after a few months, as development has obvious been abandoned
 * `hotfix/*` &mdash; Hotfixes
   * Because of the rolling release process, this isn't used.
 * `experimental` &mdash; Here be dragons
+    
+##### PRs
+
+To re-iterate things said above &mdash; in case you were too lazy to read it &mdash; PRs should be merged into `develop`, but can also be merged into a `feature/` branch if its currently active.
     
 ##### Notes
 
