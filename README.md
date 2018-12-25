@@ -11,7 +11,6 @@
     <br>
     Message <a href="https://t.me/clunkerbot">@ClunkerBot</a>
     <br>
-    <br>
-    <a href="https://electricduck.visualstudio.com/ClunkerBot/_apis/build/status/ClunkerBot%20-%20Production"><img src="https://electricduck.visualstudio.com/ClunkerBot/_build/latest?definitionId=1"></a>
+    <a href="https://electricduck.visualstudio.com/ClunkerBot/_build/latest?definitionId=1"><img src="https://electricduck.visualstudio.com/ClunkerBot/_apis/build/status/ClunkerBot%20-%20Production"></a>
   </p>
 </p>
