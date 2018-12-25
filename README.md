@@ -54,7 +54,7 @@ The big thing to note is development takes place in `develop`, not the default `
       * `{1}` - The issue ID, padded by four zeroes _(e.g. `0014`, `0007`, `0194`)
       * `{2}` - A brief explanation of the issue (or the title if its deemed short enough), with spaces separated by `-`'s _(e.g. `my-awesome-feature`, `broken-thing-fix`, `include-pictures-of-cats`)_
     * To re-iterate, bugs can be done here.
-* `hotfix/` &mdash; Hotfixes
+* `hotfix/*` &mdash; Hotfixes
   * Because of the rolling release process, this isn't used.
 * `experimental` &mdash; Here be dragons
     
