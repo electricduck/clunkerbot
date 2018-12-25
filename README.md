@@ -42,10 +42,10 @@ The big thing to note is development takes place in `develop`, not the default `
 
 #### Branches
 
- * `master` &mdash; Production-ready code.
+ * `master` &mdash; Production-ready code
    * Code is only ever merged from `develop`, with the last commit before the merge being "Version X.X.X` (which only includes changes to the files that provide versioning).
    * Changes to areas outside the software's code can be directly commited to here, and later merged into `develop`. This `README.md` file you're looking at usually is modified in the `master` branch, then merged into `develop` when changes are finished.
- * `develop` &mdash; Development area
+ * `develop` &mdash; Development/WIP code
     * This branch is allowed to be in a non-working state **if there is a good reason for it**.
     * Usually things are merged from `feature/*` into here, but commiting directly to it is perfectly acceptable (branching out for tiny feature changes and/or bugfixes is annoying and time-consuming).
  * `feature/*` &mdash; Features/buxfixes
@@ -54,7 +54,7 @@ The big thing to note is development takes place in `develop`, not the default `
       * `{1}` - The issue ID, padded by four zeroes _(e.g. `0014`, `0007`, `0194`)
       * `{2}` - A brief explanation of the issue (or the title if its deemed short enough), with spaces separated by `-`'s _(e.g. `my-awesome-feature`, `broken-thing-fix`, `include-pictures-of-cats`)_
     * To re-iterate, bugs can be done here.
-* `hotfix/` &mdash; Hotfix branch
+* `hotfix/` &mdash; Hotfixes
   * Because of the rolling release process, this isn't used.
 * `experimental` &mdash; Here be dragons
     
