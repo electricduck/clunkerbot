@@ -43,7 +43,7 @@ The big thing to note is development takes place in `develop`, not the default `
 #### Branches
 
  * `master` &mdash; Production-ready code
-   * Code is only ever merged from `develop`, with the last commit before the merge being "Version X.X.X` (which only includes changes to the files that provide versioning).
+   * Code to here is only ever merged from `develop` via a PR with the last commit before the merge including changes to the files that provide versioning, with the message `Version X.X.X`: the PR title should also inclue this message.
    * Changes to areas outside the software's code can be directly commited to here, and later merged into `develop`. This `README.md` file you're looking at usually is modified in the `master` branch, then merged into `develop` when changes are finished.
  * `develop` &mdash; Development/WIP code
     * This branch is allowed to be in a non-working state **if there is a good reason for it**.
