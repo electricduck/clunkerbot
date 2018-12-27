@@ -84,7 +84,7 @@ MPG summary for a <b>{extractedVehicleInfo}</b> <i>({extractedExtendedVehicleInf
 <b>Best:</b> {extractedBestMpg} {presentedUnit}
 <b>Last:</b> {extractedLastMpg} {presentedUnit}
 
-🔗 {pageLink}";
+See more on <a href='{pageLink}'>Fuelly</a>.";
 
                 ImageMessageReturnModel output = new ImageMessageReturnModel {
                     Caption = caption,
