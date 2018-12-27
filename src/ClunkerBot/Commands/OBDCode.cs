@@ -28,9 +28,9 @@ namespace ClunkerBot.Commands
                 } catch {
                     string errorResult = $@"Unable to find code, or unable to scrape data.
                     
-<header>Alternative Resources</header>
-<subitem-bullet><a href='{autoCodesLink}'>AutoCodes</a></subitem-bullet>
-<subitem-bullet><a href='{obdCodesLink}'>OBD-Codes</a></subitem-bullet>";
+<h2>Alternative Resources</h2>
+<li><a href='{autoCodesLink}'>AutoCodes</a></li>
+<li><a href='{obdCodesLink}'>OBD-Codes</a></li>";
 
                     return BuildSoftErrorOutput(errorResult);
                 }
@@ -49,7 +49,7 @@ namespace ClunkerBot.Commands
                             .Substring(0, innerText.IndexOf("&nbsp; What does this mean?"));
                     } catch {}
                     
-                    possibleCauses += $"<subitem-bullet>{innerText}</subitem-bullet>";
+                    possibleCauses += $"<li>{innerText}</li>";
                 }
 
                 foreach(var possibleSymptomsInfoPanelNode in possibleSymptomsInfoPanelNodes) {
@@ -59,7 +59,7 @@ namespace ClunkerBot.Commands
                             .Substring(0, innerText.IndexOf("&nbsp; What does this mean?"));
                     } catch {}
                     
-                    possibleSymptoms += $"<subitem-bullet>{innerText}</subitem-bullet>";
+                    possibleSymptoms += $"<li>{innerText}</li>";
                 }
 
                 if(String.IsNullOrEmpty(possibleCauses)) { possibleCauses = "<i>No Possible Causes</i>"; }
@@ -67,10 +67,10 @@ namespace ClunkerBot.Commands
                 if(String.IsNullOrEmpty(description)) { description = "<i>No Description</i>"; }
 
 
-                string result = $@"<header>Possible Causes</header>
+                string result = $@"<h2>Possible Causes</h2>
 {possibleCauses}
 
-<header>Possible Symptoms</header>
+<h2>Possible Symptoms</h2>
 {possibleSymptoms}
 
 See more at <a href='{autoCodesLink}'>AutoCodes</a> or <a href='{obdCodesLink}'>OBD-Codes</a>.

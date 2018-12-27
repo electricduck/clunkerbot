@@ -34,18 +34,19 @@ namespace ClunkerBot.Commands
                 headerFull = $"{emoji} {headerFull}";
             }
 
+            // TODO: Add <h1> that bolds and uppercases text
             message = message
-                .Replace("header>", "b>")
-                .Replace("subitem>", "i>")
-                .Replace("item>", "b>")
-                .Replace("<subitem-bullet>", "• ")
-                .Replace("</subitem-bullet>", String.Empty)
-                .Replace("<subitem-icon>", String.Empty)
-                .Replace("</subitem-icon>", String.Empty)
-                .Replace("<subtext>", String.Empty)
-                .Replace("</subtext>", String.Empty)
+                .Replace("item>", "b>") // Depricated
+                .Replace("<subitem-icon>", String.Empty) // Depricated
+                .Replace("</subitem-icon>", String.Empty) // Depricated
+                .Replace("<subtext>", String.Empty) // Depricated
+                .Replace("</subtext>", String.Empty) // Depricated
                 .Replace("<footnote>", $"{Separator}" + Environment.NewLine)
-                .Replace("</footnote>", String.Empty);
+                .Replace("</footnote>", String.Empty)
+                .Replace("<li>", "• ")
+                .Replace("</li>", String.Empty)
+                .Replace("h2>", "b>")
+                .Replace("h3>", "i>");
 
             if(String.IsNullOrEmpty(header)) {
                 output = $@"{message}";
