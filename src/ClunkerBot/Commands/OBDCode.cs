@@ -66,6 +66,11 @@ namespace ClunkerBot.Commands
                 if(String.IsNullOrEmpty(possibleSymptoms)) { possibleSymptoms = "<i>No Possible Symptoms</i>"; }
                 if(String.IsNullOrEmpty(description)) { description = "<i>No Description</i>"; }
 
+                var seeMoreLinks = new Dictionary<string, string> {
+                    {autoCodesLink, "AutoCodes"},
+                    {obdCodesLink, "OBD-Codes"}
+                };
+                var seeMoreString = BuildSeeMoreString(seeMoreLinks);
 
                 string result = $@"<h2>Possible Causes</h2>
 {possibleCauses}
@@ -73,7 +78,7 @@ namespace ClunkerBot.Commands
 <h2>Possible Symptoms</h2>
 {possibleSymptoms}
 
-See more at <a href='{autoCodesLink}'>AutoCodes</a> or <a href='{obdCodesLink}'>OBD-Codes</a>.
+{seeMoreString}
 <footnote><i>Data from </i><a href='https://www.autocodes.com/'>AutoCodes</a><i>. Fair usage assumed.</i></footnote>";
 
                 return BuildOutput(result, "Get OBDII Code", "🔌", code.ToUpper());

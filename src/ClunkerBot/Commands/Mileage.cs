@@ -28,8 +28,8 @@ namespace ClunkerBot.Commands
                 string calculatedMileageFormatted = calculatedMileage.ToString("N0");
                 string unit = "Miles";
 
-                string result = $@"<item>Approx. Mileage:</item> {calculatedMileageFormatted.ToString()} {unit}
-<item>For Date:</item> {currentDate.ToString("dd-MMM-yyyy")}";
+                string result = $@"<h2>Approx. Mileage:</h2> {calculatedMileageFormatted.ToString()} {unit}
+<h2>For Date:</h2> {currentDate.ToString("dd-MMM-yyyy")}";
 
                 return BuildOutput(result, "Guess Mileage", "🚘");
             } catch (Exception e) {

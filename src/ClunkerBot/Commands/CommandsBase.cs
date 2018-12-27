@@ -36,11 +36,6 @@ namespace ClunkerBot.Commands
 
             // TODO: Add <h1> that bolds and uppercases text
             message = message
-                .Replace("item>", "b>") // Depricated
-                .Replace("<subitem-icon>", String.Empty) // Depricated
-                .Replace("</subitem-icon>", String.Empty) // Depricated
-                .Replace("<subtext>", String.Empty) // Depricated
-                .Replace("</subtext>", String.Empty) // Depricated
                 .Replace("<footnote>", $"{Separator}" + Environment.NewLine)
                 .Replace("</footnote>", String.Empty)
                 .Replace("<li>", "• ")
