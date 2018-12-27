@@ -12,7 +12,7 @@ using ClunkerBot.Utilities;
 
 namespace ClunkerBot.Commands
 {
-    class Fuelly
+    class Fuelly : CommandsBase
     {
         public static readonly string fuellyBaseUrl = "http://www.fuelly.com";
         public static readonly string fuellyCarProfileUrl = fuellyBaseUrl + "/car/a/a/0/a/";
@@ -76,15 +76,20 @@ namespace ClunkerBot.Commands
                 
                 string presentedUnit = convertedUnits.PresentedUnit;
 
-                var caption = $@"⛽ <i>Get Fuelly:</i> <code>{fuellyId}</code>
-—      
-MPG summary for a <b>{extractedVehicleInfo}</b> <i>({extractedExtendedVehicleInfo})</i>, owned by <b>{extractedProfileName}</b>, with <b>{extractedMilesTracked.ToString()} Miles</b> tracked:
+                var seeMoreLinks = new Dictionary<string, string> {
+                    {pageLink, "Fuelly"}
+                };
+                var seeMoreString = BuildSeeMoreString(seeMoreLinks);
+
+                var captionText = $@"MPG summary for a <b>{extractedVehicleInfo}</b> <i>({extractedExtendedVehicleInfo})</i>, owned by <b>{extractedProfileName}</b>, with <b>{extractedMilesTracked.ToString()} Miles</b> tracked:
 
 <b>Average:</b> {extractedAvgMpg} {presentedUnit}
 <b>Best:</b> {extractedBestMpg} {presentedUnit}
 <b>Last:</b> {extractedLastMpg} {presentedUnit}
 
-See more on <a href='{pageLink}'>Fuelly</a>.";
+{seeMoreString}";
+
+                var caption = BuildOutput(captionText, "Get Fuelly", "⛽", $"<code>{fuellyId}</code>");
 
                 ImageMessageReturnModel output = new ImageMessageReturnModel {
                     Caption = caption,
