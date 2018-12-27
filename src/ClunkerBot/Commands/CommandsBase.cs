@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using ClunkerBot.Utilities;
 
@@ -95,6 +96,20 @@ namespace ClunkerBot.Commands
         public static string BuildSoftErrorOutput(string message)
         {
             return BuildOutput(message, "Oops!", "⚠");
+        }
+
+        public static string BuildSeeMoreString(Dictionary<string, string> links)
+        {
+            string output = "➡️ See more: ";
+
+            foreach(var link in links) {
+                output += $", <a href='{link.Key}'>{link.Value}</a>";
+            }
+
+            output += ".";
+            output = output.Replace(": ,", ":");
+
+            return output;
         }
     }
 }
