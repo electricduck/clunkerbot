@@ -2,12 +2,6 @@ using ClunkerBot.Plates;
 
 namespace ClunkerBot.Models {
     public class Enums : ClunkerBot.Plates.Models.Enums {
-        public enum DePlateFormat {
-            unspecified,
-            yr1956,         // 1956 onwards / Current
-            diplomatic1956  // Diplomatic (1956 onwards)
-        }
-
         public enum DriveTypeEnum {
             FWD, RWD, AWD,
             Unknown

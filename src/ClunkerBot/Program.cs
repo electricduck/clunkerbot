@@ -29,7 +29,7 @@ namespace ClunkerBot
             ConsoleOutputUtilities.DoingConsoleMessage("Setting up application");
             try {
                 SetupApp();
-            } catch(Exception e) {
+            } catch {
                 ConsoleOutputUtilities.ErrorConsoleMessage("Configuration file missing");
                 System.Environment.Exit(1);
             }

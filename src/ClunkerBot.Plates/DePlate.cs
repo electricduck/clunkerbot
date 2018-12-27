@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using ClunkerBot.Models;
-using ClunkerBot.Models.ReturnModels.PlateReturnModels;
+using ClunkerBot.Plates.Models;
+using ClunkerBot.Plates.Models.ReturnModels;
 
-namespace  ClunkerBot.Utilities.PlateUtilities
+namespace  ClunkerBot.Plates
 {
-    public class DePlateUtilities
+    public class DePlate
     {
         private static string Year1956Regex = @"^(([A-Z|Ü|Ö]{1,3})-([A-Z]{1,2})\s?([0-9]{1,4}))$";
         private static string Year1956DiplomaticRegex = @"^(([0]{1})-([0-9]{1,3})-([0-9]{1,3}))$";
@@ -19,15 +19,15 @@ namespace  ClunkerBot.Utilities.PlateUtilities
             plate.Replace(" ", "");
 
             if(Regex.IsMatch(plate, Year1956Regex)) {
-                plateReturn = ParseDeYr1956Plate(plate);
+                plateReturn = ParseYear1956Plate(plate);
                 plateReturn.Valid = true;
             } else if(Regex.IsMatch(plate, Year1956ElectricRegex)) {
-                plateReturn = ParseDeYr1956Plate(plate, true);
+                plateReturn = ParseYear1956Plate(plate, true);
                 plateReturn.Special = "Electric"; // TODO: Find a better way to match this
                 plateReturn.Valid = true;
             } else if(Regex.IsMatch(plate, Year1956DiplomaticRegex)) {
                 plateReturn = new DePlateReturnModel {
-                    Format = Enums.DePlateFormat.diplomatic1956,
+                    Format = Enums.DePlateFormatEnum.diplomatic1956,
                     Valid = true
                 };
             } else {
@@ -39,7 +39,7 @@ namespace  ClunkerBot.Utilities.PlateUtilities
             return plateReturn;
         }
 
-        private static DePlateReturnModel ParseDeYr1956Plate(string plate, bool electricVehicle = false)
+        private static DePlateReturnModel ParseYear1956Plate(string plate, bool electricVehicle = false)
         {
             string locationAndSpecialMnemonic;
 
@@ -56,22 +56,22 @@ namespace  ClunkerBot.Utilities.PlateUtilities
             }
 
             DePlateReturnModel returnModel = new DePlateReturnModel {
-                Format = Enums.DePlateFormat.yr1956,
+                Format = Enums.DePlateFormatEnum.yr1956,
                 Location = "",
                 Special = ""
             };
 
-            if(Post1956DeSpecialMnemonics.ContainsKey(locationAndSpecialMnemonic)) {
+            if(Post1956SpecialMnemonics.ContainsKey(locationAndSpecialMnemonic)) {
                 string special;
 
-                Post1956DeSpecialMnemonics.TryGetValue(locationAndSpecialMnemonic, out special);
+                Post1956SpecialMnemonics.TryGetValue(locationAndSpecialMnemonic, out special);
 
                 returnModel.Special = special;
                 return returnModel;
-            } else if(Post1956DeLocationMnemonics.ContainsKey(locationAndSpecialMnemonic)) {
+            } else if(Post1956LocationMnemonics.ContainsKey(locationAndSpecialMnemonic)) {
                 string location;
 
-                Post1956DeLocationMnemonics.TryGetValue(locationAndSpecialMnemonic, out location);
+                Post1956LocationMnemonics.TryGetValue(locationAndSpecialMnemonic, out location);
 
                 returnModel.Location = location;
                 return returnModel;
@@ -80,7 +80,7 @@ namespace  ClunkerBot.Utilities.PlateUtilities
             }
         }
 
-        private static Dictionary<string, string> Post1956DeSpecialMnemonics = new Dictionary<string, string>()
+        private static Dictionary<string, string> Post1956SpecialMnemonics = new Dictionary<string, string>()
         {
             {"0", "Diplomatic"},
             {"AD", "US Military"},
@@ -108,7 +108,7 @@ namespace  ClunkerBot.Utilities.PlateUtilities
             {"THL", "Thuringia State (Thüringen Land) Official"}
         };
 
-        private static Dictionary<string, string> Post1956DeLocationMnemonics = new Dictionary<string, string>()
+        private static Dictionary<string, string> Post1956LocationMnemonics = new Dictionary<string, string>()
         {
             {"A", "Augsburg, Bavaria"},
             {"AA", "Aalen & Ostalbkreis, Baden-Württemberg"},
