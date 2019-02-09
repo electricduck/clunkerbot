@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://t.me/clunkerbot">
-    <img src="art/icon.png" width="80" height="80">
+    <img src="art/icon.png" width="128" height="128">
   </a>
 
   <h3 align="center">ClunkerBot</h3>
