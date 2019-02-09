@@ -380,9 +380,10 @@ namespace ClunkerBot.Commands
         {
             ParsedPlateMessageReturnModel parsedPlateReturn = new ParsedPlateMessageReturnModel { };
 
-            GgPlateReturnModel plateReturn = GgPlateUtilities.ParseGgPlate(plate);
+            GgPlateReturnModel plateReturn = GgPlate.ParseGgPlate(plate);
 
-            parsedPlateReturn.Flag = "🇬🇬";
+            parsedPlateReturn.CountryCode = plateReturn.CountryCode;
+            parsedPlateReturn.Flag = plateReturn.CountryFlag;
 
             string output = $@"#️⃣ <i>Parse Plate:</i> {parsedPlateReturn.Flag} <code>{plate}</code>
 —
@@ -394,7 +395,6 @@ namespace ClunkerBot.Commands
                 output += "<i>This is an invalid, custom/private, or unsupported Guersney plate. Contact</i> @theducky <i>if you believe it is a standard format.</i>";
             }
 
-            parsedPlateReturn.CountryCode = "gg";
             parsedPlateReturn.FoundMatch = plateReturn.Valid;
             parsedPlateReturn.Message = output;
 
