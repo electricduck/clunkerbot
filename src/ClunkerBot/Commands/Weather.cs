@@ -56,8 +56,10 @@ namespace ClunkerBot.Commands
                 long sunrise = (long)parsedJson["sys"]["sunrise"];
                 long sunset = (long)parsedJson["sys"]["sunset"];
 
-                string parsedSunrise = ConvertUnixTimestampToDateTime(sunrise).ToString("h:mm tt");;
-                string parsedSunset = ConvertUnixTimestampToDateTime(sunset).ToString("h:mm tt");;
+                string parsedSunrise = ConvertUnixTimestampToDateTime(sunrise).ToString("h:mm tt");
+                string parsedSunset = ConvertUnixTimestampToDateTime(sunset).ToString("h:mm tt");
+
+                string timezoneString = "UTC+0";
 
                 string fullLocation = $"{locationName}, {locationCountry}";
                 string icon = GetWeatherIcon(weatherTypeIcon);
@@ -89,8 +91,8 @@ namespace ClunkerBot.Commands
 <h3>Visibility:</h3> {visibility}
 
 <h2>☀️ Day Cycle</h2>
-<h3>Sunrise:</h3> {parsedSunrise}
-<h3>Sunset:</h3> {parsedSunset}";
+<h3>Sunrise:</h3> {parsedSunrise} ({timezoneString})
+<h3>Sunset:</h3> {parsedSunset} ({timezoneString})";
                 }
 
                 return BuildOutput(result, outputHeader, outputEmoji, fullLocation);
