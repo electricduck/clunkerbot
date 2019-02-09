@@ -355,7 +355,7 @@ namespace ClunkerBot.Plates
             } else if(CompareLetters(locationMnemonic, "PA", "PT")) {
                 location = "Preston <i>(Preston)</i>";
             } else if(CompareLetters(locationMnemonic, "PU", "PY")) {
-                location = "Caslisle <i>(Preston)</i>";
+                location = "Carlisle <i>(Preston)</i>";
 
             } else if(CompareLetters(locationMnemonic, "RA", "RT") || CompareLetters(locationMnemonic, "RV", "RY")) {
                 location = "Reading";
