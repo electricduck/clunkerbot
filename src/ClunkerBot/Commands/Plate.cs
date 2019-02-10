@@ -39,6 +39,7 @@ namespace ClunkerBot.Commands
                             var parsedFrPlate = ParseFrPlate(plate);
                             return parsedFrPlate.Message;
                         case "gb":
+                        case "uk":
                             var parsedGbPlate = ParseGbPlate(plate);
                             return parsedGbPlate.Message;
                         case "gg":
@@ -47,6 +48,9 @@ namespace ClunkerBot.Commands
                         case "nl":
                             var parsedNlPlate = ParseNlPlate(plate);
                             return parsedNlPlate.Message;
+                        case "ru":
+                            var parsedRuPlate = ParseRuPlate(plate);
+                            return parsedRuPlate.Message;
                         case "us":
                             var parsedUsPlate = ParseAnyPlate(plate, true);
                             
@@ -102,6 +106,7 @@ namespace ClunkerBot.Commands
                 var parsedGbPlate = ParseGbPlate(plate);
                 var parsedGgPlate = ParseGgPlate(plate);
                 var parsedNlPlate = ParseNlPlate(plate);
+                var parsedRuPlate = ParseRuPlate(plate);
 
                 if(parsedAtPlate.FoundMatch) { matches.Add(parsedAtPlate); }
                 if(parsedDePlate.FoundMatch) { matches.Add(parsedDePlate); }
@@ -109,6 +114,7 @@ namespace ClunkerBot.Commands
                 if(parsedGbPlate.FoundMatch) { matches.Add(parsedGbPlate); }
                 if(parsedGgPlate.FoundMatch) { matches.Add(parsedGgPlate); }
                 if(parsedNlPlate.FoundMatch) { matches.Add(parsedNlPlate); }
+                if(parsedRuPlate.FoundMatch) { matches.Add(parsedRuPlate); }
             }
 
             var parsedUsOhPlate = ParseUsOhPlate(plate);
@@ -477,6 +483,49 @@ namespace ClunkerBot.Commands
             }
 
             parsedPlateReturn.CountryCode = "nl";
+            parsedPlateReturn.FoundMatch = plateReturn.Valid;
+            parsedPlateReturn.Message = output;
+
+            return parsedPlateReturn;
+        }
+
+        private static ParsedPlateMessageReturnModel ParseRuPlate(string plate)
+        {
+            ParsedPlateMessageReturnModel parsedPlateReturn = new ParsedPlateMessageReturnModel { };
+
+            RuPlateReturnModel plateReturn = RuPlate.ParseRuPlate(plate);
+
+            parsedPlateReturn.CountryCode = plateReturn.CountryCode;
+            parsedPlateReturn.Flag = plateReturn.CountryFlag;
+
+            string output = $@"#️⃣ <i>Parse Plate:</i> {parsedPlateReturn.Flag} <code>{plate}</code>
+—
+";
+
+            string locationString;
+            string specialString;
+
+            if(plateReturn.Valid) {
+                if(String.IsNullOrEmpty(plateReturn.Location)) {
+                    locationString = "<i>Unknown</i>";
+                } else {
+                    locationString = plateReturn.Location;
+                }
+
+                if(String.IsNullOrEmpty(plateReturn.Special)) {
+                    specialString = "<i>No</i>";
+                } else {
+                    specialString = plateReturn.Special;
+                }
+
+                if(plateReturn.Format == Enums.RuPlateFormatEnum.Standard1993) {
+                    output += $@"<b>Region:</b> {locationString}
+<b>Format:</b> 1993 onwards";
+                }
+            } else {
+                output += "<i>This is an invalid, custom/private, or unsupported Russian plate. Contact</i> @theducky <i>if you believe it is a standard format.</i>";
+            }
+
             parsedPlateReturn.FoundMatch = plateReturn.Valid;
             parsedPlateReturn.Message = output;
 

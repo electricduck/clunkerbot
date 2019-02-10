@@ -12,5 +12,11 @@ namespace ClunkerBot.Plates.Models {
             yr1956,         // 1956 onwards / Current
             diplomatic1956  // Diplomatic (1956 onwards)
         }
+
+        public enum RuPlateFormatEnum {
+            Unspecified,
+            Standard1993,
+            Diplomatic1993
+        }
     }
 }
