@@ -4,12 +4,18 @@ using System.Text.RegularExpressions;
 using ClunkerBot.Plates.Models;
 using ClunkerBot.Plates.Models.ReturnModels;
 
+// TODO: Add support for diplomatic and military plates
+// SEE: https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_Russia
+
 namespace ClunkerBot.Plates
 {
     public class RuPlate
     {
         private static string Standard1993Regex = @"^(([A|B|E|K|M|H|O|P|C|T|Y|X]{0,2})([0-9]{3,4})([A|B|E|K|M|H|O|P|C|T|Y|X]{0,2})([0-9]{2,3})RUS)$";
-    
+        private static string Standard1993PoliceRegex = @"^(([A|Y|O])([0-9]{4})([0-9]{2,3})RUS)$";
+        private static string Standard1993PublicTransportRegex = "^(([A|B|E|K|M|H|O|P|C|T|Y|X]{2})([0-9]{3})([0-9]{2,3})RUS)$";
+        private static string Standard1993TrailerRegex = "^(([A|B|E|K|M|H|O|P|C|T|Y|X]{2})([0-9]{4})([0-9]{2,3})RUS)$";
+
         public static RuPlateReturnModel ParseRuPlate(string plate)
         {
             RuPlateReturnModel plateReturn = null;
@@ -40,11 +46,34 @@ namespace ClunkerBot.Plates
             string locationCode = match.Groups[5].Value;
 
             string locationString = GetLocationCode(locationCode);
+            string specialString = "";
+
+            if(Regex.IsMatch(plate, Standard1993PoliceRegex))
+            {
+                Regex standard1993PoliceRegex = new Regex(Standard1993PoliceRegex);
+                Match standard1993PoliceMatch = standard1993PoliceRegex.Match(plate);
+
+                var policeType = standard1993PoliceMatch.Groups[2].Value;
+
+                switch(policeType)
+                {
+                    case "A":
+                        specialString = "Police (Traffic)";
+                        break;
+                    case "Y":
+                        specialString = "Police (Patrol)";
+                        break;
+                    case "O":
+                        specialString = "Police";
+                        break;
+                }
+            }
 
             RuPlateReturnModel returnModel = new RuPlateReturnModel
             {
                 Format = Enums.RuPlateFormatEnum.Standard1993,
                 Location = locationString,
+                Special = specialString,
                 Valid = true
             };
 

@@ -520,6 +520,7 @@ namespace ClunkerBot.Commands
 
                 if(plateReturn.Format == Enums.RuPlateFormatEnum.Standard1993) {
                     output += $@"<b>Region:</b> {locationString}
+<b>Special:</b> {specialString}
 <b>Format:</b> 1993 onwards";
                 }
             } else {
