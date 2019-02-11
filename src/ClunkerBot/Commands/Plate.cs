@@ -35,6 +35,9 @@ namespace ClunkerBot.Commands
                         case "de":
                             var parsedDePlate = ParseDePlate(plate);
                             return parsedDePlate.Message;
+                        case "es":
+                            var parsedEsPlate = ParseEsPlate(plate);
+                            return parsedEsPlate.Message;
                         case "fr":
                             var parsedFrPlate = ParseFrPlate(plate);
                             return parsedFrPlate.Message;
@@ -102,6 +105,7 @@ namespace ClunkerBot.Commands
             if(!usOnly) {
                 var parsedAtPlate = ParseAtPlate(plate);
                 var parsedDePlate = ParseDePlate(plate);
+                var parsedEsPlate = ParseEsPlate(plate);
                 var parsedFrPlate = ParseFrPlate(plate);
                 var parsedGbPlate = ParseGbPlate(plate);
                 var parsedGgPlate = ParseGgPlate(plate);
@@ -110,6 +114,7 @@ namespace ClunkerBot.Commands
 
                 if(parsedAtPlate.FoundMatch) { matches.Add(parsedAtPlate); }
                 if(parsedDePlate.FoundMatch) { matches.Add(parsedDePlate); }
+                if(parsedEsPlate.FoundMatch) { matches.Add(parsedEsPlate); }
                 if(parsedFrPlate.FoundMatch) { matches.Add(parsedFrPlate); }
                 if(parsedGbPlate.FoundMatch) { matches.Add(parsedGbPlate); }
                 if(parsedGgPlate.FoundMatch) { matches.Add(parsedGgPlate); }
@@ -236,6 +241,57 @@ namespace ClunkerBot.Commands
             }
 
             parsedPlateReturn.CountryCode = "de";
+            parsedPlateReturn.FoundMatch = plateReturn.Valid;
+            parsedPlateReturn.Message = output;
+
+            return parsedPlateReturn;
+        }
+
+        private static ParsedPlateMessageReturnModel ParseEsPlate(string plate)
+        {
+            ParsedPlateMessageReturnModel parsedPlateReturn = new ParsedPlateMessageReturnModel { };
+
+            EsPlateReturnModel plateReturn = EsPlate.ParseEsPlate(plate);
+
+            parsedPlateReturn.CountryCode = plateReturn.CountryCode;
+            parsedPlateReturn.Flag = plateReturn.CountryFlag;
+
+            string output = $@"#️⃣ <i>Parse Plate:</i> {parsedPlateReturn.Flag} <code>{plate}</code>
+—
+";
+
+            string locationString;
+            string specialString;
+
+            if(plateReturn.Valid) {
+                if(String.IsNullOrEmpty(plateReturn.Location)) {
+                    locationString = "<i>Unknown</i>";
+                } else {
+                    locationString = plateReturn.Location;
+                }
+
+                if(String.IsNullOrEmpty(plateReturn.Special)) {
+                    specialString = "<i>No</i>";
+                } else {
+                    specialString = plateReturn.Special;
+                }
+
+                switch(plateReturn.Format)
+                {
+                    case Enums.EsPlateFormatEnum.Standard2000:
+                        output += $@"<b>Format:</b> 2000 onwards";
+                        break;
+                    case Enums.EsPlateFormatEnum.Standard1971:
+                        output += $@"<b>Format:</b> 1971 onwards";
+                        break;
+                    case Enums.EsPlateFormatEnum.Standard1900:
+                        output += $@"<b>Format:</b> 1900 onwards";
+                        break;
+                };
+            } else {
+                output += "<i>This is an invalid, custom/private, or unsupported Spanish plate. Contact</i> @theducky <i>if you believe it is a standard format.</i>";
+            }
+
             parsedPlateReturn.FoundMatch = plateReturn.Valid;
             parsedPlateReturn.Message = output;
 
@@ -395,8 +451,26 @@ namespace ClunkerBot.Commands
 —
 ";
 
+            string issueString;
+            string specialString;
+
             if(plateReturn.Valid) {
-                output += $"<b>Issue No.:</b> {plate}";
+                if(String.IsNullOrEmpty(plateReturn.Special)) {
+                    specialString = "<i>No</i>";
+                } else {
+                    specialString = plateReturn.Special;
+                }
+
+                issueString = plateReturn.Issue;
+
+                switch(plateReturn.Format)
+                {
+                    case Enums.GgPlateFormatEnum.Standard1908:
+                        output += $@"<b>Issue No.:</b> {issueString}
+<b>Special:</b> {specialString}
+<b>Format:</b> 1908 onwards";
+                        break;
+                }
             } else {
                 output += "<i>This is an invalid, custom/private, or unsupported Guersney plate. Contact</i> @theducky <i>if you believe it is a standard format.</i>";
             }
@@ -518,10 +592,13 @@ namespace ClunkerBot.Commands
                     specialString = plateReturn.Special;
                 }
 
-                if(plateReturn.Format == Enums.RuPlateFormatEnum.Standard1993) {
-                    output += $@"<b>Region:</b> {locationString}
+                switch(plateReturn.Format)
+                {
+                    case Enums.RuPlateFormatEnum.Standard1993:
+                        output += $@"<b>Region:</b> {locationString}
 <b>Special:</b> {specialString}
 <b>Format:</b> 1993 onwards";
+                        break;
                 }
             } else {
                 output += "<i>This is an invalid, custom/private, or unsupported Russian plate. Contact</i> @theducky <i>if you believe it is a standard format.</i>";
