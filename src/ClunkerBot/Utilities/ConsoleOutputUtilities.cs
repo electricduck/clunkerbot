@@ -15,7 +15,7 @@ namespace ClunkerBot.Utilities
             string currentDateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.ffff zzz");
 
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"➡️ {currentDateTime} | {telegramMessageEvent.Message.Chat.Id} ({telegramMessageEvent.Message.Chat.Username}) | {telegramMessageEvent.Message.From.Id} ({telegramMessageEvent.Message.From.Username})");
+            Console.WriteLine($"🔻 {currentDateTime} | {telegramMessageEvent.Message.Chat.Id} ({telegramMessageEvent.Message.Chat.Username}) | {telegramMessageEvent.Message.From.Id} ({telegramMessageEvent.Message.From.Username})");
             ResetConsoleColor();
             Console.WriteLine($"{telegramMessageEvent.Message.Text}");
         }
@@ -25,7 +25,7 @@ namespace ClunkerBot.Utilities
             string currentDateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.ffff zzz");
 
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"⬅️ {currentDateTime} | {telegramMessageEvent.Message.Chat.Id} ({telegramMessageEvent.Message.Chat.Username}) | {telegramMessageEvent.Message.From.Id} ({telegramMessageEvent.Message.From.Username})");
+            Console.WriteLine($"🔺 {currentDateTime} | {telegramMessageEvent.Message.Chat.Id} ({telegramMessageEvent.Message.Chat.Username}) | {telegramMessageEvent.Message.From.Id} ({telegramMessageEvent.Message.From.Username})");
             ResetConsoleColor();
             Console.WriteLine($"{message}");
         }
