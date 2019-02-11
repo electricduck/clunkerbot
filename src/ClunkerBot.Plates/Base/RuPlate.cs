@@ -20,6 +20,8 @@ namespace ClunkerBot.Plates
         {
             RuPlateReturnModel plateReturn = null;
 
+            plate = plate.Replace(" ", "");
+
             if(Regex.IsMatch(plate, Standard1993Regex))
             {
                 plateReturn = ParseStandard1993Plate(plate);
