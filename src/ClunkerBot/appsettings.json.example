@@ -1,5 +1,6 @@
 {
     "apiKeys": {
+        "openWeatherMap": "...",
         "telegram": "..."
     },
     "config": {

@@ -2,6 +2,7 @@ using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using ClunkerBot.Data;
 
 namespace ClunkerBot.Services
 {
@@ -9,7 +10,7 @@ namespace ClunkerBot.Services
     {
         public async Task<string> QueryApiAsync(string path, string query)
         {
-            var appKey = "7fc759bc9df13af2c7550660ec8ff4ee";
+            var appKey = AppSettings.ApiKeys_OpenWeatherMap;
 
             using (var client = new HttpClient())
             {
