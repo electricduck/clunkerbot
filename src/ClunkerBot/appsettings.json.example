@@ -8,5 +8,8 @@
             "repeat": false
         },
         "botUsername": "@CarPups_bot"
+    },
+    "endpoints": {
+        "plate.wtf": "https://plate.wtf"
     }
 }
