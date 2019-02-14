@@ -64,7 +64,7 @@ To get additional help about the modules below (such as what arguments they acce
 <code>&lt;1&gt;</code> <b>Plate</b> - The vehicle's numberplate, void of spaces. Tags/seals/stickers must be separated by a '-' <i>(e.g. N161CWW, 15210, AN-US69)</i>
 <code>&lt;2&gt;</code> <b>Country</b> <i>Optional</i> - The <a href='https://en.wikipedia.org/wiki/ISO_3166-1#Current'>ISO 3166-1</a> country code. Not supplying a CC will cause the parser to try and guess (you will be prompted to specify the CC when mulitple matches are found). <i>(e.g. gb, fr, nl)</i>*
 
-<b>*</b> <i>Supported: at**, de, fr**, jp, gb/uk, gg, nl**, ru.</i>
+<b>*</b> <i>Supported: at**, de, fr**, gb/uk, gg, jp, nl**, ru.</i>
 <b>**</b> <i>Some formats not supported yet.</i>";
 
         public static string Weather_Get = @"<code>/getweather &lt;∞&gt; &lt;[2]&gt;</code>
