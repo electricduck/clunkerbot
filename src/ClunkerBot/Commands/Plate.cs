@@ -105,13 +105,13 @@ namespace ClunkerBot.Commands
                                 break;
                             case 31:
                                 result += RenderDetailLine("Issue No.", plateInfo_Issue);
-                                info = "This is a trade plate, licensed to motor traders and vehicle testers, permitting the use of an untaxed vehicle on the public highway with certain restrictions.";
+                                info = "Licensed to motor traders and vehicle testers, permitting the use of an untaxed vehicle on the public highway with certain restrictions.";
                                 break;
                             case 32:
                                 result += RenderDetailLine("Diplomatic Org.", plateInfo_Diplomatic_Organisation);
                                 result += RenderDetailLine("Diplomatic Type", plateInfo_Diplomatic_Type);
                                 result += RenderDetailLine("Diplomatic Rank", plateInfo_Diplomatic_Rank);
-                                info = "This is a diplomatic plate, found on cars used by foreign embassies, high commissions, consulates and international organisations. The cars themselves are usually not personally owned.";
+                                info = "Found on vehicles used by foreign embassies, high commissions, consulates and international organisations. The vehicles themselves are usually not personally owned.";
                                 break;
 
                             // GG
@@ -125,12 +125,33 @@ namespace ClunkerBot.Commands
                                 result += RenderDetailLine("Region", plateInfo_Region);
                                 result += RenderDetailLine("Vehicle", plateInfo_VehicleType);
                                 result += RenderDetailLine("Special", plateInfo_Special);
-                                info = "This is an out-of-country plate, issued to Japanese citizens for internationl travel &mdash; the Japanese writing system is considered unacceptable outside of Japan, as they are not easily identifiable to local authorities.";
+                                info = "Issued to Japanese citizens for internationl travel &mdash; the Japanese writing system is considered unacceptable outside of Japan, as they are not easily identifiable to local authorities.";
                                 break;
                             case 33: // TODO: Fix Japanese chars not being sent
                                 result += RenderDetailLine("Region", plateInfo_Region);
                                 result += RenderDetailLine("Vehicle", plateInfo_VehicleType);
                                 result += RenderDetailLine("Special", plateInfo_Special);
+                                break;
+
+                            // LT
+                            case 35:
+                                result += RenderDetailLine("Region", plateInfo_Region);
+                                break;
+                            case 36:
+                                info = "Temporary plate used for vehicles imported and exported to/from Lithuania, only valid for 90 days.";
+                                break;
+                            case 37:
+                                info = "Licensed to motor traders and vehicle testers, permitting the use of an untaxed vehicle on the public highway with certain restrictions.";
+                                break;
+                            case 38:
+                                result += RenderDetailLine("Diplomatic Org.", plateInfo_Diplomatic_Organisation);
+                                info = "Found on vehicles used by foreign embassies, high commissions, consulates and international organisations. The vehicles themselves are usually not personally owned.";
+                                break;
+                            case 39:
+                                info = "Found on taxis and private-hire vehicles.";
+                                break;
+                            case 40:
+                                info = "Found on vehicles used in the military for transport on public roads";
                                 break;
 
                             // NL
