@@ -139,7 +139,7 @@ namespace ClunkerBot.Commands
 <b>Available Variations</b>
 {additionalOutput}";
             }
-            catch
+            catch // TODO: Properly handle no results
             {
                 output += $@"<b>{plate}</b> is unavilable.";
             }
