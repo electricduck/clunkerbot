@@ -22,6 +22,7 @@ namespace ClunkerBot.Commands
 
                 switch(country) {
                     case "gb":
+                    case "uk":
                         return FindGbAvailablePlate(plate);
                     default:
                         return $@"🔎 <i>Find Available Plate:</i> ❓ <code>{plate}</code>
