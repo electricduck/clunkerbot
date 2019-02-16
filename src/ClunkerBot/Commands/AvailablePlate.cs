@@ -141,7 +141,7 @@ namespace ClunkerBot.Commands
             }
             catch // TODO: Properly handle no results
             {
-                output += $@"<b>{plate}</b> is unavilable.";
+                output += $@"<b>{plate}</b> is unavailable.";
             }
 
             return output;
