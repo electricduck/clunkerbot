@@ -114,6 +114,14 @@ namespace ClunkerBot.Commands
                                 info = "Found on vehicles used by foreign embassies, high commissions, consulates and international organisations. The vehicles themselves are usually not personally owned.";
                                 break;
 
+                            // GB-NIR
+                            case 41:
+                                result += RenderDetailLine("Region", plateInfo_Region);
+                                result += RenderDetailLine("Issue No.", plateInfo_Issue);
+                                result += RenderDetailLine("Special", plateInfo_Special);
+                                info = "Northern Ireland, although part of Great Britain, has its own plate format.";
+                                break;
+
                             // GG
                             case 5:
                                 result += RenderDetailLine("Issue No.", plateInfo_Issue);

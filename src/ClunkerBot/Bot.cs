@@ -205,7 +205,7 @@ namespace ClunkerBot
 
                         if(arguments.Length == 1) {
                             parsePlateOutput = Plate.Parse(arguments[0]);
-                        } else if (arguments.Length == 2) {
+                        } else if (arguments.Length == 2 || arguments.Length == 6) {
                             parsePlateOutput = Plate.Parse(arguments[0], arguments[1]);
                         } else {
                             MessageApi.SendTextMessage(HelpData.GetHelp("parseplate"), Program.BotClient, telegramMessageEvent);
