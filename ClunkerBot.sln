@@ -7,8 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{DE12287C-DE8
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClunkerBot", "src\ClunkerBot\ClunkerBot.csproj", "{2DE62820-E1F3-4F0C-B048-22DF7DC9E5C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClunkerBot.Plates", "src\ClunkerBot.Plates\ClunkerBot.Plates.csproj", "{25AD1D30-CC79-4DCB-925B-6C192C5A84FC}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
