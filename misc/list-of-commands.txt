@@ -18,5 +18,6 @@ journeyprice - Alias for /calculatejourneyprice
 mileage - Alias for /guessmileage
 obd - Alias for /getobdcode
 obd2 - Alias for /getobdcode
+plate - Alias for /parseplate
 tripprice - Alias for /calculatejourneyprice
 weather - Alias for /getweather

@@ -113,6 +113,7 @@ To get additional help about the modules below (such as what arguments they acce
             HelpDictionary.Add("mileage", Mileage_Guess);
 
             HelpDictionary.Add("parseplate", Plate_Parse);
+            HelpDictionary.Add("plate", Plate_Parse);
         }
 
         public static string GetHelp(string command, bool incorrectFormatWarning = false)

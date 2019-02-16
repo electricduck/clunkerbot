@@ -201,6 +201,7 @@ namespace ClunkerBot
                         MessageApi.SendTextMessage(infoOutput, Program.BotClient, telegramMessageEvent);
                     break;
                 case "parseplate":
+                case "plate";
                         string parsePlateOutput = "";
 
                         if(arguments.Length == 1) {
