@@ -133,7 +133,7 @@ namespace ClunkerBot.Commands
                                 result += RenderDetailLine("Region", plateInfo_Region);
                                 result += RenderDetailLine("Vehicle", plateInfo_VehicleType);
                                 result += RenderDetailLine("Special", plateInfo_Special);
-                                info = "Issued to Japanese citizens for internationl travel &mdash; the Japanese writing system is considered unacceptable outside of Japan, as they are not easily identifiable to local authorities.";
+                                info = "Issued to Japanese citizens for internationl travel — the Japanese writing system is considered unacceptable outside of Japan, as they are not easily identifiable to local authorities.";
                                 break;
                             case 33: // TODO: Fix Japanese chars not being sent
                                 result += RenderDetailLine("Region", plateInfo_Region);
