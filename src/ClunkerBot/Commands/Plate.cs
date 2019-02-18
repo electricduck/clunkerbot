@@ -78,6 +78,12 @@ namespace ClunkerBot.Commands
                                 result += RenderDetailLine("Special", plateInfo_Special);
                                 break;
 
+                            // DE
+                            case 7:
+                                result += RenderDetailLine("Region", plateInfo_Region);
+                                result += RenderDetailLine("Special", plateInfo_Special);
+                                break;
+
                             // FR
                             case 10:
                                 result += RenderDetailLine("Reg. Department", plateInfo_Region);
