@@ -1,3 +1,4 @@
+ask - <Question>
 awoo - No.
 calculate0to60 - <Power> <Weight> <Drive Type> <Transmission>
 calculatejourneyprice - <Distance> <MPG> <Fuel Price>
@@ -20,4 +21,5 @@ obd - Alias for /getobdcode
 obd2 - Alias for /getobdcode
 plate - Alias for /parseplate
 tripprice - Alias for /calculatejourneyprice
+wa - Alias for /ask
 weather - Alias for /getweather

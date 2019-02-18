@@ -38,6 +38,21 @@ namespace ClunkerBot
 
                 //         MessageApi.SendTextMessage(addCarToGarageOutput, Program.BotClient, telegramMessageEvent);
                 //     break;
+                case "ask":
+                case "wa":
+                        string askOutput = "";
+
+                        if(joinedArguments.Length > 0)
+                        {
+                            askOutput = WolframAlpha.Ask(joinedArguments);
+                        }
+                        else
+                        {
+                            MessageApi.SendTextMessage(HelpData.GetHelp("ask"), Program.BotClient, telegramMessageEvent);
+                        }
+
+                        MessageApi.SendTextMessage(askOutput, Program.BotClient, telegramMessageEvent);
+                    break;
                 case "awoo":
                         string awooOutput;
 
@@ -158,7 +173,7 @@ namespace ClunkerBot
                         var getWeather_RequstedLocation = joinedArguments
                             .Replace(getWeather_fullDetailsTrigger, String.Empty);
 
-                        // IDEA: Add some way of forcing C/F/K only?
+                        // TODO: Add some way of forcing C/F/K only?
                         if(joinedArguments.Contains(getWeather_fullDetailsTrigger)) {
                             getWeatherOutput = Weather.Get(getWeather_RequstedLocation, false);
                         } else {

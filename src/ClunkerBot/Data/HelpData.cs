@@ -21,6 +21,7 @@ To get additional help about the modules below (such as what arguments they acce
 <code>/parseplate</code> - Parse number/license plate and &quot;decode&quot; it
 
 <b>Misc. Utilities</b>
+<code>/ask</code> - Anything you want to calculate or known about
 <code>/getweather</code> - Get weather for a location
 
 <b>Meta</b>
@@ -72,6 +73,12 @@ To get additional help about the modules below (such as what arguments they acce
 <code>&lt;∞&gt;</code> <b>Location</b> - Location of requested weather, expressed by city name, long/lat, postcode/zipcode, etc. <i>(e.g. new york; london, uk; paris, france)</i>
 <code>&lt;2&gt;</code> <b>Full Details?</b> <i>(Optional)</i> - If you want more details, use <b>full</b>.";
 
+        public static string WolframAlpha_Ask = @"<code>/ask &lt;∞&gt;</code>
+—
+<code>&lt;∞&gt;</code> <b>Query</b> - Anything you want to calculate or known about
+
+<i>Data provided by:</i> <a href='https://www.wolframalpha.com/'>Wolfram|Alpha</a>.";
+
         public static string ZeroToSixty_Calculate = @"<code>/calculate0to60 &lt;1&gt; &lt;2&gt; &lt;3&gt; &lt;4&gt; &lt;[5]&gt; &lt;[6]&gt;</code>
 —
 <code>&lt;1&gt;</code> <b>Power</b> - Vehicle power at the flywheel, with optional unit (<b>hp</b>, <b>ps</b>, or <b>kw</b> — defaults to <b>hp</b> with no unit) <i>(e.g. 64hp, 123ps, 250kw, 329)</i>
@@ -85,6 +92,9 @@ To get additional help about the modules below (such as what arguments they acce
         public static void CompileHelpDictionary()
         {
             HelpDictionary.Add("help", Help);
+
+            HelpDictionary.Add("ask", WolframAlpha_Ask);
+            HelpDictionary.Add("wa", WolframAlpha_Ask);
 
             HelpDictionary.Add("calculate0to60", ZeroToSixty_Calculate);
             HelpDictionary.Add("0to60", ZeroToSixty_Calculate);
