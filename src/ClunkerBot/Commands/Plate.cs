@@ -222,7 +222,7 @@ namespace ClunkerBot.Commands
                         string matchedPlate_CountryFlag = (string)matchedPlate["country"]["flag"];
                         string matchedPlate_Plate = (string)matchedPlate["parsed"];
 
-                        multipleMatchesMessage += $@"• <b>{matchedPlate_CountryFlag} {matchedPlate_CountryCode.ToUpper()}:</b> <code>/parseplate {matchedPlate_Plate} {matchedPlate_CountryCode.ToLower()}</code>{Environment.NewLine}";
+                        multipleMatchesMessage += $@"<li> <b>{matchedPlate_CountryFlag} {matchedPlate_CountryCode.ToUpper()}:</b> <code>/parseplate {matchedPlate_Plate} {matchedPlate_CountryCode.ToLower()}</code></li>{Environment.NewLine}";
                     }
 
                     result = $@"<b>Multiple matches found</b>
