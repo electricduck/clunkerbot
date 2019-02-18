@@ -72,6 +72,18 @@ namespace ClunkerBot.Commands
 
                         switch(plateInfo_FormatEnum)
                         {
+                            // AL
+                            case 42:
+                                break;
+                            case 43:
+                                result += RenderDetailLine("Region", plateInfo_Region);
+                                result += RenderDetailLine("Special", plateInfo_Special);
+                                break;
+                            case 44:
+                                result += RenderDetailLine("Diplomatic Org.", plateInfo_Diplomatic_Organisation);
+                                info = "Found on vehicles used by foreign embassies, high commissions, consulates and international organisations. The vehicles themselves are usually not personally owned.";
+                                break;
+
                             // AT
                             case 6:
                                 result += RenderDetailLine("Reg. Office", plateInfo_Region);
