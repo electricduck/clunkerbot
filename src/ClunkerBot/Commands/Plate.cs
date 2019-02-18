@@ -205,7 +205,7 @@ namespace ClunkerBot.Commands
                     }
                     else
                     {
-                        result = $"<i>This is an invalid, custom/private, or unsupported plate for {plateCountry_Name}. Contact</i> @theducky <i>if you believe it is a standard format.</i>";
+                        result = $"<i>This is an invalid, custom/private, or unsupported plate for {plateCountry_Name}. Contact</i> @theducky <i>if you believe it is a valid format.</i>";
                     }
                 }
                 else if(matchedPlatesCount == 0)
