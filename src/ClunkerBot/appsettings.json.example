@@ -1,7 +1,8 @@
 {
     "apiKeys": {
         "openWeatherMap": "...",
-        "telegram": "..."
+        "telegram": "...",
+        "wolframAlpha": "..."
     },
     "config": {
         "awoo": {

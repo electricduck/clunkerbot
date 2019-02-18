@@ -10,7 +10,7 @@ namespace ClunkerBot.Services
     {
         public async Task<string> QueryApiAsync(string query)
         {
-            var appId = "733HVW-WRQHW5HE79";
+            var appId = AppSettings.ApiKeys_WolframAlpha;
 
             using (var client = new HttpClient())
             {
