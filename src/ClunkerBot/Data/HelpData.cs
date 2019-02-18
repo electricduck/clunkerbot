@@ -21,7 +21,7 @@ To get additional help about the modules below (such as what arguments they acce
 <code>/parseplate</code> - Parse number/license plate and &quot;decode&quot; it
 
 <b>Misc. Utilities</b>
-<code>/ask</code> - Anything you want to calculate or known about
+<code>/ask</code> - Anything you want to calculate or know about
 <code>/getweather</code> - Get weather for a location
 
 <b>Meta</b>
@@ -75,9 +75,9 @@ To get additional help about the modules below (such as what arguments they acce
 
         public static string WolframAlpha_Ask = @"<code>/ask &lt;∞&gt;</code>
 —
-<code>&lt;∞&gt;</code> <b>Query</b> - Anything you want to calculate or known about
+<code>&lt;∞&gt;</code> <b>Query</b> - Anything you want to calculate or know about
 
-<i>Data provided by:</i> <a href='https://www.wolframalpha.com/'>Wolfram|Alpha</a>.";
+<i>Data provided by:</i> <a href='https://www.wolframalpha.com/'>Wolfram|Alpha</a>";
 
         public static string ZeroToSixty_Calculate = @"<code>/calculate0to60 &lt;1&gt; &lt;2&gt; &lt;3&gt; &lt;4&gt; &lt;[5]&gt; &lt;[6]&gt;</code>
 —
