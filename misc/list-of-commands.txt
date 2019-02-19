@@ -1,5 +1,6 @@
 ask - <Question>
 awoo - No.
+brexit - (No arguments)
 calculate0to60 - <Power> <Weight> <Drive Type> <Transmission>
 calculatejourneyprice - <Distance> <MPG> <Fuel Price>
 findavailableplate - <Plate> <[Country]>
@@ -8,6 +9,7 @@ getobdcode - <OBDII Code>
 getweather - <Location>
 guessmileage - <Date Registered> <Last MOT Mileage> <[Last MOT Date]>
 help - <[Module]>
+info - (No arguments)
 parseplate - <Plate> <[Country]>
 0to60 - Alias for /calculate0to60
 findplate - Alias for /findavailableplate

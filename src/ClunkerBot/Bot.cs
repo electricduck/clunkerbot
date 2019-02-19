@@ -65,6 +65,10 @@ namespace ClunkerBot
 
                         MessageApi.SendTextMessage(awooOutput, Program.BotClient, telegramMessageEvent);
                     break;
+                case "brexit":
+                        string brexitOutput = Brexit.TimeUntil();
+                        MessageApi.SendTextMessage(brexitOutput, Program.BotClient, telegramMessageEvent);
+                    break;
                 case "calculate0to60":
                 case "0to60":
                         string calculate0To60Output = "";

@@ -22,6 +22,7 @@ To get additional help about the modules below (such as what arguments they acce
 
 <b>Misc. Utilities</b>
 <code>/ask</code> - Anything you want to calculate or know about
+<code>/brexit</code> - Time until Brexit
 <code>/getweather</code> - Get weather for a location
 
 <b>Meta</b>
@@ -93,21 +94,18 @@ To get additional help about the modules below (such as what arguments they acce
         {
             HelpDictionary.Add("help", Help);
 
-            HelpDictionary.Add("ask", WolframAlpha_Ask);
-            HelpDictionary.Add("wa", WolframAlpha_Ask);
-
             HelpDictionary.Add("calculate0to60", ZeroToSixty_Calculate);
             HelpDictionary.Add("0to60", ZeroToSixty_Calculate);
-
-            HelpDictionary.Add("calculatejourneyprice", JourneyPrice_Calculate);
-            HelpDictionary.Add("journeyprice", JourneyPrice_Calculate);
-            HelpDictionary.Add("tripprice", JourneyPrice_Calculate);
             
             HelpDictionary.Add("findavailableplate", AvailablePlate_Find);
             HelpDictionary.Add("findplate", AvailablePlate_Find);
 
             HelpDictionary.Add("getfuelly", Fuelly_Get);
             HelpDictionary.Add("fuelly", Fuelly_Get);
+
+            HelpDictionary.Add("calculatejourneyprice", JourneyPrice_Calculate);
+            HelpDictionary.Add("journeyprice", JourneyPrice_Calculate);
+            HelpDictionary.Add("tripprice", JourneyPrice_Calculate);
 
             HelpDictionary.Add("getobdcode", OBDCode_Get);
             HelpDictionary.Add("getobd", OBDCode_Get);
@@ -116,14 +114,17 @@ To get additional help about the modules below (such as what arguments they acce
             HelpDictionary.Add("getobd2", OBDCode_Get);
             HelpDictionary.Add("obd2", OBDCode_Get);
 
-            HelpDictionary.Add("getweather", Weather_Get);
-            HelpDictionary.Add("weather", Weather_Get);
-
             HelpDictionary.Add("guessmileage", Mileage_Guess);
             HelpDictionary.Add("mileage", Mileage_Guess);
 
             HelpDictionary.Add("parseplate", Plate_Parse);
             HelpDictionary.Add("plate", Plate_Parse);
+
+            HelpDictionary.Add("getweather", Weather_Get);
+            HelpDictionary.Add("weather", Weather_Get);
+
+            HelpDictionary.Add("ask", WolframAlpha_Ask);
+            HelpDictionary.Add("wa", WolframAlpha_Ask);
         }
 
         public static string GetHelp(string command, bool incorrectFormatWarning = false)
