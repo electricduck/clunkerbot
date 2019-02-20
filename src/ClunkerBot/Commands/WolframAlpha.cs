@@ -98,9 +98,16 @@ namespace ClunkerBot.Commands
             {"BuildingData", "🗽"},
             {"CityData", "🏙️"},
             {"CommonSymbol", "🔣"},
+            {"ConversionToOtherUnits", "🔢"},
+            {"CountryData", "🌍"},
+            {"DictionaryLookup", "📗"},
             {"FinancialData", "💵"},
+            {"GivenNameData", "🧑"},
+            {"NameData", "🧑"},
             {"Result", "🔢"},
-            {"UnitConversion", "↔️"}
+            {"UnitConversion", "↔️"},
+            {"WeatherData", "🌥️"},
+            {"WordData", "🔤"}
         };
     }
 }
