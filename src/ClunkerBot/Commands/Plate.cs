@@ -146,6 +146,12 @@ namespace ClunkerBot.Commands
                                 result += RenderDetailLine("Special", plateInfo_Special);
                                 break;
 
+                            // HU
+                            case 45:
+                                result += RenderDetailLine("Registration Year", plateInfo_RegistrationYear);
+                                result += RenderDetailLine("Special", plateInfo_Special);
+                                break;
+
                             // JP
                             case 34:
                                 result += RenderDetailLine("Region", plateInfo_Region);
