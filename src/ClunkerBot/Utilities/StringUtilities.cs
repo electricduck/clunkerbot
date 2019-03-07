@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -27,6 +28,41 @@ namespace ClunkerBot.Utilities
         {
             MatchCollection collection = Regex.Matches(s, @"[\S]+");
             return collection.Count;
+        }
+
+        public static string EmojiForCountry(string code)
+        {
+            switch(code)
+            {
+                case "gb":
+                case "uk":
+                    return "🇬🇧 gb/uk";
+            }
+
+            return code;
+        }
+
+        public static string EmojiForCountryList(string[] codeList)
+        {
+            string result = "";
+
+            for (int i = 0; i < codeList.Count(); i++) {
+                if (i == codeList.Count() - 1)
+                {
+                    result = $"";
+                }
+                else
+                {
+
+                }
+            }
+
+            foreach(string code in codeList)
+            {
+                result += EmojiForCountry(code);
+            }
+
+            return result;
         }
     }
 }
