@@ -58,6 +58,7 @@ namespace ClunkerBot.Commands
                         string plateInfo_Issue = (string)plateInfo["issue"];
                         string plateInfo_Region = (string)plateInfo["region"];
                         string plateInfo_RegistrationYear = (string)plateInfo["registrationYear"];
+                        string plateInfo_Series = (string)plateInfo["series"];
                         string plateInfo_Special = (string)plateInfo["special"];
                         string plateInfo_VehicleType = (string)plateInfo["vehicleType"];
 
@@ -94,6 +95,23 @@ namespace ClunkerBot.Commands
                             case 7:
                                 result += RenderDetailLine("Region", plateInfo_Region);
                                 result += RenderDetailLine("Special", plateInfo_Special);
+                                break;
+
+                            // FI
+                            case 46:
+                                result += RenderDetailLine("Region", plateInfo_Region);
+                                result += RenderDetailLine("Issue", $"{plateInfo_Issue} [{plateInfo_Series}]");
+                                break;
+                            case 47:
+                                result += RenderDetailLine("Issue", $"{plateInfo_Issue} [{plateInfo_Series}]");
+                                result += RenderDetailLine("Vehicle Type", plateInfo_VehicleType);
+                                break;
+                            case 48:
+                                result += RenderDetailLine("Issue", $"{plateInfo_Issue} [{plateInfo_Series}]");
+                                info = "Temporary plate used for vehicles exported to/from Finland.";
+                                break;
+                            case 49:
+                                info = "Found on vehicles used by foreign embassies, high commissions, consulates and international organisations. The vehicles themselves are usually not personally owned.";
                                 break;
 
                             // FR
@@ -147,7 +165,7 @@ namespace ClunkerBot.Commands
                                 break;
 
                             // HU
-                            case 45:
+                            case 50:
                                 result += RenderDetailLine("Registration Year", plateInfo_RegistrationYear);
                                 result += RenderDetailLine("Special", plateInfo_Special);
                                 break;
@@ -268,12 +286,19 @@ namespace ClunkerBot.Commands
                 {
                     content = "<i>Unknown</i>";
                 }
+
+                if(name == "Vehicle Type")
+                {
+                    content = "<em>Unknown</em>";
+                }
             }
 
             content = content
                 .ToString()
                 .Replace("(", "<i>(")
-                .Replace(")", ")</i>");
+                .Replace(")", ")</i>")
+                .Replace("[", "(")
+                .Replace("]", ")");
 
             return $"<b>{name}:</b> {content}{Environment.NewLine}";
         }
