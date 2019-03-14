@@ -23,11 +23,11 @@ namespace ClunkerBot.Commands
 
             if(deadline < DateTime.Now)
             {
-                result = "<b>Fuck.</b>";
+                result = "<b>FUD!</b>";
             }
             else
             {
-                result = timeUntil.ToString("'<b>'d'</b> Days <b>'h'</b> Hours <b>'m'</b> Minutes <b>'s'</b> Seconds'");
+                result = timeUntil.ToString("'<b>'d'</b> Days <b>'h'</b> Hours <b>'m'</b> Minutes <b>'s'</b> Seconds, <i>maybe?</i>'");
             }
 
             return BuildOutput(result, "Time Until Brexit", "🇬🇧");
