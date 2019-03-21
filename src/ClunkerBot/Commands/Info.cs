@@ -32,7 +32,7 @@ namespace ClunkerBot.Commands
                     opsys = "Linux";
                 }
 
-                string result = $@"<b>ClunkerBot</b> v{AppVersion.FullVersion}
+                string result = $@"<b>ClunkerBot</b> | {AppVersion.FullVersion} <i>{AppVersion.Release}</i>
 {Separator}
 A bot for Telegram providing handy vehicular utlities. See /help for all commands. Code available on <a href='https://github.com/electricduck/ClunkerBot'>Ducky's GitHub</a>; licensed under <a href='https://mit-license.org/'>the MIT license</a>.
 {Separator}
