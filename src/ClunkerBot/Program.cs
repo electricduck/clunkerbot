@@ -66,24 +66,28 @@ namespace ClunkerBot
         static void Bot_OnMessage(object sender, MessageEventArgs e) {
             if(e.Message.Text != null) {
                 try {
-                    ConsoleOutputUtilities.MessageInConsoleMessage(e);
-                    
                     var messageText = e.Message.Text.ToString();
 
-                    var command = messageText.Split(" ")[0].Replace("/", "").Replace(AppSettings.Config_BotUsername, "").ToLower();
+                    string command = null;
                     string[] arguments = null;
 
-                    if(StringUtilities.CountWords(messageText) == 1) {
-                        if(HelpData.HelpDictionary.ContainsKey(command)) {
-                            string helpOutput = HelpData.GetHelp(command);
-                            MessageApi.SendTextMessage(helpOutput, BotClient, e);
+                    if(messageText.StartsWith("/"))
+                    {
+                        command = messageText.Split(" ")[0].Replace("/", "").Replace(AppSettings.Config_BotUsername, "").ToLower();
+                        ConsoleOutputUtilities.MessageInConsoleMessage(e);
+
+                        if(StringUtilities.CountWords(messageText) == 1) {
+                            if(HelpData.HelpDictionary.ContainsKey(command)) {
+                                string helpOutput = HelpData.GetHelp(command);
+                                MessageApi.SendTextMessage(helpOutput, BotClient, e);
+                            } else {
+                                arguments = (messageText.Substring(messageText.IndexOf(' ') + 1)).Split(" ");
+                                Bot.RunCommand(command, arguments, e);
+                            }
                         } else {
                             arguments = (messageText.Substring(messageText.IndexOf(' ') + 1)).Split(" ");
                             Bot.RunCommand(command, arguments, e);
                         }
-                    } else {
-                        arguments = (messageText.Substring(messageText.IndexOf(' ') + 1)).Split(" ");
-                        Bot.RunCommand(command, arguments, e);
                     }
                 } catch (Exception exception) {
                     ConsoleOutputUtilities.ErrorConsoleMessage(exception.ToString());
