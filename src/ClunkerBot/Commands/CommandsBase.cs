@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using ClunkerBot.Data;
 using ClunkerBot.Utilities;
 
 namespace ClunkerBot.Commands
@@ -84,7 +85,7 @@ namespace ClunkerBot.Commands
             string message = $@"{e.Message}
 <code>{errorGuid}</code>
 {Separator} 
-<b>This is an error. Please forward me to </b>@theducky<b>.</b>";
+<b>This is an error. Please forward me to </b>@{AppSettings.Config_Owner_Username}<b>.</b>";
 
             return BuildOutput(message, "He's dead, Jim!", "🚫");
         }

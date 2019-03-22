@@ -9,7 +9,11 @@
             "word": "Bork. ",
             "repeat": false
         },
-        "botUsername": "@CarPups_bot"
+        "botUsername": "@CarPups_bot",
+        "owner": {
+            "name": "Derp McDerpson",
+            "username": "@derp"
+        }
     },
     "endpoints": {
         "plate.wtf": "https://plate.wtf"

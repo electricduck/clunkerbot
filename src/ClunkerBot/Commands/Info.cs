@@ -32,9 +32,11 @@ namespace ClunkerBot.Commands
                     opsys = "Linux";
                 }
 
+                string ownerLink = $"<a href=\"https://t.me/{AppSettings.Config_Owner_Username}\">{AppSettings.Config_Owner_Name}</a>";
+
                 string result = $@"<b>ClunkerBot</b> | {AppVersion.FullVersion} <i>{AppVersion.Release}</i>
 {Separator}
-A bot for Telegram providing handy vehicular utlities. See /help for all commands. Code available on <a href='https://github.com/electricduck/ClunkerBot'>Ducky's GitHub</a>; licensed under <a href='https://mit-license.org/'>the MIT license</a>.
+A bot for Telegram providing handy vehicular utlities. See /help for all commands. Code available on <a href='https://github.com/electricduck/ClunkerBot'>Ducky's GitHub</a>; licensed under <a href='https://mit-license.org/'>the MIT license</a>. This bot is ran by {ownerLink}.
 {Separator}
 <h2>Bot</h2>
 📈 Memory: <code>{memoryUsage}mb</code>

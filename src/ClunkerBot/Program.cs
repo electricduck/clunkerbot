@@ -113,6 +113,8 @@ namespace ClunkerBot
             AppSettings.Config_Awoo_Repeat = bool.Parse(configuration.GetSection("config").GetSection("awoo")["repeat"]);
             AppSettings.Config_Awoo_Word = configuration.GetSection("config").GetSection("awoo")["word"];
             AppSettings.Config_BotUsername = configuration.GetSection("config")["botUsername"];
+            AppSettings.Config_Owner_Name = configuration.GetSection("config").GetSection("owner")["name"];
+            AppSettings.Config_Owner_Username = configuration.GetSection("config").GetSection("owner")["username"];
             AppSettings.Endpoints_PlateWtf = configuration.GetSection("endpoints")["plate.wtf"];
         }
     }
