@@ -16,21 +16,38 @@ namespace ClunkerBot.Commands
     {
         public static string TimeUntil()
         {
-            DateTime deadline = DateTime.Parse("Mar 29, 2019 11:00:00");
-            TimeSpan timeUntil = deadline.Subtract(DateTime.UtcNow);
+            DateTime originalDeadline = DateTime.Parse("Mar 29, 2019 0:00:00");
+            DateTime backDealDeadline = DateTime.Parse("May 22, 2019 0:00:00");
+            DateTime noDealDeadline = DateTime.Parse("Apr 12, 2019 0:00:00");
 
-            string result = "";
+            string originalDeadlineOutput = OutputTimeUntil(originalDeadline);
+            string backDealDeadlineOutput = OutputTimeUntil(backDealDeadline);
+            string noDealDeadlineOutput = OutputTimeUntil(noDealDeadline);
+
+            string result = $@"<b>Original:</b> {originalDeadlineOutput}
+<i>Original planned date of Brexit, now postponed (see below).</i>
+
+<b>If Deal Backed:</b> {backDealDeadlineOutput}
+<i>If MPs approve the withdrawal deal on the 29th March, this is when the UK will leave the EU.</i>
+
+<b>If Deal Rejected:</b> {noDealDeadlineOutput}
+<i>If MPs reject the withdrawal deal on the 29th March, this is when the UK will leave the EU — this potentially causes the UK to exit the EU with no deal.</i>";
+
+            return BuildOutput(result, "Time Until Brexit", "🇬🇧");
+        }
+
+        private static string OutputTimeUntil(DateTime deadline)
+        {
+            TimeSpan timeUntil = deadline.Subtract(DateTime.UtcNow);
 
             if(deadline < DateTime.Now)
             {
-                result = "<b>FUD!</b>";
+                return "<i>Today's the day, boys!</i>";
             }
             else
             {
-                result = timeUntil.ToString("'<b>'d'</b> Days <b>'h'</b> Hours <b>'m'</b> Minutes <b>'s'</b> Seconds, <i>maybe?</i>'");
+                return timeUntil.ToString("'<b>'d'</b> Days, 'h' Hours, 'm' Minutes, 's' Seconds'");
             }
-
-            return BuildOutput(result, "Time Until Brexit", "🇬🇧");
         }
     }
 }
