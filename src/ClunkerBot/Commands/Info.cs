@@ -37,7 +37,7 @@ namespace ClunkerBot.Commands
 A bot for Telegram providing handy vehicular utlities. See /help for all commands. Code available on <a href='https://github.com/electricduck/ClunkerBot'>Ducky's GitHub</a>; licensed under <a href='https://mit-license.org/'>the MIT license</a>.
 {Separator}
 <h2>Bot</h2>
-📈 Mem.: <code>{memoryUsage}mb</code>
+📈 Memory: <code>{memoryUsage}mb</code>
 ️⏱ Uptime: <code>{uptime}</code>
 {Separator}
 <h2>System</h2>
