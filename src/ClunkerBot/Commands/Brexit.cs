@@ -20,9 +20,9 @@ namespace ClunkerBot.Commands
             DateTime backDealDeadline = DateTime.Parse("May 22, 2019 0:00:00");
             DateTime noDealDeadline = DateTime.Parse("Apr 12, 2019 0:00:00");
 
-            string originalDeadlineOutput = OutputTimeUntil(originalDeadline);
-            string backDealDeadlineOutput = OutputTimeUntil(backDealDeadline);
-            string noDealDeadlineOutput = OutputTimeUntil(noDealDeadline);
+            string originalDeadlineOutput = OutputTimeUntil(originalDeadline, DateTime.UtcNow);
+            string backDealDeadlineOutput = OutputTimeUntil(backDealDeadline, DateTime.UtcNow.AddHours(1));
+            string noDealDeadlineOutput = OutputTimeUntil(noDealDeadline, DateTime.UtcNow.AddHours(1));
 
             string result = $@"<b>Original:</b> {originalDeadlineOutput}
 <i>Original planned date of Brexit, now postponed (see below).</i>
@@ -36,9 +36,9 @@ namespace ClunkerBot.Commands
             return BuildOutput(result, "Time Until Brexit", "🇬🇧");
         }
 
-        private static string OutputTimeUntil(DateTime deadline)
+        private static string OutputTimeUntil(DateTime deadline, DateTime now)
         {
-            TimeSpan timeUntil = deadline.Subtract(DateTime.UtcNow);
+            TimeSpan timeUntil = deadline.Subtract(now);
 
             if(deadline < DateTime.Now)
             {
