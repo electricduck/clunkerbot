@@ -161,6 +161,11 @@ namespace ClunkerBot.Commands
                                 
                         }
 
+                        if(plate.ToUpper() == "1420H")
+                        {
+                            info = "Ah, a Reliant Scimitar. Princess Anne owns this one, you know.";
+                        }
+
                         result += !String.IsNullOrEmpty(plateInfo_Region) ? RenderDetailLine(regionString, plateInfo_Region) : String.Empty;
                         result += !String.IsNullOrEmpty(year) ? RenderDetailLine(yearString, year) : String.Empty;
                         result += issue != "0" ? RenderDetailLine(issueString, issue) : String.Empty;
