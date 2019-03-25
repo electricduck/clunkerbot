@@ -5,9 +5,9 @@ namespace ClunkerBot.Data
     class AppVersion
     {
         public static readonly int Major = 19;
-        public static readonly int Minor = 12;
+        public static readonly int Minor = 13;
         public static readonly int Patch = 0;
-        public static readonly string Release = "Polo";
+        public static readonly string Release = "Calibra";
 
         public static readonly string FullVersion = $"{Major}.{Minor}.{Patch}";
     }
