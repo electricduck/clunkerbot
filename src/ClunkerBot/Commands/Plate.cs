@@ -24,6 +24,8 @@ namespace ClunkerBot.Commands
             string outputEmoji = "#️⃣";
             string outputHeader = "Parse Plate";
 
+            string diplomaticInfoString = "Found on vehicles used by foreign embassies, high commissions, consulates and international organisations. The vehicles themselves are usually not personally owned.";
+
             try
             {
                 string result = "";
@@ -70,122 +72,60 @@ namespace ClunkerBot.Commands
                         }
 
                         string info = null;
+                        string issue = null;
+                        string year = plateInfo_RegistrationYear;
+
+                        string issueString = "Issue";
+                        string regionString = "Region";
+                        string yearString = "Year";
+
+                        if(plateInfo_Issue != null && plateInfo_Series != null)
+                        {
+                            issue = $"{plateInfo_Issue} [{plateInfo_Series}]";
+                        }
+                        else
+                        {
+                            issue = $"{plateInfo_Issue}";
+                        }
 
                         switch(plateInfo_FormatEnum)
                         {
-                            // AL
-                            case 42:
+                            case 4:
+                                regionString = "Reg. Office";
                                 break;
-                            case 43:
-                                result += RenderDetailLine("Region", plateInfo_Region);
-                                result += RenderDetailLine("Special", plateInfo_Special);
+                            case 5:
+                                issueString = "Issue No.";
                                 break;
-                            case 44:
-                                result += RenderDetailLine("Diplomatic Org.", plateInfo_Diplomatic_Organisation);
-                                info = "Found on vehicles used by foreign embassies, high commissions, consulates and international organisations. The vehicles themselves are usually not personally owned.";
-                                break;
-
-                            // AT
                             case 6:
-                                result += RenderDetailLine("Reg. Office", plateInfo_Region);
-                                result += RenderDetailLine("Special", plateInfo_Special);
+                                regionString = "Reg. Office";
                                 break;
-
-                            // DE
-                            case 7:
-                                result += RenderDetailLine("Region", plateInfo_Region);
-                                result += RenderDetailLine("Special", plateInfo_Special);
-                                break;
-
-                            // FI
-                            case 46:
-                                result += RenderDetailLine("Region", plateInfo_Region);
-                                result += RenderDetailLine("Issue", $"{plateInfo_Issue} [{plateInfo_Series}]");
-                                break;
-                            case 47:
-                                result += RenderDetailLine("Issue", $"{plateInfo_Issue} [{plateInfo_Series}]");
-                                result += RenderDetailLine("Vehicle Type", plateInfo_VehicleType);
-                                break;
-                            case 48:
-                                result += RenderDetailLine("Issue", $"{plateInfo_Issue} [{plateInfo_Series}]");
-                                info = "Temporary plate used for vehicles exported to/from Finland.";
-                                break;
-                            case 49:
-                                info = "Found on vehicles used by foreign embassies, high commissions, consulates and international organisations. The vehicles themselves are usually not personally owned.";
-                                break;
-
-                            // FR
                             case 10:
-                                result += RenderDetailLine("Reg. Department", plateInfo_Region);
+                                regionString = "Reg. Department";
                                 break;
                             case 11:
-                                result += RenderDetailLine("Issue No.", $"{plateInfo_Issue} (approx.)");
-                                result += RenderDetailLine("Year", $"{plateInfo_RegistrationYear} (approx.)*");
                                 info = "* This is based on a steady average amount of cars per year, providing the SIV system lasts the estimated 80 years initially planned.";
+                                issue = $"{plateInfo_Issue} (approx.)";
+                                year = $"{plateInfo_RegistrationYear} (approx.)";
+                                issueString = "Issue No.";
                                 break;
-
-                            // GB
                             case 25:
-                            case 26:
-                            case 27:
-                                result += RenderDetailLine("DVLA Office", plateInfo_Region);
-                                result += RenderDetailLine("Issue No.", plateInfo_Issue);
-                                result += RenderDetailLine("Special", plateInfo_Special);
+                                info = "Region is only valid for vehicles registered between 1991 and 2004.";
                                 break;
+                            case 27:
                             case 28:
                             case 29:
                             case 30:
-                                result += RenderDetailLine("DVLA Office", plateInfo_Region);
-                                result += RenderDetailLine("Year", plateInfo_RegistrationYear);
-                                result += RenderDetailLine("Special", plateInfo_Special);
+                                issueString = "Issue No.";
+                                regionString = "DVLA Office";
                                 break;
                             case 31:
-                                result += RenderDetailLine("Issue No.", plateInfo_Issue);
                                 info = "Licensed to motor traders and vehicle testers, permitting the use of an untaxed vehicle on the public highway with certain restrictions.";
                                 break;
                             case 32:
-                                result += RenderDetailLine("Diplomatic Org.", plateInfo_Diplomatic_Organisation);
-                                result += RenderDetailLine("Diplomatic Type", plateInfo_Diplomatic_Type);
-                                result += RenderDetailLine("Diplomatic Rank", plateInfo_Diplomatic_Rank);
-                                info = "Found on vehicles used by foreign embassies, high commissions, consulates and international organisations. The vehicles themselves are usually not personally owned.";
+                                info = diplomaticInfoString;
                                 break;
-
-                            // GB-NIR
-                            case 41:
-                                result += RenderDetailLine("Region", plateInfo_Region);
-                                result += RenderDetailLine("Issue No.", plateInfo_Issue);
-                                result += RenderDetailLine("Special", plateInfo_Special);
-                                info = "Northern Ireland, although part of Great Britain, has its own plate format.";
-                                break;
-
-                            // GG
-                            case 5:
-                                result += RenderDetailLine("Issue No.", plateInfo_Issue);
-                                result += RenderDetailLine("Special", plateInfo_Special);
-                                break;
-
-                            // HU
-                            case 50:
-                                result += RenderDetailLine("Registration Year", plateInfo_RegistrationYear);
-                                result += RenderDetailLine("Special", plateInfo_Special);
-                                break;
-
-                            // JP
                             case 34:
-                                result += RenderDetailLine("Region", plateInfo_Region);
-                                result += RenderDetailLine("Vehicle", plateInfo_VehicleType);
-                                result += RenderDetailLine("Special", plateInfo_Special);
                                 info = "Issued to Japanese citizens for internationl travel — the Japanese writing system is considered unacceptable outside of Japan, as they are not easily identifiable to local authorities.";
-                                break;
-                            case 33: // TODO: Fix Japanese chars not being sent
-                                result += RenderDetailLine("Region", plateInfo_Region);
-                                result += RenderDetailLine("Vehicle", plateInfo_VehicleType);
-                                result += RenderDetailLine("Special", plateInfo_Special);
-                                break;
-
-                            // LT
-                            case 35:
-                                result += RenderDetailLine("Region", plateInfo_Region);
                                 break;
                             case 36:
                                 info = "Temporary plate used for vehicles imported and exported to/from Lithuania, only valid for 90 days.";
@@ -194,8 +134,7 @@ namespace ClunkerBot.Commands
                                 info = "Licensed to motor traders and vehicle testers, permitting the use of an untaxed vehicle on the public highway with certain restrictions.";
                                 break;
                             case 38:
-                                result += RenderDetailLine("Diplomatic Org.", plateInfo_Diplomatic_Organisation);
-                                info = "Found on vehicles used by foreign embassies, high commissions, consulates and international organisations. The vehicles themselves are usually not personally owned.";
+                                info = diplomaticInfoString;
                                 break;
                             case 39:
                                 info = "Found on taxis and private-hire vehicles.";
@@ -203,33 +142,30 @@ namespace ClunkerBot.Commands
                             case 40:
                                 info = "Found on vehicles used in the military for transport on public roads";
                                 break;
-
-                            // NL
-                            case 12:
-                                result += RenderDetailLine("Region", plateInfo_Region);
+                            case 41:
+                                info = "Northern Ireland, although part of Great Britain, has its own plate format.";
+                                issueString = "Issue No.";
                                 break;
-                            case 13:
-                            case 14:
-                            case 15:
-                            case 16:
-                            case 17:
-                            case 18:
-                            case 19:
-                            case 20:
-                            case 21:
-                            case 22:
-                            case 23:
-                            case 24:
-                                result += RenderDetailLine("Year", plateInfo_RegistrationYear);
-                                result += RenderDetailLine("Special", plateInfo_Special);
+                            case 44:
+                                info = diplomaticInfoString;
                                 break;
-
-                            // RU
-                            case 4:
-                                result += RenderDetailLine("Reg. Office", plateInfo_Region);
-                                result += RenderDetailLine("Special", plateInfo_Special);
+                            case 48:
+                                info = "Temporary plate used for vehicles exported to/from Finland.";
                                 break;
+                            case 49:
+                                info = diplomaticInfoString;
+                                break;
+                            case 50:
+                                yearString = "Registration Year";
+                                break;
+                                
                         }
+
+                        result += !String.IsNullOrEmpty(plateInfo_Region) ? RenderDetailLine(regionString, plateInfo_Region) : String.Empty;
+                        result += !String.IsNullOrEmpty(year) ? RenderDetailLine(yearString, year) : String.Empty;
+                        result += issue != "0" ? RenderDetailLine(issueString, issue) : String.Empty;
+                        result += !String.IsNullOrEmpty(plateInfo_VehicleType) ? RenderDetailLine("Vehicle Type", plateInfo_VehicleType) : String.Empty;
+                        result += !String.IsNullOrEmpty(plateInfo_Special) ? RenderDetailLine("Special", plateInfo_Special) : String.Empty;
 
                         outputArgument = RenderParsedPlate(plateCountry_Flag, parsedPlate);
                         result += RenderDetailLine("Format", plateInfo_Format, false);
@@ -276,21 +212,13 @@ namespace ClunkerBot.Commands
 
         private static string RenderDetailLine(string name, string content, bool newLine = true)
         {
-            if(content == null)
+            if(content == "No")
             {
-                if(name == "Special")
-                {
-                    content = "<i>No</i>";
-                }
-                else
-                {
-                    content = "<i>Unknown</i>";
-                }
-
-                if(name == "Vehicle Type")
-                {
-                    content = "<em>Unknown</em>";
-                }
+                content = "<i>No</i>";
+            }
+            else if(content == "Unknown")
+            {
+                content = "<i>Unknown</i>";
             }
 
             content = content
