@@ -16,9 +16,9 @@ namespace ClunkerBot.Commands
     {
         public static string TimeUntil()
         {
-            DateTime originalDeadline = DateTime.Parse("Mar 29, 2019 11:00:00");
-            DateTime backDealDeadline = DateTime.Parse("May 22, 2019 11:00:00");
-            DateTime noDealDeadline = DateTime.Parse("Apr 12, 2019 11:00:00");
+            DateTime originalDeadline = DateTime.Parse("Mar 29, 2019 23:00:00 +00:00");
+            DateTime backDealDeadline = DateTime.Parse("May 22, 2019 23:00:00 +01:00");
+            DateTime noDealDeadline = DateTime.Parse("Apr 12, 2019 23:00:00 +01:00");
 
             string originalDeadlineOutput = OutputTimeUntil(originalDeadline, DateTime.UtcNow, "Delayed!");
             string backDealDeadlineOutput = OutputTimeUntil(backDealDeadline, DateTime.UtcNow.AddHours(1));
