@@ -72,16 +72,22 @@ namespace ClunkerBot.Commands
                         .Replace("\r","")
                         .Trim();
 
-                    string extractedPrice = priceNodes[x]
-                        .InnerText
-                        .Replace("\t","")
-                        .Replace("\n","")
-                        .Replace("\r","")
-                        .Replace("&pound;", "£")
-                        .ToLower()
-                        .Replace("reserve in our upcoming auction", "<i>(Auction)</i>")
-                        .Replace("future auction", "<i>Future Auction</i>")
-                        .Trim();
+                    string extractedPrice = "";
+
+                    try{
+                        extractedPrice = priceNodes[x]
+                            .InnerText
+                            .Replace("\t","")
+                            .Replace("\n","")
+                            .Replace("\r","")
+                            .Replace("&pound;", "£")
+                            .ToLower()
+                            .Replace("reserve in our upcoming auction", "<i>(Auction)</i>")
+                            .Replace("future auction", "<i>Future Auction</i>")
+                            .Trim();
+                    } catch {
+                        extractedPrice = "<i>Future Auction</i>"; // HACK: Future Auctions without a price throw errors
+                    }
 
                     string buyLink = "";
 
@@ -139,8 +145,9 @@ namespace ClunkerBot.Commands
 <b>Available Variations</b>
 {additionalOutput}";
             }
-            catch // TODO: Properly handle no results
+            catch(Exception e) // TODO: Properly handle no results
             {
+                ConsoleOutputUtilities.ErrorConsoleMessage(e.ToString());
                 output += $@"<b>{plate}</b> is unavailable.";
             }
 
