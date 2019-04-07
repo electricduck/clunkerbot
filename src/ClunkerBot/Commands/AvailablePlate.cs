@@ -74,7 +74,7 @@ namespace ClunkerBot.Commands
 
                     string extractedPrice = "";
 
-                    try{
+                    try {
                         extractedPrice = priceNodes[x]
                             .InnerText
                             .Replace("\t","")
