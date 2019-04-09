@@ -17,22 +17,28 @@ namespace ClunkerBot.Commands
         public static string TimeUntil()
         {
             DateTime originalDeadline = DateTime.Parse("Mar 29, 2019 23:00:00 +00:00");
-            DateTime backDealDeadline = DateTime.Parse("May 22, 2019 23:00:00 +01:00");
-            DateTime noDealDeadline = DateTime.Parse("Apr 12, 2019 23:00:00 +01:00");
+            DateTime CurrentDeadline = DateTime.Parse("Apr 12, 2019 23:00:00 +01:00");
+            DateTime MinimumExtensionDeadline = DateTime.Parse("May 22, 2019 23:00:00 +01:00");
+            DateTime MaximumExtensionDeadline = DateTime.Parse("Jun 30, 2019 23:00:00 +01:00");
 
             string originalDeadlineOutput = OutputTimeUntil(originalDeadline, DateTime.UtcNow, "Delayed!");
-            string backDealDeadlineOutput = OutputTimeUntil(backDealDeadline, DateTime.UtcNow.AddHours(1));
-            string noDealDeadlineOutput = OutputTimeUntil(noDealDeadline, DateTime.UtcNow.AddHours(1));
-
+            string CurrentDeadlineOutput = OutputTimeUntil(CurrentDeadline, DateTime.UtcNow.AddHours(1));
+            string MinimumExtensionOutput = OutputTimeUntil(MinimumExtensionDeadline, DateTime.UtcNow.AddHours(1));
+            string MaximumExtensionOutput = OutputTimeUntil(MaximumExtensionDeadline, DateTime.UtcNow.AddHours(1));
+            
             string result = $@"<b>Original:</b> {originalDeadlineOutput}
 <i>Original planned date of Brexit, now postponed (see below).</i>
 
-<b>If Deal Backed:</b> {backDealDeadlineOutput}
-<i>If MPs approve the withdrawal deal on the 29th March, this is when the UK will leave the EU.</i>
+<b>If Deal Rejected:</b> {CurrentDeadlineOutput}
+<i>If the EU deny the request for an Article 50 extension, this is when the UK will leave the EU — this potentially causes the UK to exit the EU with no deal.</i>
 
-<b>If Deal Rejected:</b> {noDealDeadlineOutput}
-<i>If MPs reject the withdrawal deal on the 29th March, this is when the UK will leave the EU — this potentially causes the UK to exit the EU with no deal.</i>";
+<b>If A50 Extension (short):</b> {MinimumExtensionOutput}
+<i>If the Article 50 Extension is accepted, there is a chance Brexit will be delayed until the day before the EU Elections, which occur on the 23rd of May.</i>
 
+<b>If A50 Extension (long):</b> {MaximumExtensionOutput}
+<i>If the full Article 50 Extension is accepted, Brexit will be delayed up until the 30th of June, after the European elections, but before the first session of new parliament.</i>
+
+It is currently unclear whether Theresa May will have negotiated an agreeable deal by any of these deadlines.";
             return BuildOutput(result, "Time Until Brexit", "🇬🇧");
         }
 
