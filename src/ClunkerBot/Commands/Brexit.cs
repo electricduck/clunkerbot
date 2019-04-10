@@ -33,12 +33,12 @@ namespace ClunkerBot.Commands
 <i>If the EU deny the request for an Article 50 extension, this is when the UK will leave the EU — this potentially causes the UK to exit the EU with no deal.</i>
 
 <b>If A50 Extension (short):</b> {MinimumExtensionOutput}
-<i>If the Article 50 Extension is accepted, there is a chance Brexit will be delayed until the day before the EU Elections, which occur on the 23rd of May.</i>
+<i>If the Article 50 extension is accepted, there is a chance Brexit will be delayed until the day before the EU Elections, which occur on the 23rd of May.</i>
 
 <b>If A50 Extension (long):</b> {MaximumExtensionOutput}
-<i>If the full Article 50 Extension is accepted, Brexit will be delayed up until the 30th of June, after the European elections, but before the first session of new parliament.</i>
+<i>If the full Article 50 extension is accepted, Brexit will be delayed up until the 30th of June, after the European elections, but before the first session of new parliament.</i>
 
-It is currently unclear whether Theresa May will have negotiated an agreeable deal by any of these deadlines.";
+<i>It is currently unclear whether Theresa May will have negotiated an agreeable deal by any of these deadlines.</i>";
             return BuildOutput(result, "Time Until Brexit", "🇬🇧");
         }
 
