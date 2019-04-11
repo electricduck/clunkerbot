@@ -34,7 +34,7 @@ namespace ClunkerBot.Commands
             }
             else
             {
-                return timeUntil.ToString("'<b>'d'</b> Days, 'h' Hours, 'm' Minutes, 's' Seconds'");
+                return timeUntil.ToString("'<b>'d'</b> Days, <b>'h'</b> Hours, <b>'m'</b> Minutes, <b>'s'</b> Seconds'");
             }
         }
     }
