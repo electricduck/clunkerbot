@@ -20,7 +20,7 @@ namespace ClunkerBot.Commands
 
             string currentDeadlineOutput = OutputTimeUntil(currentDeadline, DateTime.UtcNow);
             
-
+            string result = $@"{currentDeadlineOutput}";
             return BuildOutput(result, "Time Until Brexit", "🇬🇧");
         }
 
