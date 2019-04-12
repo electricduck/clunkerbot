@@ -57,6 +57,7 @@ namespace ClunkerBot.Commands
                         string plateInfo_Diplomatic_Type = "";
                         string plateInfo_Format = (string)plateInfo["format"];
                         int plateInfo_FormatEnum = (int)plateInfo["formatEnum"];
+                        string plateInfo_InspectionPeriod = (string)plateInfo["inspectionPeriod"];
                         string plateInfo_Issue = (string)plateInfo["issue"];
                         string plateInfo_Region = (string)plateInfo["region"];
                         string plateInfo_RegistrationYear = (string)plateInfo["registrationYear"];
@@ -75,6 +76,7 @@ namespace ClunkerBot.Commands
                         string issue = null;
                         string year = plateInfo_RegistrationYear;
 
+                        string inspectionPeriodString = "Inspection Period";
                         string issueString = "Issue";
                         string regionString = "Region";
                         string yearString = "Year";
@@ -168,6 +170,7 @@ namespace ClunkerBot.Commands
 
                         result += !String.IsNullOrEmpty(plateInfo_Region) ? RenderDetailLine(regionString, plateInfo_Region) : String.Empty;
                         result += !String.IsNullOrEmpty(year) ? RenderDetailLine(yearString, year) : String.Empty;
+                        result += !String.IsNullOrEmpty(plateInfo_InspectionPeriod) ? RenderDetailLine(inspectionPeriodString, plateInfo_InspectionPeriod) : String.Empty;
                         result += issue != "0" ? RenderDetailLine(issueString, issue) : String.Empty;
                         result += !String.IsNullOrEmpty(plateInfo_VehicleType) ? RenderDetailLine("Vehicle Type", plateInfo_VehicleType) : String.Empty;
                         result += !String.IsNullOrEmpty(plateInfo_Special) ? RenderDetailLine("Special", plateInfo_Special) : String.Empty;
