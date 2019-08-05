@@ -1,4 +1,6 @@
 using System;
+using System.Reflection;
+using System.Runtime.Versioning;
 using ClunkerBot.Data;
 
 namespace ClunkerBot.Commands
@@ -16,9 +18,17 @@ namespace ClunkerBot.Commands
                 string memoryUsage = Convert.ToDecimal(thisProcess.WorkingSet64 / 1000000).ToString();
                 string opsys = "(unknown)";
                 string opsysVersion = System.Environment.OSVersion.Version.ToString();
-                string runtime = System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription;
+                //string runtime = System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription;
+                string runtime = Assembly
+                    .GetEntryAssembly()?
+                    .GetCustomAttribute<TargetFrameworkAttribute>()?
+                    .FrameworkName;
                 string time = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss zzz");
                 string uptime = timeSinceStart.ToString("d'd 'h'h 'm'm 's's'");
+
+                runtime = runtime
+                    .Replace(".NETCoreApp", ".NET Core")
+                    .Replace(",Version=v", " ");
 
                 if(System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows)) {
                     opsys = "Windows";
