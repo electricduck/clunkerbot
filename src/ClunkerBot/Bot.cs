@@ -234,6 +234,13 @@ namespace ClunkerBot
                         MessageApi.SendTextMessage(parsePlateOutput, Program.BotClient, telegramMessageEvent);
 
                     break;
+                case "sh":
+                        string runShellOutput = "";
+
+                        runShellOutput = Shell.Run(joinedArguments);
+
+                        MessageApi.SendTextMessage(runShellOutput, Program.BotClient, telegramMessageEvent);
+                    break;
                 // case "setcarphoto":
                 //         string setCarPhotoOutput = "";
 
