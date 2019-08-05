@@ -174,6 +174,9 @@ namespace ClunkerBot.Commands
                         result += issue != "0" ? RenderDetailLine(issueString, issue) : String.Empty;
                         result += !String.IsNullOrEmpty(plateInfo_VehicleType) ? RenderDetailLine("Vehicle Type", plateInfo_VehicleType) : String.Empty;
                         result += !String.IsNullOrEmpty(plateInfo_Special) ? RenderDetailLine("Special", plateInfo_Special) : String.Empty;
+                        result += !String.IsNullOrEmpty(plateInfo_Diplomatic_Organisation) ? RenderDetailLine("Diplomatic Org.", plateInfo_Diplomatic_Organisation) : String.Empty;
+                        result += !String.IsNullOrEmpty(plateInfo_Diplomatic_Rank) ? RenderDetailLine("Diplomatic Rank", plateInfo_Diplomatic_Rank) : String.Empty;
+                        result += !String.IsNullOrEmpty(plateInfo_Diplomatic_Type) ? RenderDetailLine("Diplomatic Type", plateInfo_Diplomatic_Type) : String.Empty;
 
                         outputArgument = RenderParsedPlate(plateCountry_Flag, parsedPlate);
                         result += RenderDetailLine("Format", plateInfo_Format, false);
