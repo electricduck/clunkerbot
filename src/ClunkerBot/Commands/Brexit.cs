@@ -17,10 +17,17 @@ namespace ClunkerBot.Commands
         public static string TimeUntil()
         {
             DateTime currentDeadline = DateTime.Parse("Oct 31, 2019 23:00:00 +00:00");
+            DateTime extendedDeadline = DateTime.Parse("Jan 31, 2020 00:00:00 +00:00");
 
             string currentDeadlineOutput = OutputTimeUntil(currentDeadline, DateTime.UtcNow);
+            string extendedDeadlineOutput = OutputTimeUntil(extendedDeadline, DateTime.UtcNow);
             
-            string result = $@"{currentDeadlineOutput}";
+            string result = $@"{currentDeadlineOutput}
+<i>Under the current extension, this is the date the UK is due to leave the EU. It is still unclear if a 'No Deal' will occur.</i>
+            
+{extendedDeadlineOutput}
+<i>If another extension is accepted by the EU, as requested by Boris Johnson (under the Benn Act), this is when the UK will leave the EU.</i>";
+            
             return BuildOutput(result, "Time Until Brexit", "🇬🇧");
         }
 
