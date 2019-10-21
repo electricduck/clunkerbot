@@ -4,7 +4,7 @@
     <Version>19.15.0</Version>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
-  </PropertyGroup
+  </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="fizzler" Version="1.2.0" />
