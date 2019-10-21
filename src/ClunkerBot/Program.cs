@@ -29,8 +29,9 @@ namespace ClunkerBot
             ConsoleOutputUtilities.DoingConsoleMessage("Setting up application");
             try {
                 SetupApp();
-            } catch {
-                ConsoleOutputUtilities.ErrorConsoleMessage("Configuration file missing");
+            } catch(Exception e) {
+                ConsoleOutputUtilities.ErrorConsoleMessage($@"Unable to load configuration
+{e.ToString()}");
                 System.Environment.Exit(1);
             }
 
