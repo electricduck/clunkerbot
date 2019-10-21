@@ -26,7 +26,7 @@ namespace ClunkerBot.Commands
 <i>Under the current extension, this is the date the UK is due to leave the EU. It is still unclear if a 'No Deal' will occur.</i>
             
 {extendedDeadlineOutput}
-<i>If another extension is accepted by the EU, as requested by Boris Johnson (under the Benn Act), this is when the UK will leave the EU.</i>";
+<i>If another extension is accepted by the EU, as requested by Boris Johnson (under the Benn Act), this is when the UK is due to leave the EU.</i>";
             
             return BuildOutput(result, "Time Until Brexit", "🇬🇧");
         }
