@@ -9,6 +9,6 @@
     Lots of handy vehicular utlities, provided over a bot on <a href="https://telegram.org">Telegram</a>.
     <br>
     <br>
-    Message <a href="https://t.me/clunkerbot">@ClunkerBot</a>
+    <b>Message <a href="https://t.me/clunkerbot">@ClunkerBot</a></b>
   </p>
 </p>
