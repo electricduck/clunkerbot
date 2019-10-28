@@ -16,21 +16,15 @@ namespace ClunkerBot.Commands
     {
         public static string TimeUntil()
         {
-            DateTime currentDeadline = DateTime.Parse("Oct 31, 2019 23:00:00 +00:00");
-            DateTime extendedDeadline = DateTime.Parse("Jan 31, 2020 00:00:00 +00:00");
+            DateTime thirdDeadline = DateTime.Parse("Jan 31, 2020 00:00:00 +00:00");
             DateTime sinceInvoked = DateTime.Parse("Mar 29, 2017 00:00:00 +00:00");
 
-            string currentDeadlineOutput = OutputTimeUntil(currentDeadline, DateTime.UtcNow);
-            string extendedDeadlineOutput = OutputTimeUntil(extendedDeadline, DateTime.UtcNow);
+            string thirdDeadlineOutput = OutputTimeUntil(thirdDeadline, DateTime.UtcNow);
             string sinceInvokedOutput = OutputTimeSince(sinceInvoked, DateTime.UtcNow);
             
-            string result = $@"<h2>Second Extension (Current)</h2>
-➡️ {currentDeadlineOutput}
-<i>Under the current extension, this is when the UK is due to leave the EU. It is still unclear if a 'No Deal' will occur.</i>
-
-<h2>Third Extension (Proposed)</h2> 
-➡️ {extendedDeadlineOutput}
-<i>If another extension is accepted by the EU, as requested by Boris Johnson (under the Benn Act), this is when the UK is due to leave the EU.</i>
+            string result = $@"<h2>Third Extension (Current)</h2> 
+➡️ {thirdDeadlineOutput}
+<i>As requested by Boris Johnson (under the Benn Act), making this the third extension to Brexit (as a dead has yet to be sorted) this is when the UK is due to leave the EU. Also of note this is a so-called 'flextension', allowing the UK to leave the EU before this time.</i>
 
 <h2>Since Article 50 Invoked</h2>
 ⬅️ {sinceInvokedOutput}
