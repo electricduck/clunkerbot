@@ -24,7 +24,7 @@ namespace ClunkerBot.Commands
             
             string result = $@"<h2>Third Extension (Current)</h2> 
 ➡️ {thirdDeadlineOutput}
-<i>As requested by Boris Johnson (under the Benn Act), making this the third extension to Brexit (as a dead has yet to be sorted) this is when the UK is due to leave the EU. Also of note this is a so-called 'flextension', allowing the UK to leave the EU before this time.</i>
+<i>As requested by Boris Johnson (under the Benn Act), making this the third extension to Brexit (as a deal has yet to be sorted), this is when the UK is due to leave the EU. Also of note this is a so-called 'flextension', allowing the UK to leave the EU before this time.</i>
 
 <h2>Since Article 50 Invoked</h2>
 ⬅️ {sinceInvokedOutput}
