@@ -16,19 +16,37 @@ namespace ClunkerBot.Commands
     {
         public static string TimeUntil()
         {
-            DateTime thirdDeadline = DateTime.Parse("Jan 31, 2020 00:00:00 +00:00");
-            DateTime sinceInvoked = DateTime.Parse("Mar 29, 2017 00:00:00 +00:00");
+            DateTime originalDate = DateTime.Parse("Mar 29, 2019 00:00:00 +00:00");
+            DateTime thirdExtensionDate = DateTime.Parse("Jan 31, 2020 00:00:00 +00:00");
+            DateTime electionDate = DateTime.Parse("Dec 12, 2019 00:00:00 +00:00");
+            DateTime article50InvokedDate = DateTime.Parse("Mar 29, 2017 00:00:00 +00:00");
+            DateTime referendumDate = DateTime.Parse("Jun 23, 2016 00:00:00 +00:00");
 
-            string thirdDeadlineOutput = OutputTimeUntil(thirdDeadline, DateTime.UtcNow);
-            string sinceInvokedOutput = OutputTimeSince(sinceInvoked, DateTime.UtcNow);
+            string thirdExtensionOutput = OutputTimeUntil(thirdExtensionDate, DateTime.UtcNow);
+            string originalOutput = OutputTimeSince(originalDate, DateTime.UtcNow);
+            string electionOutput = OutputTimeUntil(electionDate, DateTime.UtcNow);
+            string article50InvokedOutput = OutputTimeSince(article50InvokedDate, DateTime.UtcNow);
+            string referendumOutput = OutputTimeSince(referendumDate, DateTime.UtcNow);
             
             string result = $@"<h2>Third Extension (Current)</h2> 
-➡️ {thirdDeadlineOutput}
+➡️ {thirdExtensionOutput}
 <i>As requested by Boris Johnson (under the Benn Act), making this the third extension to Brexit (as a deal has yet to be sorted), this is when the UK is due to leave the EU. Also of note this is a so-called 'flextension', allowing the UK to leave the EU before this time.</i>
 
+<h2>2019 General Election</h2>
+➡️ {electionOutput}
+<i>After being dissolved on the 6-Nov-2019, a GE is set to be held at this time.</i>
+
+<h2>Since Orginal Brexit</h2>
+⬅️ {originalOutput}
+<i>On 29-Mar-2017, Brexit is supposed to occur. An extension is requested by Theresa May.</i>
+
 <h2>Since Article 50 Invoked</h2>
-⬅️ {sinceInvokedOutput}
-<i>On 29th March 2017, after a successful vote, Article 50 was triggered by Theresa May.</i>";
+⬅️ {article50InvokedOutput}
+<i>On 29-Mar-2017, Article 50 is triggered by Theresa May.</i>
+
+<h2>Since Referendum</h2>
+⬅️ {referendumOutput}
+<i>On 23-Jun-2016, the UK holds the referendum: 51.9% of voters vote to leave. This creates Article 50: Brexit.</i>";
             
             return BuildOutput(result, "Time Until Brexit", "🇬🇧");
         }
