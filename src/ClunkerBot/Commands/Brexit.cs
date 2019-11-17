@@ -34,7 +34,7 @@ namespace ClunkerBot.Commands
 
 <h2>2019 General Election</h2>
 ➡️ {electionOutput}
-<i>After being dissolved on the 6-Nov-2019, Parlaiment is set to be hold a GE at this time.</i>
+<i>After being dissolved on the 6-Nov-2019, Parlaiment is set to hold a GE at this time.</i>
 
 <h2>Since Original Brexit</h2>
 ⬅️ {originalOutput}
