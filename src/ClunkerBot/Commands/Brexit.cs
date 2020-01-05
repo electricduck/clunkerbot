@@ -18,23 +18,17 @@ namespace ClunkerBot.Commands
         {
             DateTime originalDate = DateTime.Parse("Mar 29, 2019 00:00:00 +00:00");
             DateTime thirdExtensionDate = DateTime.Parse("Jan 31, 2020 00:00:00 +00:00");
-            DateTime electionDate = DateTime.Parse("Dec 12, 2019 00:00:00 +00:00");
             DateTime article50InvokedDate = DateTime.Parse("Mar 29, 2017 00:00:00 +00:00");
             DateTime referendumDate = DateTime.Parse("Jun 23, 2016 00:00:00 +00:00");
 
             string thirdExtensionOutput = OutputTimeUntil(thirdExtensionDate, DateTime.UtcNow);
             string originalOutput = OutputTimeSince(originalDate, DateTime.UtcNow);
-            string electionOutput = OutputTimeUntil(electionDate, DateTime.UtcNow);
             string article50InvokedOutput = OutputTimeSince(article50InvokedDate, DateTime.UtcNow);
             string referendumOutput = OutputTimeSince(referendumDate, DateTime.UtcNow);
             
             string result = $@"<h2>Third Extension (Current)</h2> 
 ➡️ {thirdExtensionOutput}
 <i>As requested by Boris Johnson (under the Benn Act), making this the third extension to Brexit (as a deal has yet to be sorted), this is when the UK is due to leave the EU. Also of note this is a so-called 'flextension', allowing the UK to leave the EU before this time.</i>
-
-<h2>2019 General Election</h2>
-➡️ {electionOutput}
-<i>After being dissolved on the 6-Nov-2019, Parlaiment is set to hold a GE at this time.</i>
 
 <h2>Since Original Brexit</h2>
 ⬅️ {originalOutput}
