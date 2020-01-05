@@ -126,20 +126,6 @@ namespace ClunkerBot
                 //             MessageApi.SendPhotoMessage(getCarFromGarageOutput, Program.BotClient, telegramMessageEvent);
                 //         }
                 //     break;
-                case "getfuelly":
-                case "fuelly":
-                        ImageMessageReturnModel getFuellyOutput = null;
-
-                        if (arguments.Length == 1) {
-                            getFuellyOutput = Fuelly.Get(arguments[0]);
-                        } else if (arguments.Length == 2) {
-                            getFuellyOutput = Fuelly.Get(arguments[0], arguments[1]);
-                        } else {
-                            MessageApi.SendTextMessage(HelpData.GetHelp("getfuelly"), Program.BotClient, telegramMessageEvent);
-                        }
-
-                        MessageApi.SendPhotoMessage(getFuellyOutput, Program.BotClient, telegramMessageEvent);
-                    break;
                 case "getobdcode":
                 case "getobd":
                 case "obd":

@@ -15,7 +15,6 @@ To get additional help about the modules below (such as what arguments they acce
 <code>/calculate0to60</code> - Calculate 0-60mph/0-100kph times
 <code>/calculatejourneyprice</code> - Calculate price of a fuel costs for a journey
 <code>/findavailableplate</code> - Find custom numberplate from your local office
-<code>/getfuelly</code> - Get a summary from a Fuelly profile
 <code>/getobdcode</code> - Get symptoms & causes of an OBDII code
 <code>/guessmileage</code> - Guess mileage of a vehicle from previous known records
 <code>/parseplate</code> - Parse number/license plate and &quot;decode&quot; it
@@ -35,11 +34,6 @@ To get additional help about the modules below (such as what arguments they acce
 <code>&lt;2&gt;</code> <b>Country</b> <i>(Optional)</i> - The <a href='https://en.wikipedia.org/wiki/ISO_3166-1#Current'>ISO 3166-1</a> country code — defaults to <b>gb</b> (Great Britain) <i>(e.g. gb, fr, nl)</i>*
 
 <b>*</b> <i>Supported: gb.</i>";
-
-        public static string Fuelly_Get = @"<code>/getfuelly &lt;1&gt; &lt;[2]&gt;</code>
-—
-<code>&lt;1&gt;</code> <b>Fuelly ID</b> - ID from the profile URL of a car. So, for `http://www.fuelly.com/car/peugeot/106/2002/electricduck/713804`, the ID would be `713804` — the integer at the end
-<code>&lt;1&gt;</code> <b>Unit</b> <i>(Optional)</i> - Unit to use (<b>us</b> (US MPG), <b>uk</b> (UK/Imperial MPG) — defaults to <b>us</b>)";
 
         public static string JourneyPrice_Calculate = @"<code>/calculatejourneyprice &lt;1&gt; &lt;2&gt; &lt;3&gt;</code>
 —
@@ -99,9 +93,6 @@ To get additional help about the modules below (such as what arguments they acce
             
             HelpDictionary.Add("findavailableplate", AvailablePlate_Find);
             HelpDictionary.Add("findplate", AvailablePlate_Find);
-
-            HelpDictionary.Add("getfuelly", Fuelly_Get);
-            HelpDictionary.Add("fuelly", Fuelly_Get);
 
             HelpDictionary.Add("calculatejourneyprice", JourneyPrice_Calculate);
             HelpDictionary.Add("journeyprice", JourneyPrice_Calculate);

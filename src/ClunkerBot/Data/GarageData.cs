@@ -50,7 +50,6 @@ namespace ClunkerBot.Data
                         result.EngineFuel = garageItem.EngineFuel;
                         result.EngineSize = garageItem.EngineSize;
                         result.EngineType = garageItem.EngineType;
-                        result.FuellyId = garageItem.FuellyId;
                         result.Generation = garageItem.Generation;
                         result.MainImage = garageItem.MainImage;
                         result.Make = garageItem.Make;
