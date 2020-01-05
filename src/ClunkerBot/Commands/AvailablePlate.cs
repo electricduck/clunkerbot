@@ -104,7 +104,7 @@ namespace ClunkerBot.Commands
                     } else if(extractedPrice.Contains("£")) {
                         purchaseType = Enums.PlatePurchaseType.BuyNow;
 
-                        buyLink = "| <a href=\"https://dvlaregistrations.gov.gov.uk/buy.html"
+                        buyLink = "| <a href=\"https://dvlaregistrations.dvla.gov.uk/buy.html"
                             + "?plate=" + extractedPlate
                             + "&price=" + extractedPrice.Replace("£", "")
                             + "\">Buy Now</a>";
