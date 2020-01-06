@@ -62,9 +62,9 @@ namespace ClunkerBot.Commands
                 string timezoneString = "UTC+0";
 
                 string fullLocation = $"{locationName}, {locationCountry}";
-                string icon = GetWeatherIcon(weatherTypeIcon);
+                string icon = WeatherUtilities.GetWeatherIcon(weatherTypeIcon);
                 string weather = $@"<b>{weatherType}</b>
-<i>{weatherDescription}</i>";
+{weatherDescription}";
 
                 if(weatherType.ToLower() == weatherDescription.ToLower()) {
                     weather = $"<b>{weatherType}</b>";
@@ -133,46 +133,6 @@ namespace ClunkerBot.Commands
             } else {
                 return visibility + "M";
             }
-        }
-
-        private static string GetWeatherIcon(string icon)
-        {
-            if(WeatherIcons.ContainsKey(icon)) {
-                string emoji;
-
-                WeatherIcons.TryGetValue(icon, out emoji);
-
-                return emoji;
-            } else {
-                return "☁️";
-            }
-        }
-
-        private static Dictionary<string, string> WeatherIcons = new Dictionary<string, string>()
-        {
-            {"01d", "☀️"},  // Day: Sunny
-            {"01n", "🌙"},  // Night: Clear
-            {"02d", "⛅"},  // Day: Partially Cloudy
-            {"02n", "☁️"},  // Night: Partially Cloudy
-            {"03d", "🌥️"},  // Day: Cloudy
-            {"03n", "☁️"},  // Night: Cloudy
-            {"04d", "☁️"},  // Day: Cloudy (alt)
-            {"04n", "☁️"},  // Night: Cloudy (alt)
-            {"09d", "🌦️"},  // Day: Showers
-            {"09n", "🌧️"},  // Night: Showers
-            {"10d", "🌧️"},  // Day: Rain
-            {"10n", "🌧️"},  // Night: Rain
-            {"13d", "🌩️"},  // Day: Thunderstorm
-            {"13n", "🌩️"},  // Night: Thunderstorm
-            {"50d", "🌫️"},  // Day: Fog
-            {"50n", "🌫️"},  // Night: Fog
-            {"900", "🌪️"},  // Extreme: Tornado
-            {"901", "️️⛈️"},  // Extreme: Storm & Showers
-            {"902", "🌀"},  // Extreme: Hurricane
-            {"903", "❄️"},  // Extreme: Snow
-            {"904", "🥵"},  // Extreme: Very Hot
-            {"905", "🥶"},  // Extreme: Heavy Wind
-            {"906", "🌨️"}  // Extreme: Hail
-        };
+        }    
     }
 }

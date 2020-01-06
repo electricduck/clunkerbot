@@ -229,6 +229,13 @@ namespace ClunkerBot
 
                 //         MessageApi.SendTextMessage(setCarPhotoOutput, Program.BotClient, telegramMessageEvent);
                 //     break;
+                case "humber":
+                        string getConditionsOnHumberBridgeOutput = "";
+
+                        getConditionsOnHumberBridgeOutput = HumberBridge.GetConditionsOn();
+
+                        MessageApi.SendTextMessage(getConditionsOnHumberBridgeOutput, Program.BotClient, telegramMessageEvent);                   
+                    break;
                 default:
                     ConsoleOutputUtilities.WarnConsoleMessage($@"Command '{command}' doesn't exist");
                     break;
