@@ -52,7 +52,13 @@ namespace ClunkerBot.Commands
 {day0Weather}
 {day1Weather}
 {day2Weather}
-{day3Weather}";
+{day3Weather}
+
+<b>💵 Prices</b>
+<i>Class 1:</i> Free
+<i>Class 2 (3.5t max):</i> £1.50 (£1.35 TAG)
+<i>Class 3 (3.5t-7.5t):</i> £4.00 (£3.60 TAG)
+<i>Class 4 (7.5t):</i> £12.00 (£10.80 TAG)";
 
                 return BuildOutput(result, outputHeader, outputEmoji);
             }
