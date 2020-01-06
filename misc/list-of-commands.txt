@@ -8,6 +8,7 @@ getobdcode - <OBDII Code>
 getweather - <Location>
 guessmileage - <Date Registered> <Last MOT Mileage> <[Last MOT Date]>
 help - <[Module]>
+humber - (No arguments)
 info - (No arguments)
 parseplate - <Plate> <[Country]>
 0to60 - Alias for /calculate0to60
