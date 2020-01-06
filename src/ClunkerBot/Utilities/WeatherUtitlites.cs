@@ -62,7 +62,7 @@ namespace ClunkerBot.Utilities
         {
             {"01d", "Sunny"},
             {"01n", "Clear"},
-            {"02d", "Partially Cloud"},
+            {"02d", "Partially Cloudy"},
             {"02n", "Partially Cloudy"},
             {"03d", "Cloudy"},
             {"03n", "Cloudy"},
