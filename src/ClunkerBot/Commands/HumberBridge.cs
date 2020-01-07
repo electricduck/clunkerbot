@@ -68,32 +68,9 @@ namespace ClunkerBot.Commands
             }
         }
 
-        private static string ConvertShortDayToLongDay(string shortDay)
-        {
-            switch(shortDay.ToLower())
-            {
-                case "mon":
-                    return "Monday";
-                case "tue":
-                    return "Tuesday";
-                case "wed":
-                    return "Wednesday";
-                case "thu":
-                    return "Thursday";
-                case "fri":
-                    return "Friday";
-                case "sat":
-                    return "Saturday";
-                case "sun":
-                    return "Sunday";
-            }
-
-            return "Today";
-        }
-
         private static string GetWeather(int day, HtmlNodeCollection iconsNodes, HtmlNodeCollection daysNodes)
         {
-            var dayNode = ConvertShortDayToLongDay(daysNodes[day].InnerText);
+            var dayNode = NormalizeDay(daysNodes[day].InnerText);
             var iconNode = iconsNodes[day].Attributes["src"].Value;
 
             var iconCode = GetWeatherIconFromImgSrc(iconNode);
@@ -110,6 +87,29 @@ namespace ClunkerBot.Commands
             return imgSrcValue
                 .Replace("https://www.humberbridge.co.uk/wp-content/plugins/BridgeConditions/images/icons/", "")
                 .Replace(".png", "");
+        }
+
+        private static string NormalizeDay(string shortDay)
+        {
+            switch(shortDay.ToLower())
+            {
+                case "mon":
+                    return "Mon";
+                case "tue":
+                    return "Tue";
+                case "wed":
+                    return "Web";
+                case "thu":
+                    return "Thu";
+                case "fri":
+                    return "Fri";
+                case "sat":
+                    return "Sat";
+                case "sun":
+                    return "Sun";
+            }
+
+            return "Now";
         }
     }
 }
