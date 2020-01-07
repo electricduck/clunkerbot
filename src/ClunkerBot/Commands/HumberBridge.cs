@@ -98,7 +98,7 @@ namespace ClunkerBot.Commands
                 case "tue":
                     return "Tue";
                 case "wed":
-                    return "Web";
+                    return "Wed";
                 case "thu":
                     return "Thu";
                 case "fri":
