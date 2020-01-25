@@ -45,7 +45,7 @@ namespace ClunkerBot.Commands
                 string temperatureMinFahrenheit = ConvertKelvinToSomethingLessSilly((double)parsedJson["main"]["temp_min"], Enums.Temperatures.Fahrenheit).ToString() + "°F";
 
                 string pressure = (string)parsedJson["main"]["pressure"] + "hPa";
-                string pressure_inHg = UnitConversionUtlities.hPA_inHg((double)parsedJson["main"]["pressure"], 1) + "inHg";
+                string pressure_inHg = UnitConversionUtilities.hPA_inHg((double)parsedJson["main"]["pressure"], 1) + "inHg";
                 string humidity = (string)parsedJson["main"]["humidity"] + "%";
                 string cloudCover = (string)parsedJson["clouds"]["all"] + "%";
                 string visibility = ParseVisibility((double)parsedJson["visibility"]);

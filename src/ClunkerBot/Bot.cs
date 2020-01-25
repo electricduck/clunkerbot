@@ -229,6 +229,19 @@ namespace ClunkerBot
 
                 //         MessageApi.SendTextMessage(setCarPhotoOutput, Program.BotClient, telegramMessageEvent);
                 //     break;
+                
+                case "co2":
+                    string calculateCarbonNeutralOutput = "";
+
+                    if(arguments.Length == 2) {
+                        calculateCarbonNeutralOutput = CarbonNeutral.Calculate(arguments[0], arguments[1]);
+                    } else {
+                        MessageApi.SendTextMessage(HelpData.GetHelp("co2"), Program.BotClient, telegramMessageEvent);
+                    }
+
+                    MessageApi.SendTextMessage(calculateCarbonNeutralOutput, Program.BotClient, telegramMessageEvent);
+
+                    break;
                 case "humber":
                         string getConditionsOnHumberBridgeOutput = "";
 
@@ -236,6 +249,7 @@ namespace ClunkerBot
 
                         MessageApi.SendTextMessage(getConditionsOnHumberBridgeOutput, Program.BotClient, telegramMessageEvent);                   
                     break;
+
                 default:
                     ConsoleOutputUtilities.WarnConsoleMessage($@"Command '{command}' doesn't exist");
                     break;

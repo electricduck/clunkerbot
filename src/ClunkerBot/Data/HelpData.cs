@@ -14,6 +14,7 @@ To get additional help about the modules below (such as what arguments they acce
 <b>Car Utilities</b>
 <code>/calculate0to60</code> - Calculate 0-60mph/0-100kph times
 <code>/calculatejourneyprice</code> - Calculate price of a fuel costs for a journey
+<code>/co2</code> - Calculate how many trees you'd need to plant to stay carbon neutral
 <code>/findavailableplate</code> - Find custom numberplate from your local office
 <code>/getobdcode</code> - Get symptoms & causes of an OBDII code
 <code>/guessmileage</code> - Guess mileage of a vehicle from previous known records
@@ -35,6 +36,11 @@ To get additional help about the modules below (such as what arguments they acce
 <code>&lt;2&gt;</code> <b>Country</b> <i>(Optional)</i> - The <a href='https://en.wikipedia.org/wiki/ISO_3166-1#Current'>ISO 3166-1</a> country code — defaults to <b>gb</b> (Great Britain) <i>(e.g. gb, fr, nl)</i>*
 
 <b>*</b> <i>Supported: gb.</i>";
+
+        public static string CarbonNeutral_Calculate = @"<code>/co2 &lt;1&gt; &lt;2&gt;</code>
+—
+<code>&lt;1&gt;</code> <b>Emissions</b> - Emissions produced by your vehicle, with optional unit (<b>g/km</b> — defaults to <b>g/km</b>) <i>(e.g. 145g/km, 241g/km, 99)</i>
+<code>&lt;2&gt;</code> <b>Miles per year</b> - Miles you accomplish per year in your vehicle, with optional unit (<b>km</b> or <b>mi</b> — defaults to <b>mi</b>) <i>(e.g. 7000mi, 16000km, 11000)</i>";
 
         public static string JourneyPrice_Calculate = @"<code>/calculatejourneyprice &lt;1&gt; &lt;2&gt; &lt;3&gt;</code>
 —
@@ -117,6 +123,8 @@ To get additional help about the modules below (such as what arguments they acce
 
             HelpDictionary.Add("ask", WolframAlpha_Ask);
             HelpDictionary.Add("wa", WolframAlpha_Ask);
+
+            HelpDictionary.Add("co2", CarbonNeutral_Calculate);
         }
 
         public static string GetHelp(string command, bool incorrectFormatWarning = false)
