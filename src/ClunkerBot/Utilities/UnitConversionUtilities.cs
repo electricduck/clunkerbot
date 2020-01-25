@@ -6,7 +6,8 @@ namespace ClunkerBot.Utilities
 {
     class UnitConversionUtilities
     {
-         private static string standardRegex = @"^(([0-9]{1,9})([a-z]){0,1})$";
+         private static string distanceRegex = @"^(([0-9]{1,99})((km)|(mi)){0,1})$";
+         private static string emissionsRegex = @"^(([0-9]{1,99})((g\/km)){0,1})$";
 
         public static NormalizedUnitReturnModel NormalizeDistance(string distanceInput)
         {
@@ -14,25 +15,25 @@ namespace ClunkerBot.Utilities
             string outputUnit = "km";
             double outputValue = 0;
 
-            Regex regex = new Regex(standardRegex);
+            Regex regex = new Regex(distanceRegex);
             Match match = regex.Match(distanceInput);
 
-            string matchedUnit = match.Groups[3].Value.ToLower();
-            double matchedValue = Convert.ToDouble(match.Groups[2].Value);
+            if(match.Success) {
+                string matchedUnit = match.Groups[3].Value.ToLower();
+                double matchedValue = Convert.ToDouble(match.Groups[2].Value);
 
-            switch(matchedUnit)
-            {
-                case "": // Assume mi
-                case "mi":
-                    outputCalculated = true;
-                    outputValue = (matchedValue * 1.609344);
-                    break;
-                case "km":
-                    outputCalculated = true;
-                    outputValue = matchedValue;
-                    break;
-                default:    
-                    break;
+                switch(matchedUnit)
+                {
+                    case "": // Assume mi
+                    case "mi":
+                        outputCalculated = true;
+                        outputValue = (matchedValue * 1.609344);
+                        break;
+                    case "km":
+                        outputCalculated = true;
+                        outputValue = matchedValue;
+                        break;
+                }
             }
 
             NormalizedUnitReturnModel calculatedResult = new NormalizedUnitReturnModel {
@@ -50,7 +51,7 @@ namespace ClunkerBot.Utilities
             string outputUnit = "g/km";
             double outputValue = 0;
 
-            Regex regex = new Regex(standardRegex);
+            Regex regex = new Regex(emissionsRegex);
             Match match = regex.Match(emissionsInput);
             
             if(match.Success) {
@@ -63,8 +64,6 @@ namespace ClunkerBot.Utilities
                     case "g/km":
                         outputCalculated = true;
                         outputValue = matchedValue;
-                        break;
-                    default:
                         break;
                 }
             }
