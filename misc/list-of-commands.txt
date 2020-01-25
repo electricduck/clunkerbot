@@ -3,6 +3,7 @@ awoo - No.
 brexit - (No arguments)
 calculate0to60 - <Power> <Weight> <Drive Type> <Transmission>
 calculatejourneyprice - <Distance> <MPG> <Fuel Price>
+co2 - <Emissions> <Distance>
 findavailableplate - <Plate> <[Country]>
 getobdcode - <OBDII Code>
 getweather - <Location>
