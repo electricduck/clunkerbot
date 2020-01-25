@@ -42,7 +42,8 @@ namespace ClunkerBot.Commands
                 .Replace("<li>", "• ")
                 .Replace("</li>", String.Empty)
                 .Replace("h2>", "b>")
-                .Replace("h3>", "i>");
+                .Replace("h3>", "i>")
+                .Replace("<hr>", $"{Separator}");
 
             if(String.IsNullOrEmpty(header)) {
                 output = $@"{message}";
