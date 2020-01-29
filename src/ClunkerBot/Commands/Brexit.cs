@@ -17,7 +17,7 @@ namespace ClunkerBot.Commands
         public static string TimeUntil()
         {
             DateTime originalDate = DateTime.Parse("Mar 29, 2019 00:00:00 +00:00");
-            DateTime thirdExtensionDate = DateTime.Parse("Jan 31, 2020 00:00:00 +00:00");
+            DateTime thirdExtensionDate = DateTime.Parse("Jan 31, 2020 22:00:00 +00:00");
             DateTime article50InvokedDate = DateTime.Parse("Mar 29, 2017 00:00:00 +00:00");
             DateTime referendumDate = DateTime.Parse("Jun 23, 2016 00:00:00 +00:00");
 
