@@ -23,7 +23,7 @@ namespace ClunkerBot.Commands
             string brexitOutput = OutputTimeSince(brexitDate, DateTime.UtcNow);
             
             string result = $@"<h2>Brexit Implementation</h2>
-⬅️ {implementationOutput}
+➡️ {implementationOutput}
 <i>During the 11-month period since 'Brexit Day', the transition period will start, allowing negotiations to the future UK-EU relationship. During this time, the UK will continue to follow all of EU's rules and trading agreements.</i>
             
 <h2>Since Brexit</h2> 
