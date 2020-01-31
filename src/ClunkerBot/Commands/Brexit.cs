@@ -16,31 +16,19 @@ namespace ClunkerBot.Commands
     {
         public static string TimeUntil()
         {
-            DateTime originalDate = DateTime.Parse("Mar 29, 2019 00:00:00 +00:00");
-            DateTime thirdExtensionDate = DateTime.Parse("Jan 31, 2020 22:00:00 +00:00");
-            DateTime article50InvokedDate = DateTime.Parse("Mar 29, 2017 00:00:00 +00:00");
-            DateTime referendumDate = DateTime.Parse("Jun 23, 2016 00:00:00 +00:00");
+            DateTime implementationDate = DateTime.Parse("Jan 1, 2021 00:00:00 +00:00");
+            DateTime brexitDate = DateTime.Parse("Jan 31, 2020 23:00:00 +00:00");
 
-            string thirdExtensionOutput = OutputTimeUntil(thirdExtensionDate, DateTime.UtcNow);
-            string originalOutput = OutputTimeSince(originalDate, DateTime.UtcNow);
-            string article50InvokedOutput = OutputTimeSince(article50InvokedDate, DateTime.UtcNow);
-            string referendumOutput = OutputTimeSince(referendumDate, DateTime.UtcNow);
+            string implementationOutput = OutputTimeUntil(implementationDate, DateTime.UtcNow);
+            string brexitOutput = OutputTimeSince(brexitDate, DateTime.UtcNow);
             
-            string result = $@"<h2>Third Extension (Current)</h2> 
-➡️ {thirdExtensionOutput}
-<i>As requested by Boris Johnson (under the Benn Act), making this the third extension to Brexit (as a deal has yet to be sorted), this is when the UK is due to leave the EU. Also of note this is a so-called 'flextension', allowing the UK to leave the EU before this time.</i>
-
-<h2>Since Original Brexit</h2>
-⬅️ {originalOutput}
-<i>On 29-Mar-2019, Brexit is supposed to occur. An extension is requested by Theresa May.</i>
-
-<h2>Since Article 50 Invoked</h2>
-⬅️ {article50InvokedOutput}
-<i>On 29-Mar-2017, Article 50 is triggered by Theresa May.</i>
-
-<h2>Since Referendum</h2>
-⬅️ {referendumOutput}
-<i>On 23-Jun-2016, the UK holds the referendum: 51.9% of voters vote to leave. This creates Article 50: Brexit.</i>";
+            string result = $@"<h2>Brexit Implementation</h2>
+⬅️ {implementationOutput}
+<i>During the 11-month period since 'Brexit Day', the transition period will start, allowing negotiations to the future UK-EU relationship. During this time, the UK will continue to follow all of EU's rules and trading agreements.</i>
+            
+<h2>Since Brexit</h2> 
+⬅️ {brexitOutput}
+<i>On 31-Jan-2020, Brexit occurs: the UK (finally) leaves the European Union.</i>";
             
             return BuildOutput(result, "Time Until Brexit", "🇬🇧");
         }
@@ -53,7 +41,7 @@ namespace ClunkerBot.Commands
             {
                 if(deadline < DateTime.Now)
                 {
-                    return $"<i>{expired}</i>";
+                    return $"{expired}";
                 }
             }
 

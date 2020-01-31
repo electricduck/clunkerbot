@@ -23,7 +23,7 @@ To get additional help about the modules below (such as what arguments they acce
 
 <b>Misc. Utilities</b>
 <code>/ask</code> - Anything you want to calculate or know about
-<code>/brexit</code> - Time until Brexit
+<code>/brexit</code> - Brexit countdowns (and countups)
 <code>/getweather</code> - Get weather for a location
 
 <b>Meta</b>
